@@ -606,17 +606,10 @@
 
       selectedHint.textContent = 'Список готов — можно отправить одним сообщением';
       const lines = list.map((card, index) => {
-        return (index + 1) + '. ' + card.dataset.name + ' — ' + formatPrice(card.dataset.price) + '
-' + card.dataset.url;
-      }).join('
+        return (index + 1) + '. ' + card.dataset.name + ' — ' + formatPrice(card.dataset.price) + '\n' + card.dataset.url;
+      }).join('\n\n');
 
-');
-
-      const message = 'Здравствуйте! Хочу заказать эти BE@RBRICK:
-
-' + lines + '
-
-Подскажите, пожалуйста, наличие и итоговую сумму.';
+      const message = 'Здравствуйте! Хочу заказать эти BE@RBRICK:\n\n' + lines + '\n\nПодскажите, пожалуйста, наличие и итоговую сумму.';
       sendBtn.href = 'https://wa.me/' + phone + '?text=' + encodeURIComponent(message);
     }
 
