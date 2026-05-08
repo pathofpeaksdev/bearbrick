@@ -1,222 +1,658 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PATH OF PEAKS — BE@RBRICK 400%</title>
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:Arial,Helvetica,sans-serif;background:#070707;color:#fff;line-height:1.45;padding-bottom:96px}
-a{color:inherit}
-.wrap{max-width:1200px;margin:0 auto;padding:22px}
-.hero{background:radial-gradient(circle at 82% 12%,rgba(255,176,31,.24),transparent 23%),linear-gradient(135deg,#161616,#0a0a0a 68%,#251803);border:1px solid #282828;border-radius:28px;padding:34px 28px;margin-bottom:22px;box-shadow:0 18px 70px rgba(0,0,0,.45)}
-.store{font-size:18px;letter-spacing:5px;color:#ffb01f;font-weight:900;text-transform:uppercase;margin-bottom:14px}
-h1{font-size:clamp(44px,8vw,96px);line-height:.9;font-weight:1000;letter-spacing:-3px;text-transform:uppercase}
-h1 span{color:#ffb01f}
-.lead{max-width:850px;margin-top:20px;color:#ddd;font-size:19px}
-.info{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
-.info span{border:1px solid #333;background:#141414;border-radius:999px;padding:9px 14px;color:#eee;font-size:14px}
-.topline{display:flex;justify-content:space-between;align-items:center;margin:18px 0;color:#cfcfcf;font-size:17px}
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-.card{background:#111;border:1px solid #262626;border-radius:22px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.24);transition:.2s;display:flex;flex-direction:column}
-.card:hover{transform:translateY(-3px);border-color:#ffb01f}
-.photo{position:relative;background:#1a1a1a;aspect-ratio:1/1;overflow:hidden;display:flex;align-items:center;justify-content:center}
-.photo img{width:100%;height:100%;object-fit:cover;display:block}
-.photo .fallback{position:absolute;inset:0;display:none;align-items:center;justify-content:center;text-align:center;padding:18px;color:#777;font-weight:800;background:#171717}
-.photo img.failed + .fallback{display:flex}
-.badge{position:absolute;top:12px;left:12px;background:#ef4444;color:#fff;padding:6px 10px;border-radius:999px;font-size:12px;font-weight:900}
-.card-body{padding:16px;display:flex;flex-direction:column;gap:10px;flex:1}
-h3{font-size:18px;line-height:1.15}
-.desc{font-size:14px;color:#bdbdbd;min-height:62px}
-.price{font-size:23px;font-weight:1000;color:#fff}
-.direct{display:block;color:#ffb01f;font-size:13px;word-break:break-word;text-decoration:underline;text-underline-offset:3px}
-.actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:auto}
-.btn,.kaspi{border:0;border-radius:12px;padding:12px 10px;font-weight:900;cursor:pointer;text-align:center;text-decoration:none;font-size:14px}
-.btn{background:#ffb01f;color:#000}
-.btn.selected{background:#22c55e;color:#001b09}
-.kaspi{background:#232323;color:#fff;border:1px solid #333}
-.bottom{position:fixed;left:0;right:0;bottom:0;z-index:20;background:rgba(7,7,7,.94);backdrop-filter:blur(12px);border-top:1px solid #242424}
-.bottom-inner{max-width:1200px;margin:0 auto;padding:14px 22px;display:flex;align-items:center;justify-content:space-between;gap:14px}
-.selected{font-weight:900;color:#ffb01f}
-.wa{display:inline-flex;align-items:center;justify-content:center;background:#22c55e;color:#001b09;text-decoration:none;border-radius:14px;padding:14px 22px;font-weight:1000;box-shadow:0 10px 30px rgba(34,197,94,.2)}
-.clear{background:transparent;color:#aaa;border:1px solid #333;border-radius:12px;padding:12px 16px;font-weight:800;cursor:pointer}
-.empty{color:#777;font-size:13px}
-footer{text-align:center;color:#777;padding:34px 0 18px}
-@media(max-width:1000px){.grid{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:720px){body{padding-bottom:142px}.wrap{padding:14px}.hero{padding:24px 18px;border-radius:20px}.store{font-size:13px;letter-spacing:3px}.lead{font-size:16px}.grid{grid-template-columns:repeat(2,1fr);gap:12px}h3{font-size:15px}.desc{font-size:12px;min-height:76px}.price{font-size:18px}.actions{grid-template-columns:1fr}.bottom-inner{padding:12px 14px;align-items:stretch;flex-direction:column}.wa,.clear{width:100%}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PATH OF PEAKS — BE@RBRICK 400%</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: Arial, Helvetica, sans-serif; background:#050505; color:#fff; padding-bottom:120px; }
+    .page { max-width:1280px; margin:0 auto; padding:24px; }
+    .hero { padding:36px; border-radius:28px; border:1px solid #2b2b2b; background:radial-gradient(circle at 85% 5%, rgba(255,174,31,.28), transparent 27%), linear-gradient(135deg,#161616,#070707 70%,#241600); margin-bottom:28px; }
+    .brand { color:#ffad1f; font-weight:900; letter-spacing:8px; font-size:22px; margin-bottom:18px; }
+    h1 { font-size:clamp(54px,9vw,112px); line-height:.88; margin:0; letter-spacing:-4px; font-weight:1000; }
+    h1 span { color:#ffad1f; }
+    .lead { max-width:900px; color:#e8e8e8; font-size:21px; line-height:1.45; margin:24px 0 0; }
+    .badges { display:flex; flex-wrap:wrap; gap:12px; margin-top:26px; }
+    .badges div { border:1px solid #333; background:#121212; padding:10px 16px; border-radius:999px; font-weight:700; }
+    .top { display:flex; justify-content:space-between; align-items:center; gap:16px; margin:20px 0; color:#ddd; font-size:18px; }
+    .grid { display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:18px; }
+    .product { display:flex; flex-direction:column; background:#111; border:1px solid #292929; border-radius:22px; overflow:hidden; min-height:100%; }
+    .product:hover { border-color:#ffad1f; }
+    .imgBox { display:block; position:relative; width:100%; aspect-ratio:1/1; background:#1a1a1a; text-decoration:none; overflow:hidden; }
+    .imgBox img { width:100%; height:100%; object-fit:cover; display:block; }
+    .fallback { display:none; position:absolute; inset:0; align-items:center; justify-content:center; text-align:center; background:#171717; color:#777; font-size:22px; font-weight:900; padding:20px; }
+    .fallback span { display:block; margin-top:8px; color:#aaa; font-size:14px; }
+    .content { padding:16px; display:flex; flex-direction:column; gap:10px; flex:1; }
+    .num { color:#ffad1f; font-size:12px; font-weight:900; letter-spacing:1px; }
+    h2 { font-size:18px; line-height:1.15; margin:0; }
+    p { margin:0; color:#bdbdbd; font-size:14px; line-height:1.4; min-height:78px; }
+    .price { font-size:24px; font-weight:1000; margin-top:auto; }
+    .link { color:#ffad1f; font-size:14px; word-break:break-word; text-underline-offset:3px; }
+    .pick { width:100%; border:0; background:#ffad1f; color:#000; border-radius:14px; padding:13px 12px; font-weight:1000; font-size:15px; cursor:pointer; }
+    .pick.active { background:#22c55e; color:#001b08; }
+    .bar { position:fixed; left:0; right:0; bottom:0; background:rgba(5,5,5,.96); border-top:1px solid #242424; backdrop-filter:blur(12px); z-index:10; }
+    .barInner { max-width:1280px; margin:0 auto; padding:16px 24px; display:grid; grid-template-columns:1fr auto auto; gap:16px; align-items:center; }
+    .selected { color:#ffad1f; font-size:20px; font-weight:1000; }
+    .small { color:#9b9b9b; font-size:14px; margin-top:3px; }
+    .clear { border:1px solid #333; background:#111; color:#bbb; border-radius:12px; padding:14px 20px; font-weight:900; cursor:pointer; }
+    .whatsapp { background:#22c55e; color:#001b08; border-radius:14px; padding:15px 26px; text-decoration:none; font-weight:1000; }
+    footer { text-align:center; color:#777; padding:34px 0 8px; }
+    @media(max-width:1000px) { .grid { grid-template-columns:repeat(3,1fr); } }
+    @media(max-width:720px) { body { padding-bottom:190px; } .page { padding:14px; } .hero { padding:24px 18px; border-radius:20px; } .brand { font-size:15px; letter-spacing:4px; } .lead { font-size:16px; } .grid { grid-template-columns:repeat(2,1fr); gap:12px; } h2 { font-size:15px; } p { font-size:12px; min-height:84px; } .price { font-size:19px; } .barInner { grid-template-columns:1fr; padding:12px 14px; } .clear,.whatsapp { width:100%; text-align:center; } }
+  </style>
 </head>
 <body>
-<main class="wrap">
-  <section class="hero">
-    <div class="store">PATH OF PEAKS</div>
-    <h1>BE<span>@</span>RBRICK<br>400%</h1>
-    <p class="lead">Коллекционные фигурки 28 см. Выберите понравившиеся модели — список автоматически соберётся и отправится в WhatsApp одним сообщением.</p>
-    <div class="info">
-      <span>📦 Доставка по Казахстану</span>
-      <span>💳 Оплата через Kaspi</span>
-      <span>✅ Фото · цена · ссылка</span>
+  <main class="page">
+    <section class="hero">
+      <div class="brand">PATH OF PEAKS</div>
+      <h1>BE<span>@</span>RBRICK<br>400%</h1>
+      <p class="lead">Коллекционные фигурки 28 см. Выберите понравившиеся модели — сайт сам соберёт список и откроет WhatsApp с готовым сообщением.</p>
+      <div class="badges">
+        <div>📦 Доставка по Казахстану</div>
+        <div>💳 Оплата через Kaspi</div>
+        <div>✅ Фото · цена · ссылка</div>
+      </div>
+    </section>
+
+    <div class="top">
+      <strong>36 фигурок в наличии</strong>
+      <span>Нажмите «Выбрать» под нужными моделями</span>
     </div>
-  </section>
-  <div class="topline"><div>36 фигурок в наличии</div><div class="empty">Нажмите «Выбрать» под нужными моделями</div></div>
-  <section class="grid" id="grid"></section>
-  <footer>BE@RBRICK 400% · каталог PATH OF PEAKS</footer>
-</main>
-<div class="bottom">
-  <div class="bottom-inner">
-    <div>
-      <div class="selected" id="selectedText">Выбрано: 0</div>
-      <div class="empty" id="selectedHint">Список появится после выбора товаров</div>
+
+    <section class="grid">
+    <div class="product" data-name="Yoon Hyup" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-yoon-hyup-28-sm-plastik-145909822/">
+      <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-yoon-hyup-28-sm-plastik-145909822/" target="_blank" rel="noopener">
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/p97/p50/65666228.png?format=gallery-large" alt="Yoon Hyup" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="fallback">Фото<br><span>Yoon Hyup</span></div>
+      </a>
+      <div class="content">
+        <div class="num">#01</div>
+        <h2>Yoon Hyup</h2>
+        <p>Яркая арт-фигурка с графичным узором. Хорошо смотрится на полке, рабочем столе или в витрине.</p>
+        <div class="price">18 990 ₸</div>
+        <a class="link" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-yoon-hyup-28-sm-plastik-145909822/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <button class="pick" type="button">Выбрать</button>
+      </div>
     </div>
-    <button class="clear" onclick="clearSelection()">Очистить</button>
-    <a class="wa" id="wa" href="https://wa.me/77766088813?text=Здравствуйте!%20Хочу%20заказать%20BE@RBRICK." target="_blank">Отправить список в WhatsApp</a>
+    <div class="product" data-name="Leica × Medicom Toy" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-leica-x-medicom-toy-be-rbrick-28-sm-plastik-146722756/">
+      <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-leica-x-medicom-toy-be-rbrick-28-sm-plastik-146722756/" target="_blank" rel="noopener">
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/p29/pd3/68320464.jpg?format=gallery-large" alt="Leica × Medicom Toy" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="fallback">Фото<br><span>Leica × Medicom Toy</span></div>
+      </a>
+      <div class="content">
+        <div class="num">#02</div>
+        <h2>Leica × Medicom Toy</h2>
+        <p>Стильная модель в эстетике Leica. Минималистичный дизайн для тех, кто любит фото, дизайн и чистый визуал.</p>
+        <div class="price">18 990 ₸</div>
+        <a class="link" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-leica-x-medicom-toy-be-rbrick-28-sm-plastik-146722756/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <button class="pick" type="button">Выбрать</button>
+      </div>
+    </div>
+    <div class="product" data-name="Innersect Multi-colour" data-price="18990" data-url="https://kaspi.kz/shop/p/figurka-bearbrick-be-rbrick-400-innersect-multi-colour-28-sm-1-sht-138630158/">
+      <a class="imgBox" href="https://kaspi.kz/shop/p/figurka-bearbrick-be-rbrick-400-innersect-multi-colour-28-sm-1-sht-138630158/" target="_blank" rel="noopener">
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/pbe/p28/38560152.jpg?format=gallery-large" alt="Innersect Multi-colour" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="fallback">Фото<br><span>Innersect Multi-colour</span></div>
+      </a>
+      <div class="content">
+        <div class="num">#03</div>
+        <h2>Innersect Multi-colour</h2>
+        <p>Цветная коллекционная модель с уличным вайбом. Хороший вариант для современного интерьера.</p>
+        <div class="price">18 990 ₸</div>
+        <a class="link" href="https://kaspi.kz/shop/p/figurka-bearbrick-be-rbrick-400-innersect-multi-colour-28-sm-1-sht-138630158/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <button class="pick" type="button">Выбрать</button>
+      </div>
+    </div>
+    <div class="product" data-name="G-Shock Shanghai Night" data-price="24990" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-be-rbrick-shanghai-night-g-shock-28-sm-plastik-145832846/">
+      <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-be-rbrick-shanghai-night-g-shock-28-sm-plastik-145832846/" target="_blank" rel="noopener">
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/p06/p5b/65389959.png?format=gallery-large" alt="G-Shock Shanghai Night" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="fallback">Фото<br><span>G-Shock Shanghai Night</span></div>
+      </a>
+      <div class="content">
+        <div class="num">#04</div>
+        <h2>G-Shock Shanghai Night</h2>
+        <p>Эффектная модель в тёмном городском стиле. Выглядит более премиально и контрастно.</p>
+        <div class="price">24 990 ₸</div>
+        <a class="link" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-be-rbrick-shanghai-night-g-shock-28-sm-plastik-145832846/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <button class="pick" type="button">Выбрать</button>
+      </div>
+    </div>
+    <div class="product" data-name="Moon" data-price="18990" data-url="https://kaspi.kz/shop/p/modnaja-kukla-bearbrick-400-moon-111933311/">
+      <a class="imgBox" href="https://kaspi.kz/shop/p/modnaja-kukla-bearbrick-400-moon-111933311/" target="_blank" rel="noopener">
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/ha5/hb8/82068146651166.jpg?format=gallery-large" alt="Moon" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="fallback">Фото<br><span>Moon</span></div>
+      </a>
+      <div class="content">
+        <div class="num">#05</div>
+        <h2>Moon</h2>
+        <p>Спокойный космический дизайн в светлой гамме. Подойдёт для минималистичного интерьера.</p>
+        <div class="price">18 990 ₸</div>
+        <a class="link" href="https://kaspi.kz/shop/p/modnaja-kukla-bearbrick-400-moon-111933311/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <button class="pick" type="button">Выбрать</button>
+      </div>
+    </div>
+    <div class="product" data-name="QQ Valentine (Pink Girly Heart)" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-qq-520-valentine-limited-edition-pink-girly-heart-28-sm-plastik-154336276/">
+      <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-qq-520-valentine-limited-edition-pink-girly-heart-28-sm-plastik-154336276/" target="_blank" rel="noopener">
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/p53/pce/122430700.jpeg?format=gallery-large" alt="QQ Valentine (Pink Girly Heart)" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="fallback">Фото<br><span>QQ Valentine (Pink Girly Heart)</span></div>
+      </a>
+      <div class="content">
+        <div class="num">#06</div>
+        <h2>QQ Valentine (Pink Girly Heart)</h2>
+        <p>Нежная розовая модель с сердцами. Хороший подарочный вариант и яркий акцент в коллекции.</p>
+        <div class="price">18 990 ₸</div>
+        <a class="link" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-qq-520-valentine-limited-edition-pink-girly-heart-28-sm-plastik-154336276/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <button class="pick" type="button">Выбрать</button>
+      </div>
+    </div>
+    <div class="product" data-name="Lamborghini" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-bearbrick-lamborghini-28-sm-plastik-142879705/">
+      <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-bearbrick-lamborghini-28-sm-plastik-142879705/" target="_blank" rel="noopener">
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/pcf/p33/120594499.png?format=gallery-large" alt="Lamborghini" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="fallback">Фото<br><span>Lamborghini</span></div>
+      </a>
+      <div class="content">
+        <div class="num">#07</div>
+        <h2>Lamborghini</h2>
+        <p>Динамичный дизайн в автомобильной эстетике Lamborghini. Для тех, кто любит спорткары и стиль.</p>
+        <div class="price">18 990 ₸</div>
+        <a class="link" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-bearbrick-lamborghini-28-sm-plastik-142879705/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <button class="pick" type="button">Выбрать</button>
+      </div>
+    </div>
+    <div class="product" data-name="Michael Jordan 1992 Team USA" data-price="24490" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-bearbrick-michael-jordan-1992-team-usa-400-28-sm-plastik-165549278/">
+      <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-bearbrick-michael-jordan-1992-team-usa-400-28-sm-plastik-165549278/" target="_blank" rel="noopener">
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/p60/p9e/136064677.jpg?format=gallery-large" alt="Michael Jordan 1992 Team USA" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="fallback">Фото<br><span>Michael Jordan 1992 Team USA</span></div>
+      </a>
+      <div class="content">
+        <div class="num">#08</div>
+        <h2>Michael Jordan 1992 Team USA</h2>
+        <p>Спортивная коллекционная модель в стиле легендарного баскетбола Team USA 1992.</p>
+        <div class="price">24 490 ₸</div>
+        <a class="link" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-bearbrick-michael-jordan-1992-team-usa-400-28-sm-plastik-165549278/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <button class="pick" type="button">Выбрать</button>
+      </div>
+    </div>
+    <div class="product" data-name="Tom and Jerry (Tom)" data-price="18990" data-url="https://kaspi.kz/shop/p/figurka-bearbrick-tom-and-jerry-28-sm-1-sht-138655778/">
+      <a class="imgBox" href="https://kaspi.kz/shop/p/figurka-bearbrick-tom-and-jerry-28-sm-1-sht-138655778/" target="_blank" rel="noopener">
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/pd7/p56/120485672.png?format=gallery-large" alt="Tom and Jerry (Tom)" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="fallback">Фото<br><span>Tom and Jerry (Tom)</span></div>
+      </a>
+      <div class="content">
+        <div class="num">#09</div>
+        <h2>Tom and Jerry (Tom)</h2>
+        <p>Узнаваемая мультяшная фигурка Tom. Добавляет коллекции лёгкий и забавный акцент.</p>
+        <div class="price">18 990 ₸</div>
+        <a class="link" href="https://kaspi.kz/shop/p/figurka-bearbrick-tom-and-jerry-28-sm-1-sht-138655778/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <button class="pick" type="button">Выбрать</button>
+      </div>
+    </div>
+    <div class="product" data-name="KAWS" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-bearbrick-kaws-28-sm-plastik-142878224/">
+      <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-bearbrick-kaws-28-sm-plastik-142878224/" target="_blank" rel="noopener">
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/p64/p16/120594501.png?format=gallery-large" alt="KAWS" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="fallback">Фото<br><span>KAWS</span></div>
+      </a>
+      <div class="content">
+        <div class="num">#10</div>
+        <h2>KAWS</h2>
+        <p>Один из самых популярных дизайнов Bearbrick. Универсальный арт-вариант для подарка и коллекции.</p>
+        <div class="price">18 990 ₸</div>
+        <a class="link" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-bearbrick-kaws-28-sm-plastik-142878224/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <button class="pick" type="button">Выбрать</button>
+      </div>
+    </div>
+    <div class="product" data-name="Disney × Keiichi Tanaami: Mickey Mouse" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-disney-x-keiichi-tanaami-mickey-mouse-28-sm-plastik-154336394/">
+      <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-disney-x-keiichi-tanaami-mickey-mouse-28-sm-plastik-154336394/" target="_blank" rel="noopener">
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/p14/pce/94344794.jpg?format=gallery-large" alt="Disney × Keiichi Tanaami: Mickey Mouse" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="fallback">Фото<br><span>Disney × Keiichi Tanaami: Mickey Mouse</span></div>
+      </a>
+      <div class="content">
+        <div class="num">#11</div>
+        <h2>Disney × Keiichi Tanaami: Mickey Mouse</h2>
+        <p>Яркая Disney-коллаборация с Mickey Mouse и необычной художественной стилистикой.</p>
+        <div class="price">18 990 ₸</div>
+        <a class="link" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-disney-x-keiichi-tanaami-mickey-mouse-28-sm-plastik-154336394/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <button class="pick" type="button">Выбрать</button>
+      </div>
+    </div>
+    <div class="product" data-name="Tom and Jerry (Jerry)" data-price="18990" data-url="https://kaspi.kz/shop/p/figurka-bearbrick-tom-and-jerry-28-sm-1-sht-138655760/">
+      <a class="imgBox" href="https://kaspi.kz/shop/p/figurka-bearbrick-tom-and-jerry-28-sm-1-sht-138655760/" target="_blank" rel="noopener">
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/p80/p57/120485678.png?format=gallery-large" alt="Tom and Jerry (Jerry)" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="fallback">Фото<br><span>Tom and Jerry (Jerry)</span></div>
+      </a>
+      <div class="content">
+        <div class="num">#12</div>
+        <h2>Tom and Jerry (Jerry)</h2>
+        <p>Фигурка Jerry из Tom and Jerry. Отлично смотрится в паре с Tom или отдельно.</p>
+        <div class="price">18 990 ₸</div>
+        <a class="link" href="https://kaspi.kz/shop/p/figurka-bearbrick-tom-and-jerry-28-sm-1-sht-138655760/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <button class="pick" type="button">Выбрать</button>
+      </div>
+    </div>
+    <div class="product" data-name="Mars" data-price="18990" data-url="https://kaspi.kz/shop/p/modnaja-kukla-bearbrick-400-mars-earth-be-111933363/">
+      <a class="imgBox" href="https://kaspi.kz/shop/p/modnaja-kukla-bearbrick-400-mars-earth-be-111933363/" target="_blank" rel="noopener">
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/p2c/p57/120485675.png?format=gallery-large" alt="Mars" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="fallback">Фото<br><span>Mars</span></div>
+      </a>
+      <div class="content">
+        <div class="num">#13</div>
+        <h2>Mars</h2>
+        <p>Космическая модель в стиле планеты Mars. Хороший выбор для современной полки или кабинета.</p>
+        <div class="price">18 990 ₸</div>
+        <a class="link" href="https://kaspi.kz/shop/p/modnaja-kukla-bearbrick-400-mars-earth-be-111933363/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <button class="pick" type="button">Выбрать</button>
+      </div>
+    </div>
+    <div class="product" data-name="Andy Warhol × Muhammad Ali" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-set-andy-warhol-muhammad-ali-28-sm-plastik-142925902/">
+      <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-set-andy-warhol-muhammad-ali-28-sm-plastik-142925902/" target="_blank" rel="noopener">
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/pe9/pc4/54528517.jpg?format=gallery-large" alt="Andy Warhol × Muhammad Ali" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="fallback">Фото<br><span>Andy Warhol × Muhammad Ali</span></div>
+      </a>
+      <div class="content">
+        <div class="num">#14</div>
+        <h2>Andy Warhol × Muhammad Ali</h2>
+        <p>Арт-модель с вайбом Andy Warhol и Muhammad Ali. Сильный вариант для поклонников спорта и искусства.</p>
+        <div class="price">18 990 ₸</div>
+        <a class="link" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-set-andy-warhol-muhammad-ali-28-sm-plastik-142925902/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <button class="pick" type="button">Выбрать</button>
+      </div>
+    </div>
+    <div class="product" data-name="Coca-Cola Georgia Green" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-bearbrick-coca-cola-georgia-green-28sm-28-sm-1-sht-142755648/">
+      <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-bearbrick-coca-cola-georgia-green-28sm-28-sm-1-sht-142755648/" target="_blank" rel="noopener">
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/pd9/p0b/53876648.jpg?format=gallery-large" alt="Coca-Cola Georgia Green" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="fallback">Фото<br><span>Coca-Cola Georgia Green</span></div>
+      </a>
+      <div class="content">
+        <div class="num">#15</div>
+        <h2>Coca-Cola Georgia Green</h2>
+        <p>Коллаборация Coca-Cola в зелёной гамме. Выглядит свежо и заметно среди других моделей.</p>
+        <div class="price">18 990 ₸</div>
+        <a class="link" href="https://kaspi.kz/shop/p/bearbrick-bearbrick-coca-cola-georgia-green-28sm-28-sm-1-sht-142755648/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <button class="pick" type="button">Выбрать</button>
+      </div>
+    </div>
+    <div class="product" data-name="Puerto Rico Art" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-puerto-rico-art-28-sm-plastik-165596269/">
+      <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-puerto-rico-art-28-sm-plastik-165596269/" target="_blank" rel="noopener">
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/p94/p5d/136240055.png?format=gallery-large" alt="Puerto Rico Art" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="fallback">Фото<br><span>Puerto Rico Art</span></div>
+      </a>
+      <div class="content">
+        <div class="num">#16</div>
+        <h2>Puerto Rico Art</h2>
+        <p>Яркая арт-фигурка с выразительным принтом. Подходит как цветовой акцент в интерьере.</p>
+        <div class="price">18 990 ₸</div>
+        <a class="link" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-puerto-rico-art-28-sm-plastik-165596269/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <button class="pick" type="button">Выбрать</button>
+      </div>
+    </div>
+    <div class="product" data-name="Jean-Michel Basquiat #1" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-jean-michel-basquiat-28-sm-plastik-138626907/">
+      <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-jean-michel-basquiat-28-sm-plastik-138626907/" target="_blank" rel="noopener">
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/pca/p00/38549406.jpg?format=gallery-large" alt="Jean-Michel Basquiat #1" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="fallback">Фото<br><span>Jean-Michel Basquiat #1</span></div>
+      </a>
+      <div class="content">
+        <div class="num">#17</div>
+        <h2>Jean-Michel Basquiat #1</h2>
+        <p>Модель в стиле Jean-Michel Basquiat. Подходит для любителей стрит-арта и музейной эстетики.</p>
+        <div class="price">18 990 ₸</div>
+        <a class="link" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-jean-michel-basquiat-28-sm-plastik-138626907/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <button class="pick" type="button">Выбрать</button>
+      </div>
+    </div>
+    <div class="product" data-name="The Monsters: Labubu &amp; Zimomo" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-the-monsters-labubu-zimomo-28-sm-plastik-154336322/">
+      <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-the-monsters-labubu-zimomo-28-sm-plastik-154336322/" target="_blank" rel="noopener">
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/p5d/p4d/94344545.jpg?format=gallery-large" alt="The Monsters: Labubu &amp; Zimomo" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="fallback">Фото<br><span>The Monsters: Labubu &amp; Zimomo</span></div>
+      </a>
+      <div class="content">
+        <div class="num">#18</div>
+        <h2>The Monsters: Labubu &amp; Zimomo</h2>
+        <p>Модель с персонажами Labubu и Zimomo. Трендовый и милый вариант для коллекции.</p>
+        <div class="price">18 990 ₸</div>
+        <a class="link" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-the-monsters-labubu-zimomo-28-sm-plastik-154336322/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <button class="pick" type="button">Выбрать</button>
+      </div>
+    </div>
+    <div class="product" data-name="Black Hole NASA" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-statuetka-bearbrick-black-hole-nasa-28-sm-pvh-123468069/">
+      <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-statuetka-bearbrick-black-hole-nasa-28-sm-pvh-123468069/" target="_blank" rel="noopener">
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/p72/p22/18618017.jpg?format=gallery-large" alt="Black Hole NASA" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="fallback">Фото<br><span>Black Hole NASA</span></div>
+      </a>
+      <div class="content">
+        <div class="num">#19</div>
+        <h2>Black Hole NASA</h2>
+        <p>Космическая фигурка NASA Black Hole. Строгий и необычный вариант для любителей космоса.</p>
+        <div class="price">18 990 ₸</div>
+        <a class="link" href="https://kaspi.kz/shop/p/bearbrick-statuetka-bearbrick-black-hole-nasa-28-sm-pvh-123468069/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <button class="pick" type="button">Выбрать</button>
+      </div>
+    </div>
+    <div class="product" data-name="Sorayama × Ironman Reverse" data-price="22490" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-bearbrick-x-sorayama-ironman-reverse-28-sm-plastik-145824764/">
+      <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-bearbrick-x-sorayama-ironman-reverse-28-sm-plastik-145824764/" target="_blank" rel="noopener">
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/pd2/pc4/65360645.png?format=gallery-large" alt="Sorayama × Ironman Reverse" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="fallback">Фото<br><span>Sorayama × Ironman Reverse</span></div>
+      </a>
+      <div class="content">
+        <div class="num">#20</div>
+        <h2>Sorayama × Ironman Reverse</h2>
+        <p>Эффектная модель Sorayama × Ironman. Металлический футуристичный вайб и премиальный вид.</p>
+        <div class="price">22 490 ₸</div>
+        <a class="link" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-bearbrick-x-sorayama-ironman-reverse-28-sm-plastik-145824764/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <button class="pick" type="button">Выбрать</button>
+      </div>
+    </div>
+    <div class="product" data-name="Van Gogh (Звёздная ночь)" data-price="18990" data-url="https://kaspi.kz/shop/p/figurka-bearbrick-van-gogh-28-sm-105563848/">
+      <a class="imgBox" href="https://kaspi.kz/shop/p/figurka-bearbrick-van-gogh-28-sm-105563848/" target="_blank" rel="noopener">
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/h87/h61/64533112782878.jpg?format=gallery-large" alt="Van Gogh (Звёздная ночь)" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="fallback">Фото<br><span>Van Gogh (Звёздная ночь)</span></div>
+      </a>
+      <div class="content">
+        <div class="num">#21</div>
+        <h2>Van Gogh (Звёздная ночь)</h2>
+        <p>Классический арт-дизайн по мотивам Van Gogh. Один из самых понятных и красивых вариантов для подарка.</p>
+        <div class="price">18 990 ₸</div>
+        <a class="link" href="https://kaspi.kz/shop/p/figurka-bearbrick-van-gogh-28-sm-105563848/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <button class="pick" type="button">Выбрать</button>
+      </div>
+    </div>
+    <div class="product" data-name="Mona Lisa" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-bearbrick-leonardo-de-vinci-mona-lisa-28-sm-1-sht-149681203/">
+      <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-bearbrick-leonardo-de-vinci-mona-lisa-28-sm-1-sht-149681203/" target="_blank" rel="noopener">
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/pef/p39/122205721.jpeg?format=gallery-large" alt="Mona Lisa" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="fallback">Фото<br><span>Mona Lisa</span></div>
+      </a>
+      <div class="content">
+        <div class="num">#22</div>
+        <h2>Mona Lisa</h2>
+        <p>Фигурка с мотивом Mona Lisa. Спокойный музейный стиль, который легко вписать в интерьер.</p>
+        <div class="price">18 990 ₸</div>
+        <a class="link" href="https://kaspi.kz/shop/p/bearbrick-bearbrick-leonardo-de-vinci-mona-lisa-28-sm-1-sht-149681203/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <button class="pick" type="button">Выбрать</button>
+      </div>
+    </div>
+    <div class="product" data-name="Keith Haring" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-be-rbrick-keith-haring-28-sm-1-sht-149680610/">
+      <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-be-rbrick-keith-haring-28-sm-1-sht-149680610/" target="_blank" rel="noopener">
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/p08/p6e/78366499.png?format=gallery-large" alt="Keith Haring" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="fallback">Фото<br><span>Keith Haring</span></div>
+      </a>
+      <div class="content">
+        <div class="num">#23</div>
+        <h2>Keith Haring</h2>
+        <p>Яркая модель в стиле Keith Haring. Графичный дизайн, который сразу бросается в глаза.</p>
+        <div class="price">18 990 ₸</div>
+        <a class="link" href="https://kaspi.kz/shop/p/bearbrick-be-rbrick-keith-haring-28-sm-1-sht-149680610/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <button class="pick" type="button">Выбрать</button>
+      </div>
+    </div>
+    <div class="product" data-name="Banksy — Flying Balloons Girl" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-bearbrick-banksy-flying-balloons-girl-28-sm-1-sht-149680562/">
+      <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-bearbrick-banksy-flying-balloons-girl-28-sm-1-sht-149680562/" target="_blank" rel="noopener">
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/p92/p10/78366336.png?format=gallery-large" alt="Banksy — Flying Balloons Girl" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="fallback">Фото<br><span>Banksy — Flying Balloons Girl</span></div>
+      </a>
+      <div class="content">
+        <div class="num">#24</div>
+        <h2>Banksy — Flying Balloons Girl</h2>
+        <p>Модель в стиле Banksy с узнаваемым образом. Хороший выбор для любителей современного искусства.</p>
+        <div class="price">18 990 ₸</div>
+        <a class="link" href="https://kaspi.kz/shop/p/bearbrick-bearbrick-banksy-flying-balloons-girl-28-sm-1-sht-149680562/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <button class="pick" type="button">Выбрать</button>
+      </div>
+    </div>
+    <div class="product" data-name="Daft Punk 2" data-price="24990" data-url="https://kaspi.kz/shop/p/figurka-bearbrick-bearbrick-daft-punk-2-28-sm-1-sht-128585328/">
+      <a class="imgBox" href="https://kaspi.kz/shop/p/figurka-bearbrick-bearbrick-daft-punk-2-28-sm-1-sht-128585328/" target="_blank" rel="noopener">
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/pf3/p56/120485673.png?format=gallery-large" alt="Daft Punk 2" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="fallback">Фото<br><span>Daft Punk 2</span></div>
+      </a>
+      <div class="content">
+        <div class="num">#25</div>
+        <h2>Daft Punk 2</h2>
+        <p>Музыкальная коллекционная модель Daft Punk. Для тех, кто любит электронную музыку и культовый стиль.</p>
+        <div class="price">24 990 ₸</div>
+        <a class="link" href="https://kaspi.kz/shop/p/figurka-bearbrick-bearbrick-daft-punk-2-28-sm-1-sht-128585328/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <button class="pick" type="button">Выбрать</button>
+      </div>
+    </div>
+    <div class="product" data-name="MY FIRST BE@RBRICK" data-price="18990" data-url="https://kaspi.kz/shop/p/figurka-bearbrick-bearbrick-my-first-be-rbrick-28-sm-1-sht-128585306/">
+      <a class="imgBox" href="https://kaspi.kz/shop/p/figurka-bearbrick-bearbrick-my-first-be-rbrick-28-sm-1-sht-128585306/" target="_blank" rel="noopener">
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/pfe/pdc/3385983.jpg?format=gallery-large" alt="MY FIRST BE@RBRICK" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="fallback">Фото<br><span>MY FIRST BE@RBRICK</span></div>
+      </a>
+      <div class="content">
+        <div class="num">#26</div>
+        <h2>MY FIRST BE@RBRICK</h2>
+        <p>Мягкий и аккуратный дизайн My First BE@RBRICK. Универсальный вариант для подарка.</p>
+        <div class="price">18 990 ₸</div>
+        <a class="link" href="https://kaspi.kz/shop/p/figurka-bearbrick-bearbrick-my-first-be-rbrick-28-sm-1-sht-128585306/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <button class="pick" type="button">Выбрать</button>
+      </div>
+    </div>
+    <div class="product" data-name="My First Baby Space Ver" data-price="18990" data-url="https://kaspi.kz/shop/p/figurka-bearbrick-my-first-bearbrick-baby-space-ver-28-sm-1-sht-112904270/">
+      <a class="imgBox" href="https://kaspi.kz/shop/p/figurka-bearbrick-my-first-bearbrick-baby-space-ver-28-sm-1-sht-112904270/" target="_blank" rel="noopener">
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/p1f/p17/120594057.png?format=gallery-large" alt="My First Baby Space Ver" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="fallback">Фото<br><span>My First Baby Space Ver</span></div>
+      </a>
+      <div class="content">
+        <div class="num">#27</div>
+        <h2>My First Baby Space Ver</h2>
+        <p>Милая baby-модель с космическим настроением. Светлый и приятный вариант для коллекции.</p>
+        <div class="price">18 990 ₸</div>
+        <a class="link" href="https://kaspi.kz/shop/p/figurka-bearbrick-my-first-bearbrick-baby-space-ver-28-sm-1-sht-112904270/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <button class="pick" type="button">Выбрать</button>
+      </div>
+    </div>
+    <div class="product" data-name="Van Gogh — Country Road by Night" data-price="18990" data-url="https://kaspi.kz/shop/p/figurka-bearbrick-van-gogh-country-road-in-provence-by-night-28-sm-1-sht-138655802/">
+      <a class="imgBox" href="https://kaspi.kz/shop/p/figurka-bearbrick-van-gogh-country-road-in-provence-by-night-28-sm-1-sht-138655802/" target="_blank" rel="noopener">
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/p64/p57/120485677.png?format=gallery-large" alt="Van Gogh — Country Road by Night" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="fallback">Фото<br><span>Van Gogh — Country Road by Night</span></div>
+      </a>
+      <div class="content">
+        <div class="num">#28</div>
+        <h2>Van Gogh — Country Road by Night</h2>
+        <p>Арт-модель по мотивам Van Gogh. Тёплый художественный вариант для интерьера.</p>
+        <div class="price">18 990 ₸</div>
+        <a class="link" href="https://kaspi.kz/shop/p/figurka-bearbrick-van-gogh-country-road-in-provence-by-night-28-sm-1-sht-138655802/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <button class="pick" type="button">Выбрать</button>
+      </div>
+    </div>
+    <div class="product" data-name="Only At" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-statuetka-bearbrick-only-at-28-sm-plastik-133039894/">
+      <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-statuetka-bearbrick-only-at-28-sm-plastik-133039894/" target="_blank" rel="noopener">
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/p31/p32/121060249.png?format=gallery-large" alt="Only At" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="fallback">Фото<br><span>Only At</span></div>
+      </a>
+      <div class="content">
+        <div class="num">#29</div>
+        <h2>Only At</h2>
+        <p>Лаконичная модель с современным принтом. Подойдёт для тех, кто хочет спокойный, но стильный Bearbrick.</p>
+        <div class="price">18 990 ₸</div>
+        <a class="link" href="https://kaspi.kz/shop/p/bearbrick-statuetka-bearbrick-only-at-28-sm-plastik-133039894/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <button class="pick" type="button">Выбрать</button>
+      </div>
+    </div>
+    <div class="product" data-name="Johannes Vermeer" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-be-rbrick-johannes-vermeer-28-sm-plastik-135782859/">
+      <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-be-rbrick-johannes-vermeer-28-sm-plastik-135782859/" target="_blank" rel="noopener">
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/p35/p20/28333428.jpg?format=gallery-large" alt="Johannes Vermeer" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="fallback">Фото<br><span>Johannes Vermeer</span></div>
+      </a>
+      <div class="content">
+        <div class="num">#30</div>
+        <h2>Johannes Vermeer</h2>
+        <p>Музейная модель по мотивам Vermeer. Спокойный классический арт-вариант.</p>
+        <div class="price">18 990 ₸</div>
+        <a class="link" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-be-rbrick-johannes-vermeer-28-sm-plastik-135782859/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <button class="pick" type="button">Выбрать</button>
+      </div>
+    </div>
+    <div class="product" data-name="Jean-Michel Basquiat #2" data-price="18990" data-url="https://kaspi.kz/shop/p/figurka-bearbrick-jean-michel-basquiat-28-sm-1-sht-112933292/">
+      <a class="imgBox" href="https://kaspi.kz/shop/p/figurka-bearbrick-jean-michel-basquiat-28-sm-1-sht-112933292/" target="_blank" rel="noopener">
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/p2c/p12/4968573.jpg?format=gallery-large" alt="Jean-Michel Basquiat #2" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="fallback">Фото<br><span>Jean-Michel Basquiat #2</span></div>
+      </a>
+      <div class="content">
+        <div class="num">#31</div>
+        <h2>Jean-Michel Basquiat #2</h2>
+        <p>Ещё один выразительный вариант Basquiat. Хорошо смотрится в арт-коллекции.</p>
+        <div class="price">18 990 ₸</div>
+        <a class="link" href="https://kaspi.kz/shop/p/figurka-bearbrick-jean-michel-basquiat-28-sm-1-sht-112933292/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <button class="pick" type="button">Выбрать</button>
+      </div>
+    </div>
+    <div class="product" data-name="Van Gogh — Sunflowers" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-van-gogh-museum-sunflowers-28-sm-plastik-138681308/">
+      <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-van-gogh-museum-sunflowers-28-sm-plastik-138681308/" target="_blank" rel="noopener">
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/p5b/p6c/38729676.jpg?format=gallery-large" alt="Van Gogh — Sunflowers" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="fallback">Фото<br><span>Van Gogh — Sunflowers</span></div>
+      </a>
+      <div class="content">
+        <div class="num">#32</div>
+        <h2>Van Gogh — Sunflowers</h2>
+        <p>Яркая модель с мотивом Sunflowers. Тёплый, узнаваемый и подарочный вариант.</p>
+        <div class="price">18 990 ₸</div>
+        <a class="link" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-van-gogh-museum-sunflowers-28-sm-plastik-138681308/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <button class="pick" type="button">Выбрать</button>
+      </div>
+    </div>
+    <div class="product" data-name="Earth" data-price="18990" data-url="https://kaspi.kz/shop/p/figurka-bearbrick-bearbrick-earth-28-sm-1-sht-128101853/">
+      <a class="imgBox" href="https://kaspi.kz/shop/p/figurka-bearbrick-bearbrick-earth-28-sm-1-sht-128101853/" target="_blank" rel="noopener">
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/p5d/p15/4968565.png?format=gallery-large" alt="Earth" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="fallback">Фото<br><span>Earth</span></div>
+      </a>
+      <div class="content">
+        <div class="num">#33</div>
+        <h2>Earth</h2>
+        <p>Космическая модель Earth. Спокойный вариант для любителей планет и небесной тематики.</p>
+        <div class="price">18 990 ₸</div>
+        <a class="link" href="https://kaspi.kz/shop/p/figurka-bearbrick-bearbrick-earth-28-sm-1-sht-128101853/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <button class="pick" type="button">Выбрать</button>
+      </div>
+    </div>
+    <div class="product" data-name="Coca-Cola × atmos" data-price="17990" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-bearbrick-x-coca-cola-x-atmos-28-sm-plastik-135766438/">
+      <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-bearbrick-x-coca-cola-x-atmos-28-sm-plastik-135766438/" target="_blank" rel="noopener">
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/pac/pc0/122430704.jpeg?format=gallery-large" alt="Coca-Cola × atmos" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="fallback">Фото<br><span>Coca-Cola × atmos</span></div>
+      </a>
+      <div class="content">
+        <div class="num">#34</div>
+        <h2>Coca-Cola × atmos</h2>
+        <p>Стильная коллаборация Coca-Cola × atmos. Яркий городской вариант по хорошей цене.</p>
+        <div class="price">17 990 ₸</div>
+        <a class="link" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-bearbrick-x-coca-cola-x-atmos-28-sm-plastik-135766438/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <button class="pick" type="button">Выбрать</button>
+      </div>
+    </div>
+    <div class="product" data-name="Wave off Kanagawa" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-statuetka-wave-off-kanagawa-28-sm-plastik-133039890/">
+      <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-statuetka-wave-off-kanagawa-28-sm-plastik-133039890/" target="_blank" rel="noopener">
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/p2b/pae/18727677.jpg?format=gallery-large" alt="Wave off Kanagawa" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="fallback">Фото<br><span>Wave off Kanagawa</span></div>
+      </a>
+      <div class="content">
+        <div class="num">#35</div>
+        <h2>Wave off Kanagawa</h2>
+        <p>Арт-фигурка по мотивам знаменитой японской волны. Сильный визуальный акцент.</p>
+        <div class="price">18 990 ₸</div>
+        <a class="link" href="https://kaspi.kz/shop/p/bearbrick-statuetka-wave-off-kanagawa-28-sm-plastik-133039890/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <button class="pick" type="button">Выбрать</button>
+      </div>
+    </div>
+    <div class="product" data-name="Mika Ninagawa — Sakura" data-price="18990" data-url="https://kaspi.kz/shop/p/figurka-bearbrick-bearbrick-mika-ninagawa-sakura-28-sm-1-sht-138627771/">
+      <a class="imgBox" href="https://kaspi.kz/shop/p/figurka-bearbrick-bearbrick-mika-ninagawa-sakura-28-sm-1-sht-138627771/" target="_blank" rel="noopener">
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/p48/p57/120485676.png?format=gallery-large" alt="Mika Ninagawa — Sakura" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="fallback">Фото<br><span>Mika Ninagawa — Sakura</span></div>
+      </a>
+      <div class="content">
+        <div class="num">#36</div>
+        <h2>Mika Ninagawa — Sakura</h2>
+        <p>Нежная модель Sakura в цветочной эстетике. Красиво смотрится как подарок и интерьерный акцент.</p>
+        <div class="price">18 990 ₸</div>
+        <a class="link" href="https://kaspi.kz/shop/p/figurka-bearbrick-bearbrick-mika-ninagawa-sakura-28-sm-1-sht-138627771/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <button class="pick" type="button">Выбрать</button>
+      </div>
+    </div>
+    </section>
+
+    <footer>BE@RBRICK 400% · каталог PATH OF PEAKS</footer>
+  </main>
+
+  <div class="bar">
+    <div class="barInner">
+      <div>
+        <div class="selected" id="selectedCount">Выбрано: 0</div>
+        <div class="small" id="selectedHint">Выберите модели, потом отправьте список в WhatsApp</div>
+      </div>
+      <button class="clear" type="button" id="clearBtn">Очистить</button>
+      <a class="whatsapp" href="#" id="sendBtn">Отправить список в WhatsApp</a>
+    </div>
   </div>
-</div>
-<script>
-const WHATSAPP_NUMBER = '77766088813';
-const items = [
-  { name: "Yoon Hyup", price: 18990, img: "https://resources.cdn-kaspi.kz/img/m/p/p97/p50/65666228.png?format=gallery-large", url: "https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-yoon-hyup-28-sm-plastik-145909822/", tags: ["art"] },
-  { name: "Leica × Medicom Toy", price: 18990, img: "https://resources.cdn-kaspi.kz/img/m/p/p29/pd3/68320464.jpg?format=gallery-large", url: "https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-leica-x-medicom-toy-be-rbrick-28-sm-plastik-146722756/", tags: ["collab"] },
-  { name: "Innersect Multi-colour", price: 18990, img: "https://resources.cdn-kaspi.kz/img/m/p/pbe/p28/38560152.jpg?format=gallery-large", url: "https://kaspi.kz/shop/p/figurka-bearbrick-be-rbrick-400-innersect-multi-colour-28-sm-1-sht-138630158/", tags: ["collab"] },
-  { name: "G-Shock Shanghai Night", price: 24990, img: "https://resources.cdn-kaspi.kz/img/m/p/p06/p5b/65389959.png?format=gallery-large", url: "https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-be-rbrick-shanghai-night-g-shock-28-sm-plastik-145832846/", tags: ["collab"], premium: true },
-  { name: "Moon", price: 18990, img: "https://resources.cdn-kaspi.kz/img/m/p/ha5/hb8/82068146651166.jpg?format=gallery-large", url: "https://kaspi.kz/shop/p/modnaja-kukla-bearbrick-400-moon-111933311/", tags: ["space"] },
-  { name: "QQ Valentine (Pink Girly Heart)", price: 18990, img: "https://resources.cdn-kaspi.kz/img/m/p/p53/pce/122430700.jpeg?format=gallery-large", url: "https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-qq-520-valentine-limited-edition-pink-girly-heart-28-sm-plastik-154336276/", tags: ["collab"] },
-  { name: "Lamborghini", price: 18990, img: "https://resources.cdn-kaspi.kz/img/m/p/pcf/p33/120594499.png?format=gallery-large", url: "https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-bearbrick-lamborghini-28-sm-plastik-142879705/", tags: ["collab"] },
-  { name: "Michael Jordan 1992 Team USA", price: 24490, img: "https://resources.cdn-kaspi.kz/img/m/p/p60/p9e/136064677.jpg?format=gallery-large", url: "https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-bearbrick-michael-jordan-1992-team-usa-400-28-sm-plastik-165549278/", tags: ["sport"], premium: true },
-  { name: "Tom and Jerry (Tom)", price: 18990, img: "https://resources.cdn-kaspi.kz/img/m/p/pd7/p56/120485672.png?format=gallery-large", url: "https://kaspi.kz/shop/p/figurka-bearbrick-tom-and-jerry-28-sm-1-sht-138655778/", tags: ["collab"] },
-  { name: "KAWS", price: 18990, img: "https://resources.cdn-kaspi.kz/img/m/p/p64/p16/120594501.png?format=gallery-large", url: "https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-bearbrick-kaws-28-sm-plastik-142878224/", tags: ["art", "collab"] },
-  { name: "Disney × Keiichi Tanaami: Mickey Mouse", price: 18990, img: "https://resources.cdn-kaspi.kz/img/m/p/p14/pce/94344794.jpg?format=gallery-large", url: "https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-disney-x-keiichi-tanaami-mickey-mouse-28-sm-plastik-154336394/", tags: ["collab"] },
-  { name: "Tom and Jerry (Jerry)", price: 18990, img: "https://resources.cdn-kaspi.kz/img/m/p/p80/p57/120485678.png?format=gallery-large", url: "https://kaspi.kz/shop/p/figurka-bearbrick-tom-and-jerry-28-sm-1-sht-138655760/", tags: ["collab"] },
-  { name: "Mars", price: 18990, img: "https://resources.cdn-kaspi.kz/img/m/p/p2c/p57/120485675.png?format=gallery-large", url: "https://kaspi.kz/shop/p/modnaja-kukla-bearbrick-400-mars-earth-be-111933363/", tags: ["space"] },
-  { name: "Andy Warhol × Muhammad Ali", price: 18990, img: "https://resources.cdn-kaspi.kz/img/m/p/pe9/pc4/54528517.jpg?format=gallery-large", url: "https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-set-andy-warhol-muhammad-ali-28-sm-plastik-142925902/", tags: ["art", "sport"] },
-  { name: "Coca-Cola Georgia Green", price: 18990, img: "https://resources.cdn-kaspi.kz/img/m/p/pd9/p0b/53876648.jpg?format=gallery-large", url: "https://kaspi.kz/shop/p/bearbrick-bearbrick-coca-cola-georgia-green-28sm-28-sm-1-sht-142755648/", tags: ["collab"] },
-  { name: "Puerto Rico Art", price: 18990, img: "https://resources.cdn-kaspi.kz/img/m/p/p94/p5d/136240055.png?format=gallery-large", url: "https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-puerto-rico-art-28-sm-plastik-165596269/", tags: ["art"] },
-  { name: "Jean-Michel Basquiat #1", price: 18990, img: "https://resources.cdn-kaspi.kz/img/m/p/pca/p00/38549406.jpg?format=gallery-large", url: "https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-jean-michel-basquiat-28-sm-plastik-138626907/", tags: ["art"] },
-  { name: "The Monsters: Labubu & Zimomo", price: 18990, img: "https://resources.cdn-kaspi.kz/img/m/p/p5d/p4d/94344545.jpg?format=gallery-large", url: "https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-the-monsters-labubu-zimomo-28-sm-plastik-154336322/", tags: ["collab"] },
-  { name: "Black Hole NASA", price: 18990, img: "https://resources.cdn-kaspi.kz/img/m/p/p72/p22/18618017.jpg?format=gallery-large", url: "https://kaspi.kz/shop/p/bearbrick-statuetka-bearbrick-black-hole-nasa-28-sm-pvh-123468069/", tags: ["space"] },
-  { name: "Sorayama × Ironman Reverse", price: 22490, img: "https://resources.cdn-kaspi.kz/img/m/p/pd2/pc4/65360645.png?format=gallery-large", url: "https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-bearbrick-x-sorayama-ironman-reverse-28-sm-plastik-145824764/", tags: ["collab"], premium: true },
-  { name: "Van Gogh (Звёздная ночь)", price: 18990, img: "https://resources.cdn-kaspi.kz/img/m/p/h87/h61/64533112782878.jpg?format=gallery-large", url: "https://kaspi.kz/shop/p/figurka-bearbrick-van-gogh-28-sm-105563848/", tags: ["art"] },
-  { name: "Mona Lisa", price: 18990, img: "https://resources.cdn-kaspi.kz/img/m/p/pef/p39/122205721.jpeg?format=gallery-large", url: "https://kaspi.kz/shop/p/bearbrick-bearbrick-leonardo-de-vinci-mona-lisa-28-sm-1-sht-149681203/", tags: ["art"] },
-  { name: "Keith Haring", price: 18990, img: "https://resources.cdn-kaspi.kz/img/m/p/p08/p6e/78366499.png?format=gallery-large", url: "https://kaspi.kz/shop/p/bearbrick-be-rbrick-keith-haring-28-sm-1-sht-149680610/", tags: ["art"] },
-  { name: "Banksy — Flying Balloons Girl", price: 18990, img: "https://resources.cdn-kaspi.kz/img/m/p/p92/p10/78366336.png?format=gallery-large", url: "https://kaspi.kz/shop/p/bearbrick-bearbrick-banksy-flying-balloons-girl-28-sm-1-sht-149680562/", tags: ["art"] },
-  { name: "Daft Punk 2", price: 24990, img: "https://resources.cdn-kaspi.kz/img/m/p/pf3/p56/120485673.png?format=gallery-large", url: "https://kaspi.kz/shop/p/figurka-bearbrick-bearbrick-daft-punk-2-28-sm-1-sht-128585328/", tags: ["music"], premium: true },
-  { name: "MY FIRST BE@RBRICK", price: 18990, img: "https://resources.cdn-kaspi.kz/img/m/p/pfe/pdc/3385983.jpg?format=gallery-large", url: "https://kaspi.kz/shop/p/figurka-bearbrick-bearbrick-my-first-be-rbrick-28-sm-1-sht-128585306/", tags: ["baby"] },
-  { name: "My First Baby Space Ver", price: 18990, img: "https://resources.cdn-kaspi.kz/img/m/p/p1f/p17/120594057.png?format=gallery-large", url: "https://kaspi.kz/shop/p/figurka-bearbrick-my-first-bearbrick-baby-space-ver-28-sm-1-sht-112904270/", tags: ["baby","space"] },
-  { name: "Van Gogh — Country Road by Night", price: 18990, img: "https://resources.cdn-kaspi.kz/img/m/p/p64/p57/120485677.png?format=gallery-large", url: "https://kaspi.kz/shop/p/figurka-bearbrick-van-gogh-country-road-in-provence-by-night-28-sm-1-sht-138655802/", tags: ["art"] },
-  { name: "Only At", price: 18990, img: "https://resources.cdn-kaspi.kz/img/m/p/p31/p32/121060249.png?format=gallery-large", url: "https://kaspi.kz/shop/p/bearbrick-statuetka-bearbrick-only-at-28-sm-plastik-133039894/", tags: ["collab"] },
-  { name: "Johannes Vermeer", price: 18990, img: "https://resources.cdn-kaspi.kz/img/m/p/p35/p20/28333428.jpg?format=gallery-large", url: "https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-be-rbrick-johannes-vermeer-28-sm-plastik-135782859/", tags: ["art"] },
-  { name: "Jean-Michel Basquiat #2", price: 18990, img: "https://resources.cdn-kaspi.kz/img/m/p/p2c/p12/4968573.jpg?format=gallery-large", url: "https://kaspi.kz/shop/p/figurka-bearbrick-jean-michel-basquiat-28-sm-1-sht-112933292/", tags: ["art"] },
-  { name: "Van Gogh — Sunflowers", price: 18990, img: "https://resources.cdn-kaspi.kz/img/m/p/p5b/p6c/38729676.jpg?format=gallery-large", url: "https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-van-gogh-museum-sunflowers-28-sm-plastik-138681308/", tags: ["art"] },
-  { name: "Earth", price: 18990, img: "https://resources.cdn-kaspi.kz/img/m/p/p5d/p15/4968565.png?format=gallery-large", url: "https://kaspi.kz/shop/p/figurka-bearbrick-bearbrick-earth-28-sm-1-sht-128101853/", tags: ["space"] },
-  { name: "Coca-Cola × atmos", price: 17990, img: "https://resources.cdn-kaspi.kz/img/m/p/pac/pc0/122430704.jpeg?format=gallery-large", url: "https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-bearbrick-x-coca-cola-x-atmos-28-sm-plastik-135766438/", tags: ["collab"] },
-  { name: "Wave off Kanagawa", price: 18990, img: "https://resources.cdn-kaspi.kz/img/m/p/p2b/pae/18727677.jpg?format=gallery-large", url: "https://kaspi.kz/shop/p/bearbrick-statuetka-wave-off-kanagawa-28-sm-plastik-133039890/", tags: ["art"] },
-  { name: "Mika Ninagawa — Sakura", price: 18990, img: "https://resources.cdn-kaspi.kz/img/m/p/p48/p57/120485676.png?format=gallery-large", url: "https://kaspi.kz/shop/p/figurka-bearbrick-bearbrick-mika-ninagawa-sakura-28-sm-1-sht-138627771/", tags: ["art"] },
-];
-const descriptions = {
-  "Yoon Hyup": "Яркая арт-фигурка с графичным узором. Хорошо смотрится на полке, рабочем столе или в витрине.",
-  "Leica × Medicom Toy": "Стильная модель в эстетике Leica. Минималистичный дизайн для тех, кто любит фото, дизайн и чистый визуал.",
-  "Innersect Multi-colour": "Цветная коллекционная модель с уличным вайбом. Хороший вариант для современного интерьера.",
-  "G-Shock Shanghai Night": "Эффектная модель в тёмном городском стиле. Выглядит более премиально и контрастно.",
-  "Moon": "Спокойный космический дизайн в светлой гамме. Подойдёт для минималистичного интерьера.",
-  "QQ Valentine (Pink Girly Heart)": "Нежная розовая модель с сердцами. Хороший подарочный вариант и яркий акцент в коллекции.",
-  "Lamborghini": "Динамичный дизайн в автомобильной эстетике Lamborghini. Для тех, кто любит спорткары и стиль.",
-  "Michael Jordan 1992 Team USA": "Спортивная коллекционная модель в стиле легендарного баскетбола Team USA 1992.",
-  "Tom and Jerry (Tom)": "Узнаваемая мультяшная фигурка Tom. Добавляет коллекции лёгкий и забавный акцент.",
-  "KAWS": "Один из самых популярных дизайнов Bearbrick. Универсальный арт-вариант для подарка и коллекции.",
-  "Disney × Keiichi Tanaami: Mickey Mouse": "Яркая Disney-коллаборация с Mickey Mouse и необычной художественной стилистикой.",
-  "Tom and Jerry (Jerry)": "Фигурка Jerry из Tom and Jerry. Отлично смотрится в паре с Tom или отдельно.",
-  "Mars": "Космическая модель в стиле планеты Mars. Хороший выбор для современной полки или кабинета.",
-  "Andy Warhol × Muhammad Ali": "Арт-модель с вайбом Andy Warhol и Muhammad Ali. Сильный вариант для поклонников спорта и искусства.",
-  "Coca-Cola Georgia Green": "Коллаборация Coca-Cola в зелёной гамме. Выглядит свежо и заметно среди других моделей.",
-  "Puerto Rico Art": "Яркая арт-фигурка с выразительным принтом. Подходит как цветовой акцент в интерьере.",
-  "Jean-Michel Basquiat #1": "Модель в стиле Jean-Michel Basquiat. Подходит для любителей стрит-арта и музейной эстетики.",
-  "The Monsters: Labubu & Zimomo": "Модель с персонажами Labubu и Zimomo. Трендовый и милый вариант для коллекции.",
-  "Black Hole NASA": "Космическая фигурка NASA Black Hole. Строгий и необычный вариант для любителей космоса.",
-  "Sorayama × Ironman Reverse": "Эффектная модель Sorayama × Ironman. Металлический футуристичный вайб и премиальный вид.",
-  "Van Gogh (Звёздная ночь)": "Классический арт-дизайн по мотивам Van Gogh. Один из самых понятных и красивых вариантов для подарка.",
-  "Mona Lisa": "Фигурка с мотивом Mona Lisa. Спокойный музейный стиль, который легко вписать в интерьер.",
-  "Keith Haring": "Яркая модель в стиле Keith Haring. Графичный дизайн, который сразу бросается в глаза.",
-  "Banksy — Flying Balloons Girl": "Модель в стиле Banksy с узнаваемым образом. Хороший выбор для любителей современного искусства.",
-  "Daft Punk 2": "Музыкальная коллекционная модель Daft Punk. Для тех, кто любит электронную музыку и культовый стиль.",
-  "MY FIRST BE@RBRICK": "Мягкий и аккуратный дизайн My First BE@RBRICK. Универсальный вариант для подарка.",
-  "My First Baby Space Ver": "Милая baby-модель с космическим настроением. Светлый и приятный вариант для коллекции.",
-  "Van Gogh — Country Road by Night": "Арт-модель по мотивам Van Gogh. Тёплый художественный вариант для интерьера.",
-  "Only At": "Лаконичная модель с современным принтом. Подойдёт для тех, кто хочет спокойный, но стильный Bearbrick.",
-  "Johannes Vermeer": "Музейная модель по мотивам Vermeer. Спокойный классический арт-вариант.",
-  "Jean-Michel Basquiat #2": "Ещё один выразительный вариант Basquiat. Хорошо смотрится в арт-коллекции.",
-  "Van Gogh — Sunflowers": "Яркая модель с мотивом Sunflowers. Тёплый, узнаваемый и подарочный вариант.",
-  "Earth": "Космическая модель Earth. Спокойный вариант для любителей планет и небесной тематики.",
-  "Coca-Cola × atmos": "Стильная коллаборация Coca-Cola × atmos. Яркий городской вариант по хорошей цене.",
-  "Wave off Kanagawa": "Арт-фигурка по мотивам знаменитой японской волны. Сильный визуальный акцент.",
-  "Mika Ninagawa — Sakura": "Нежная модель Sakura в цветочной эстетике. Красиво смотрится как подарок и интерьерный акцент."
-};
-const selected = new Map();
-const grid = document.getElementById('grid');
-function formatPrice(price){ return new Intl.NumberFormat('ru-RU').format(price) + ' ₸'; }
-function render(){
-  grid.innerHTML = items.map((item, index) => `
-    <article class="card">
-      <div class="photo">
-        <img src="${item.img}" alt="${item.name}" loading="lazy" onerror="this.classList.add('failed')">
-        <div class="fallback">Фото не загрузилось<br>${item.name}</div>
-        ${item.premium ? '<div class="badge">Premium</div>' : ''}
-      </div>
-      <div class="card-body">
-        <h3>${item.name}</h3>
-        <p class="desc">${descriptions[item.name] || 'Коллекционная фигурка BE@RBRICK 400% 28 см. Стильный вариант для подарка или интерьера.'}</p>
-        <div class="price">${formatPrice(item.price)}</div>
-        <a class="direct" href="${item.url}" target="_blank">Прямая ссылка на Kaspi</a>
-        <div class="actions">
-          <button class="btn" data-index="${index}" onclick="toggleSelect(${index}, this)">Выбрать</button>
-          <a class="kaspi" href="${item.url}" target="_blank">Открыть Kaspi</a>
-        </div>
-      </div>
-    </article>
-  `).join('');
-}
-function toggleSelect(index, button){
-  const item = items[index];
-  if(selected.has(index)){
-    selected.delete(index);
-    button.classList.remove('selected');
-    button.textContent = 'Выбрать';
-  } else {
-    selected.set(index, item);
-    button.classList.add('selected');
-    button.textContent = 'Выбрано ✓';
-  }
-  updateWhatsapp();
-}
-function clearSelection(){
-  selected.clear();
-  document.querySelectorAll('.btn.selected').forEach(btn => { btn.classList.remove('selected'); btn.textContent='Выбрать'; });
-  updateWhatsapp();
-}
-function updateWhatsapp(){
-  const count = selected.size;
-  document.getElementById('selectedText').textContent = `Выбрано: ${count}`;
-  const hint = document.getElementById('selectedHint');
-  const wa = document.getElementById('wa');
-  if(count === 0){
-    hint.textContent = 'Список появится после выбора товаров';
-    wa.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Здравствуйте! Хочу заказать BE@RBRICK. Помогите подобрать модели.')}`;
-    return;
-  }
-  const list = Array.from(selected.values()).map((item, i) => `${i+1}. ${item.name} — ${formatPrice(item.price)}
-${item.url}`).join('
+
+  <script>
+    const phone = '77766088813';
+    const selected = new Set();
+    const products = Array.from(document.querySelectorAll('.product'));
+    const selectedCount = document.getElementById('selectedCount');
+    const selectedHint = document.getElementById('selectedHint');
+    const sendBtn = document.getElementById('sendBtn');
+    const clearBtn = document.getElementById('clearBtn');
+
+    function formatPrice(value) {
+      return Number(value).toLocaleString('ru-RU') + ' ₸';
+    }
+
+    function updateWhatsApp() {
+      const list = Array.from(selected);
+      selectedCount.textContent = 'Выбрано: ' + list.length;
+
+      if (list.length === 0) {
+        selectedHint.textContent = 'Выберите модели, потом отправьте список в WhatsApp';
+        sendBtn.href = '#';
+        return;
+      }
+
+      selectedHint.textContent = 'Список готов — можно отправить одним сообщением';
+      const lines = list.map((card, index) => {
+        return (index + 1) + '. ' + card.dataset.name + ' — ' + formatPrice(card.dataset.price) + '
+' + card.dataset.url;
+      }).join('
 
 ');
-  hint.textContent = 'Можно отправить выбранные модели одним сообщением';
-  const message = `Здравствуйте! Хочу заказать эти BE@RBRICK:
 
-${list}
+      const message = 'Здравствуйте! Хочу заказать эти BE@RBRICK:
 
-Подскажите, пожалуйста, по наличию и доставке.`;
-  wa.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
-}
-render();
-updateWhatsapp();
-</script>
+' + lines + '
+
+Подскажите, пожалуйста, наличие и итоговую сумму.';
+      sendBtn.href = 'https://wa.me/' + phone + '?text=' + encodeURIComponent(message);
+    }
+
+    products.forEach(card => {
+      const btn = card.querySelector('.pick');
+      btn.addEventListener('click', () => {
+        if (selected.has(card)) {
+          selected.delete(card);
+          btn.classList.remove('active');
+          btn.textContent = 'Выбрать';
+        } else {
+          selected.add(card);
+          btn.classList.add('active');
+          btn.textContent = 'Выбрано';
+        }
+        updateWhatsApp();
+      });
+    });
+
+    clearBtn.addEventListener('click', () => {
+      selected.clear();
+      document.querySelectorAll('.pick').forEach(btn => {
+        btn.classList.remove('active');
+        btn.textContent = 'Выбрать';
+      });
+      updateWhatsApp();
+    });
+
+    sendBtn.addEventListener('click', (e) => {
+      if (selected.size === 0) {
+        e.preventDefault();
+        alert('Сначала выберите хотя бы одну фигурку.');
+      }
+    });
+
+    updateWhatsApp();
+  </script>
 </body>
 </html>
