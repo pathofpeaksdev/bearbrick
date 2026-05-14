@@ -234,8 +234,7 @@ function sendWhatsApp() {
     lines.push('');
     n++;
   });
-  const url = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(lines.join('
-'));
+  const url = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(lines.join('\n'));
   window.open(url, '_blank');
 }
 render();
