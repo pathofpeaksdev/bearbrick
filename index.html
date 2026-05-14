@@ -15,6 +15,9 @@
     .lead { max-width:900px; color:#e8e8e8; font-size:21px; line-height:1.45; margin:24px 0 0; }
     .badges { display:flex; flex-wrap:wrap; gap:12px; margin-top:26px; }
     .badges div { border:1px solid #333; background:#121212; padding:10px 16px; border-radius:999px; font-weight:700; }
+    .categoryTabs { display:flex; gap:12px; margin:0 0 22px; position:sticky; top:0; z-index:8; background:rgba(5,5,5,.92); padding:12px 0; backdrop-filter:blur(10px); }
+    .catBtn { border:1px solid #333; background:#111; color:#ddd; border-radius:16px; padding:14px 22px; font-weight:1000; font-size:16px; cursor:pointer; }
+    .catBtn.active { background:#ffad1f; color:#000; border-color:#ffad1f; }
     .top { display:flex; justify-content:space-between; align-items:center; gap:16px; margin:20px 0; color:#ddd; font-size:18px; }
     .grid { display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:18px; }
     .product { display:flex; flex-direction:column; background:#111; border:1px solid #292929; border-radius:22px; overflow:hidden; min-height:100%; }
@@ -46,7 +49,7 @@
     .posterMeta { margin-top:8px; font-size:12px; color:rgba(255,255,255,.82); font-weight:800; letter-spacing:1px; text-transform:uppercase; }
     footer { text-align:center; color:#777; padding:34px 0 8px; }
     @media(max-width:1000px) { .grid { grid-template-columns:repeat(3,1fr); } }
-    @media(max-width:720px) { body { padding-bottom:190px; } .page { padding:14px; } .hero { padding:24px 18px; border-radius:20px; } .brand { font-size:15px; letter-spacing:4px; } .lead { font-size:16px; } .grid { grid-template-columns:repeat(2,1fr); gap:12px; } h2 { font-size:15px; } p { font-size:12px; min-height:84px; } .price { font-size:19px; } .barInner { grid-template-columns:1fr; padding:12px 14px; } .clear,.whatsapp { width:100%; text-align:center; } }
+    @media(max-width:720px) { body { padding-bottom:190px; } .categoryTabs { gap:8px; overflow-x:auto; } .catBtn { flex:1; font-size:14px; padding:12px 10px; } .page { padding:14px; } .hero { padding:24px 18px; border-radius:20px; } .brand { font-size:15px; letter-spacing:4px; } .lead { font-size:16px; } .grid { grid-template-columns:repeat(2,1fr); gap:12px; } h2 { font-size:15px; } p { font-size:12px; min-height:84px; } .price { font-size:19px; } .barInner { grid-template-columns:1fr; padding:12px 14px; } .clear,.whatsapp { width:100%; text-align:center; } }
   </style>
 </head>
 <body>
@@ -54,7 +57,7 @@
     <section class="hero">
       <div class="brand">PATH OF PEAKS</div>
       <h1>BE<span>@</span>RBRICK<br>400%</h1>
-      <p class="lead">Коллекционные фигурки BE@RBRICK и KAWS. Выберите понравившиеся модели — сайт сам соберёт список и откроет WhatsApp с готовым сообщением.</p>
+      <p class="lead">Коллекционные фигурки BE@RBRICK и KAWS. Сначала выберите категорию, затем нужные модели — сайт сам соберёт список и откроет WhatsApp с готовым сообщением.</p>
       <div class="badges">
         <div>📦 Доставка по Казахстану</div>
         <div>💳 Оплата через Kaspi</div>
@@ -62,13 +65,18 @@
       </div>
     </section>
 
+    <div class="categoryTabs">
+      <button class="catBtn active" type="button" data-category="bearbrick">BE@RBRICK</button>
+      <button class="catBtn" type="button" data-category="kaws">KAWS</button>
+    </div>
+
     <div class="top">
-      <strong>55 фигурок в каталоге</strong>
+      <strong id="catalogCount">36 фигурок BE@RBRICK</strong>
       <span>Нажмите «Выбрать» под нужными моделями</span>
     </div>
 
     <section class="grid">
-    <div class="product" data-name="Yoon Hyup" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-yoon-hyup-28-sm-plastik-145909822/">
+    <div class="product" data-cat="bearbrick" data-name="Yoon Hyup" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-yoon-hyup-28-sm-plastik-145909822/">
       <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-yoon-hyup-28-sm-plastik-145909822/" target="_blank" rel="noopener">
         <img src="https://resources.cdn-kaspi.kz/img/m/p/p97/p50/65666228.png?format=gallery-large" alt="Yoon Hyup" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="fallback">Фото<br><span>Yoon Hyup</span></div>
@@ -82,7 +90,7 @@
         <button class="pick" type="button">Выбрать</button>
       </div>
     </div>
-    <div class="product" data-name="Leica × Medicom Toy" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-leica-x-medicom-toy-be-rbrick-28-sm-plastik-146722756/">
+    <div class="product" data-cat="bearbrick" data-name="Leica × Medicom Toy" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-leica-x-medicom-toy-be-rbrick-28-sm-plastik-146722756/">
       <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-leica-x-medicom-toy-be-rbrick-28-sm-plastik-146722756/" target="_blank" rel="noopener">
         <img src="https://resources.cdn-kaspi.kz/img/m/p/p29/pd3/68320464.jpg?format=gallery-large" alt="Leica × Medicom Toy" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="fallback">Фото<br><span>Leica × Medicom Toy</span></div>
@@ -96,7 +104,7 @@
         <button class="pick" type="button">Выбрать</button>
       </div>
     </div>
-    <div class="product" data-name="Innersect Multi-colour" data-price="18990" data-url="https://kaspi.kz/shop/p/figurka-bearbrick-be-rbrick-400-innersect-multi-colour-28-sm-1-sht-138630158/">
+    <div class="product" data-cat="bearbrick" data-name="Innersect Multi-colour" data-price="18990" data-url="https://kaspi.kz/shop/p/figurka-bearbrick-be-rbrick-400-innersect-multi-colour-28-sm-1-sht-138630158/">
       <a class="imgBox" href="https://kaspi.kz/shop/p/figurka-bearbrick-be-rbrick-400-innersect-multi-colour-28-sm-1-sht-138630158/" target="_blank" rel="noopener">
         <img src="https://resources.cdn-kaspi.kz/img/m/p/pbe/p28/38560152.jpg?format=gallery-large" alt="Innersect Multi-colour" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="fallback">Фото<br><span>Innersect Multi-colour</span></div>
@@ -110,7 +118,7 @@
         <button class="pick" type="button">Выбрать</button>
       </div>
     </div>
-    <div class="product" data-name="G-Shock Shanghai Night" data-price="24990" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-be-rbrick-shanghai-night-g-shock-28-sm-plastik-145832846/">
+    <div class="product" data-cat="bearbrick" data-name="G-Shock Shanghai Night" data-price="24990" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-be-rbrick-shanghai-night-g-shock-28-sm-plastik-145832846/">
       <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-be-rbrick-shanghai-night-g-shock-28-sm-plastik-145832846/" target="_blank" rel="noopener">
         <img src="https://resources.cdn-kaspi.kz/img/m/p/p06/p5b/65389959.png?format=gallery-large" alt="G-Shock Shanghai Night" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="fallback">Фото<br><span>G-Shock Shanghai Night</span></div>
@@ -124,7 +132,7 @@
         <button class="pick" type="button">Выбрать</button>
       </div>
     </div>
-    <div class="product" data-name="Moon" data-price="18990" data-url="https://kaspi.kz/shop/p/modnaja-kukla-bearbrick-400-moon-111933311/">
+    <div class="product" data-cat="bearbrick" data-name="Moon" data-price="18990" data-url="https://kaspi.kz/shop/p/modnaja-kukla-bearbrick-400-moon-111933311/">
       <a class="imgBox" href="https://kaspi.kz/shop/p/modnaja-kukla-bearbrick-400-moon-111933311/" target="_blank" rel="noopener">
         <img src="https://resources.cdn-kaspi.kz/img/m/p/ha5/hb8/82068146651166.jpg?format=gallery-large" alt="Moon" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="fallback">Фото<br><span>Moon</span></div>
@@ -138,7 +146,7 @@
         <button class="pick" type="button">Выбрать</button>
       </div>
     </div>
-    <div class="product" data-name="QQ Valentine (Pink Girly Heart)" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-qq-520-valentine-limited-edition-pink-girly-heart-28-sm-plastik-154336276/">
+    <div class="product" data-cat="bearbrick" data-name="QQ Valentine (Pink Girly Heart)" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-qq-520-valentine-limited-edition-pink-girly-heart-28-sm-plastik-154336276/">
       <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-qq-520-valentine-limited-edition-pink-girly-heart-28-sm-plastik-154336276/" target="_blank" rel="noopener">
         <img src="https://resources.cdn-kaspi.kz/img/m/p/p53/pce/122430700.jpeg?format=gallery-large" alt="QQ Valentine (Pink Girly Heart)" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="fallback">Фото<br><span>QQ Valentine (Pink Girly Heart)</span></div>
@@ -152,7 +160,7 @@
         <button class="pick" type="button">Выбрать</button>
       </div>
     </div>
-    <div class="product" data-name="Lamborghini" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-bearbrick-lamborghini-28-sm-plastik-142879705/">
+    <div class="product" data-cat="bearbrick" data-name="Lamborghini" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-bearbrick-lamborghini-28-sm-plastik-142879705/">
       <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-bearbrick-lamborghini-28-sm-plastik-142879705/" target="_blank" rel="noopener">
         <img src="https://resources.cdn-kaspi.kz/img/m/p/pcf/p33/120594499.png?format=gallery-large" alt="Lamborghini" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="fallback">Фото<br><span>Lamborghini</span></div>
@@ -166,7 +174,7 @@
         <button class="pick" type="button">Выбрать</button>
       </div>
     </div>
-    <div class="product" data-name="Michael Jordan 1992 Team USA" data-price="24490" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-bearbrick-michael-jordan-1992-team-usa-400-28-sm-plastik-165549278/">
+    <div class="product" data-cat="bearbrick" data-name="Michael Jordan 1992 Team USA" data-price="24490" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-bearbrick-michael-jordan-1992-team-usa-400-28-sm-plastik-165549278/">
       <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-bearbrick-michael-jordan-1992-team-usa-400-28-sm-plastik-165549278/" target="_blank" rel="noopener">
         <img src="https://resources.cdn-kaspi.kz/img/m/p/p60/p9e/136064677.jpg?format=gallery-large" alt="Michael Jordan 1992 Team USA" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="fallback">Фото<br><span>Michael Jordan 1992 Team USA</span></div>
@@ -180,7 +188,7 @@
         <button class="pick" type="button">Выбрать</button>
       </div>
     </div>
-    <div class="product" data-name="Tom and Jerry (Tom)" data-price="18990" data-url="https://kaspi.kz/shop/p/figurka-bearbrick-tom-and-jerry-28-sm-1-sht-138655778/">
+    <div class="product" data-cat="bearbrick" data-name="Tom and Jerry (Tom)" data-price="18990" data-url="https://kaspi.kz/shop/p/figurka-bearbrick-tom-and-jerry-28-sm-1-sht-138655778/">
       <a class="imgBox" href="https://kaspi.kz/shop/p/figurka-bearbrick-tom-and-jerry-28-sm-1-sht-138655778/" target="_blank" rel="noopener">
         <img src="https://resources.cdn-kaspi.kz/img/m/p/pd7/p56/120485672.png?format=gallery-large" alt="Tom and Jerry (Tom)" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="fallback">Фото<br><span>Tom and Jerry (Tom)</span></div>
@@ -194,7 +202,7 @@
         <button class="pick" type="button">Выбрать</button>
       </div>
     </div>
-    <div class="product" data-name="KAWS" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-bearbrick-kaws-28-sm-plastik-142878224/">
+    <div class="product" data-cat="bearbrick" data-name="KAWS" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-bearbrick-kaws-28-sm-plastik-142878224/">
       <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-bearbrick-kaws-28-sm-plastik-142878224/" target="_blank" rel="noopener">
         <img src="https://resources.cdn-kaspi.kz/img/m/p/p64/p16/120594501.png?format=gallery-large" alt="KAWS" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="fallback">Фото<br><span>KAWS</span></div>
@@ -208,7 +216,7 @@
         <button class="pick" type="button">Выбрать</button>
       </div>
     </div>
-    <div class="product" data-name="Disney × Keiichi Tanaami: Mickey Mouse" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-disney-x-keiichi-tanaami-mickey-mouse-28-sm-plastik-154336394/">
+    <div class="product" data-cat="bearbrick" data-name="Disney × Keiichi Tanaami: Mickey Mouse" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-disney-x-keiichi-tanaami-mickey-mouse-28-sm-plastik-154336394/">
       <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-disney-x-keiichi-tanaami-mickey-mouse-28-sm-plastik-154336394/" target="_blank" rel="noopener">
         <img src="https://resources.cdn-kaspi.kz/img/m/p/p14/pce/94344794.jpg?format=gallery-large" alt="Disney × Keiichi Tanaami: Mickey Mouse" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="fallback">Фото<br><span>Disney × Keiichi Tanaami: Mickey Mouse</span></div>
@@ -222,7 +230,7 @@
         <button class="pick" type="button">Выбрать</button>
       </div>
     </div>
-    <div class="product" data-name="Tom and Jerry (Jerry)" data-price="18990" data-url="https://kaspi.kz/shop/p/figurka-bearbrick-tom-and-jerry-28-sm-1-sht-138655760/">
+    <div class="product" data-cat="bearbrick" data-name="Tom and Jerry (Jerry)" data-price="18990" data-url="https://kaspi.kz/shop/p/figurka-bearbrick-tom-and-jerry-28-sm-1-sht-138655760/">
       <a class="imgBox" href="https://kaspi.kz/shop/p/figurka-bearbrick-tom-and-jerry-28-sm-1-sht-138655760/" target="_blank" rel="noopener">
         <img src="https://resources.cdn-kaspi.kz/img/m/p/p80/p57/120485678.png?format=gallery-large" alt="Tom and Jerry (Jerry)" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="fallback">Фото<br><span>Tom and Jerry (Jerry)</span></div>
@@ -236,7 +244,7 @@
         <button class="pick" type="button">Выбрать</button>
       </div>
     </div>
-    <div class="product" data-name="Mars" data-price="18990" data-url="https://kaspi.kz/shop/p/modnaja-kukla-bearbrick-400-mars-earth-be-111933363/">
+    <div class="product" data-cat="bearbrick" data-name="Mars" data-price="18990" data-url="https://kaspi.kz/shop/p/modnaja-kukla-bearbrick-400-mars-earth-be-111933363/">
       <a class="imgBox" href="https://kaspi.kz/shop/p/modnaja-kukla-bearbrick-400-mars-earth-be-111933363/" target="_blank" rel="noopener">
         <img src="https://resources.cdn-kaspi.kz/img/m/p/p2c/p57/120485675.png?format=gallery-large" alt="Mars" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="fallback">Фото<br><span>Mars</span></div>
@@ -250,7 +258,7 @@
         <button class="pick" type="button">Выбрать</button>
       </div>
     </div>
-    <div class="product" data-name="Andy Warhol × Muhammad Ali" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-set-andy-warhol-muhammad-ali-28-sm-plastik-142925902/">
+    <div class="product" data-cat="bearbrick" data-name="Andy Warhol × Muhammad Ali" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-set-andy-warhol-muhammad-ali-28-sm-plastik-142925902/">
       <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-set-andy-warhol-muhammad-ali-28-sm-plastik-142925902/" target="_blank" rel="noopener">
         <img src="https://resources.cdn-kaspi.kz/img/m/p/pe9/pc4/54528517.jpg?format=gallery-large" alt="Andy Warhol × Muhammad Ali" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="fallback">Фото<br><span>Andy Warhol × Muhammad Ali</span></div>
@@ -264,7 +272,7 @@
         <button class="pick" type="button">Выбрать</button>
       </div>
     </div>
-    <div class="product" data-name="Coca-Cola Georgia Green" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-bearbrick-coca-cola-georgia-green-28sm-28-sm-1-sht-142755648/">
+    <div class="product" data-cat="bearbrick" data-name="Coca-Cola Georgia Green" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-bearbrick-coca-cola-georgia-green-28sm-28-sm-1-sht-142755648/">
       <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-bearbrick-coca-cola-georgia-green-28sm-28-sm-1-sht-142755648/" target="_blank" rel="noopener">
         <img src="https://resources.cdn-kaspi.kz/img/m/p/pd9/p0b/53876648.jpg?format=gallery-large" alt="Coca-Cola Georgia Green" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="fallback">Фото<br><span>Coca-Cola Georgia Green</span></div>
@@ -278,7 +286,7 @@
         <button class="pick" type="button">Выбрать</button>
       </div>
     </div>
-    <div class="product" data-name="Puerto Rico Art" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-puerto-rico-art-28-sm-plastik-165596269/">
+    <div class="product" data-cat="bearbrick" data-name="Puerto Rico Art" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-puerto-rico-art-28-sm-plastik-165596269/">
       <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-puerto-rico-art-28-sm-plastik-165596269/" target="_blank" rel="noopener">
         <img src="https://resources.cdn-kaspi.kz/img/m/p/p94/p5d/136240055.png?format=gallery-large" alt="Puerto Rico Art" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="fallback">Фото<br><span>Puerto Rico Art</span></div>
@@ -292,7 +300,7 @@
         <button class="pick" type="button">Выбрать</button>
       </div>
     </div>
-    <div class="product" data-name="Jean-Michel Basquiat #1" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-jean-michel-basquiat-28-sm-plastik-138626907/">
+    <div class="product" data-cat="bearbrick" data-name="Jean-Michel Basquiat #1" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-jean-michel-basquiat-28-sm-plastik-138626907/">
       <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-jean-michel-basquiat-28-sm-plastik-138626907/" target="_blank" rel="noopener">
         <img src="https://resources.cdn-kaspi.kz/img/m/p/pca/p00/38549406.jpg?format=gallery-large" alt="Jean-Michel Basquiat #1" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="fallback">Фото<br><span>Jean-Michel Basquiat #1</span></div>
@@ -306,7 +314,7 @@
         <button class="pick" type="button">Выбрать</button>
       </div>
     </div>
-    <div class="product" data-name="The Monsters: Labubu &amp; Zimomo" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-the-monsters-labubu-zimomo-28-sm-plastik-154336322/">
+    <div class="product" data-cat="bearbrick" data-name="The Monsters: Labubu &amp; Zimomo" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-the-monsters-labubu-zimomo-28-sm-plastik-154336322/">
       <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-the-monsters-labubu-zimomo-28-sm-plastik-154336322/" target="_blank" rel="noopener">
         <img src="https://resources.cdn-kaspi.kz/img/m/p/p5d/p4d/94344545.jpg?format=gallery-large" alt="The Monsters: Labubu &amp; Zimomo" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="fallback">Фото<br><span>The Monsters: Labubu &amp; Zimomo</span></div>
@@ -320,7 +328,7 @@
         <button class="pick" type="button">Выбрать</button>
       </div>
     </div>
-    <div class="product" data-name="Black Hole NASA" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-statuetka-bearbrick-black-hole-nasa-28-sm-pvh-123468069/">
+    <div class="product" data-cat="bearbrick" data-name="Black Hole NASA" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-statuetka-bearbrick-black-hole-nasa-28-sm-pvh-123468069/">
       <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-statuetka-bearbrick-black-hole-nasa-28-sm-pvh-123468069/" target="_blank" rel="noopener">
         <img src="https://resources.cdn-kaspi.kz/img/m/p/p72/p22/18618017.jpg?format=gallery-large" alt="Black Hole NASA" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="fallback">Фото<br><span>Black Hole NASA</span></div>
@@ -334,7 +342,7 @@
         <button class="pick" type="button">Выбрать</button>
       </div>
     </div>
-    <div class="product" data-name="Sorayama × Ironman Reverse" data-price="22490" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-bearbrick-x-sorayama-ironman-reverse-28-sm-plastik-145824764/">
+    <div class="product" data-cat="bearbrick" data-name="Sorayama × Ironman Reverse" data-price="22490" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-bearbrick-x-sorayama-ironman-reverse-28-sm-plastik-145824764/">
       <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-bearbrick-x-sorayama-ironman-reverse-28-sm-plastik-145824764/" target="_blank" rel="noopener">
         <img src="https://resources.cdn-kaspi.kz/img/m/p/pd2/pc4/65360645.png?format=gallery-large" alt="Sorayama × Ironman Reverse" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="fallback">Фото<br><span>Sorayama × Ironman Reverse</span></div>
@@ -348,7 +356,7 @@
         <button class="pick" type="button">Выбрать</button>
       </div>
     </div>
-    <div class="product" data-name="Van Gogh (Звёздная ночь)" data-price="18990" data-url="https://kaspi.kz/shop/p/figurka-bearbrick-van-gogh-28-sm-105563848/">
+    <div class="product" data-cat="bearbrick" data-name="Van Gogh (Звёздная ночь)" data-price="18990" data-url="https://kaspi.kz/shop/p/figurka-bearbrick-van-gogh-28-sm-105563848/">
       <a class="imgBox" href="https://kaspi.kz/shop/p/figurka-bearbrick-van-gogh-28-sm-105563848/" target="_blank" rel="noopener">
         <img src="https://resources.cdn-kaspi.kz/img/m/p/h87/h61/64533112782878.jpg?format=gallery-large" alt="Van Gogh (Звёздная ночь)" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="fallback">Фото<br><span>Van Gogh (Звёздная ночь)</span></div>
@@ -362,7 +370,7 @@
         <button class="pick" type="button">Выбрать</button>
       </div>
     </div>
-    <div class="product" data-name="Mona Lisa" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-bearbrick-leonardo-de-vinci-mona-lisa-28-sm-1-sht-149681203/">
+    <div class="product" data-cat="bearbrick" data-name="Mona Lisa" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-bearbrick-leonardo-de-vinci-mona-lisa-28-sm-1-sht-149681203/">
       <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-bearbrick-leonardo-de-vinci-mona-lisa-28-sm-1-sht-149681203/" target="_blank" rel="noopener">
         <img src="https://resources.cdn-kaspi.kz/img/m/p/pef/p39/122205721.jpeg?format=gallery-large" alt="Mona Lisa" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="fallback">Фото<br><span>Mona Lisa</span></div>
@@ -376,7 +384,7 @@
         <button class="pick" type="button">Выбрать</button>
       </div>
     </div>
-    <div class="product" data-name="Keith Haring" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-be-rbrick-keith-haring-28-sm-1-sht-149680610/">
+    <div class="product" data-cat="bearbrick" data-name="Keith Haring" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-be-rbrick-keith-haring-28-sm-1-sht-149680610/">
       <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-be-rbrick-keith-haring-28-sm-1-sht-149680610/" target="_blank" rel="noopener">
         <img src="https://resources.cdn-kaspi.kz/img/m/p/p08/p6e/78366499.png?format=gallery-large" alt="Keith Haring" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="fallback">Фото<br><span>Keith Haring</span></div>
@@ -390,7 +398,7 @@
         <button class="pick" type="button">Выбрать</button>
       </div>
     </div>
-    <div class="product" data-name="Banksy — Flying Balloons Girl" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-bearbrick-banksy-flying-balloons-girl-28-sm-1-sht-149680562/">
+    <div class="product" data-cat="bearbrick" data-name="Banksy — Flying Balloons Girl" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-bearbrick-banksy-flying-balloons-girl-28-sm-1-sht-149680562/">
       <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-bearbrick-banksy-flying-balloons-girl-28-sm-1-sht-149680562/" target="_blank" rel="noopener">
         <img src="https://resources.cdn-kaspi.kz/img/m/p/p92/p10/78366336.png?format=gallery-large" alt="Banksy — Flying Balloons Girl" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="fallback">Фото<br><span>Banksy — Flying Balloons Girl</span></div>
@@ -404,7 +412,7 @@
         <button class="pick" type="button">Выбрать</button>
       </div>
     </div>
-    <div class="product" data-name="Daft Punk 2" data-price="24990" data-url="https://kaspi.kz/shop/p/figurka-bearbrick-bearbrick-daft-punk-2-28-sm-1-sht-128585328/">
+    <div class="product" data-cat="bearbrick" data-name="Daft Punk 2" data-price="24990" data-url="https://kaspi.kz/shop/p/figurka-bearbrick-bearbrick-daft-punk-2-28-sm-1-sht-128585328/">
       <a class="imgBox" href="https://kaspi.kz/shop/p/figurka-bearbrick-bearbrick-daft-punk-2-28-sm-1-sht-128585328/" target="_blank" rel="noopener">
         <img src="https://resources.cdn-kaspi.kz/img/m/p/pf3/p56/120485673.png?format=gallery-large" alt="Daft Punk 2" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="fallback">Фото<br><span>Daft Punk 2</span></div>
@@ -418,7 +426,7 @@
         <button class="pick" type="button">Выбрать</button>
       </div>
     </div>
-    <div class="product" data-name="MY FIRST BE@RBRICK" data-price="18990" data-url="https://kaspi.kz/shop/p/figurka-bearbrick-bearbrick-my-first-be-rbrick-28-sm-1-sht-128585306/">
+    <div class="product" data-cat="bearbrick" data-name="MY FIRST BE@RBRICK" data-price="18990" data-url="https://kaspi.kz/shop/p/figurka-bearbrick-bearbrick-my-first-be-rbrick-28-sm-1-sht-128585306/">
       <a class="imgBox" href="https://kaspi.kz/shop/p/figurka-bearbrick-bearbrick-my-first-be-rbrick-28-sm-1-sht-128585306/" target="_blank" rel="noopener">
         <img src="https://resources.cdn-kaspi.kz/img/m/p/pfe/pdc/3385983.jpg?format=gallery-large" alt="MY FIRST BE@RBRICK" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="fallback">Фото<br><span>MY FIRST BE@RBRICK</span></div>
@@ -432,7 +440,7 @@
         <button class="pick" type="button">Выбрать</button>
       </div>
     </div>
-    <div class="product" data-name="My First Baby Space Ver" data-price="18990" data-url="https://kaspi.kz/shop/p/figurka-bearbrick-my-first-bearbrick-baby-space-ver-28-sm-1-sht-112904270/">
+    <div class="product" data-cat="bearbrick" data-name="My First Baby Space Ver" data-price="18990" data-url="https://kaspi.kz/shop/p/figurka-bearbrick-my-first-bearbrick-baby-space-ver-28-sm-1-sht-112904270/">
       <a class="imgBox" href="https://kaspi.kz/shop/p/figurka-bearbrick-my-first-bearbrick-baby-space-ver-28-sm-1-sht-112904270/" target="_blank" rel="noopener">
         <img src="https://resources.cdn-kaspi.kz/img/m/p/p1f/p17/120594057.png?format=gallery-large" alt="My First Baby Space Ver" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="fallback">Фото<br><span>My First Baby Space Ver</span></div>
@@ -446,7 +454,7 @@
         <button class="pick" type="button">Выбрать</button>
       </div>
     </div>
-    <div class="product" data-name="Van Gogh — Country Road by Night" data-price="18990" data-url="https://kaspi.kz/shop/p/figurka-bearbrick-van-gogh-country-road-in-provence-by-night-28-sm-1-sht-138655802/">
+    <div class="product" data-cat="bearbrick" data-name="Van Gogh — Country Road by Night" data-price="18990" data-url="https://kaspi.kz/shop/p/figurka-bearbrick-van-gogh-country-road-in-provence-by-night-28-sm-1-sht-138655802/">
       <a class="imgBox" href="https://kaspi.kz/shop/p/figurka-bearbrick-van-gogh-country-road-in-provence-by-night-28-sm-1-sht-138655802/" target="_blank" rel="noopener">
         <img src="https://resources.cdn-kaspi.kz/img/m/p/p64/p57/120485677.png?format=gallery-large" alt="Van Gogh — Country Road by Night" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="fallback">Фото<br><span>Van Gogh — Country Road by Night</span></div>
@@ -460,7 +468,7 @@
         <button class="pick" type="button">Выбрать</button>
       </div>
     </div>
-    <div class="product" data-name="Only At" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-statuetka-bearbrick-only-at-28-sm-plastik-133039894/">
+    <div class="product" data-cat="bearbrick" data-name="Only At" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-statuetka-bearbrick-only-at-28-sm-plastik-133039894/">
       <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-statuetka-bearbrick-only-at-28-sm-plastik-133039894/" target="_blank" rel="noopener">
         <img src="https://resources.cdn-kaspi.kz/img/m/p/p31/p32/121060249.png?format=gallery-large" alt="Only At" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="fallback">Фото<br><span>Only At</span></div>
@@ -474,7 +482,7 @@
         <button class="pick" type="button">Выбрать</button>
       </div>
     </div>
-    <div class="product" data-name="Johannes Vermeer" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-be-rbrick-johannes-vermeer-28-sm-plastik-135782859/">
+    <div class="product" data-cat="bearbrick" data-name="Johannes Vermeer" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-be-rbrick-johannes-vermeer-28-sm-plastik-135782859/">
       <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-be-rbrick-johannes-vermeer-28-sm-plastik-135782859/" target="_blank" rel="noopener">
         <img src="https://resources.cdn-kaspi.kz/img/m/p/p35/p20/28333428.jpg?format=gallery-large" alt="Johannes Vermeer" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="fallback">Фото<br><span>Johannes Vermeer</span></div>
@@ -488,7 +496,7 @@
         <button class="pick" type="button">Выбрать</button>
       </div>
     </div>
-    <div class="product" data-name="Jean-Michel Basquiat #2" data-price="18990" data-url="https://kaspi.kz/shop/p/figurka-bearbrick-jean-michel-basquiat-28-sm-1-sht-112933292/">
+    <div class="product" data-cat="bearbrick" data-name="Jean-Michel Basquiat #2" data-price="18990" data-url="https://kaspi.kz/shop/p/figurka-bearbrick-jean-michel-basquiat-28-sm-1-sht-112933292/">
       <a class="imgBox" href="https://kaspi.kz/shop/p/figurka-bearbrick-jean-michel-basquiat-28-sm-1-sht-112933292/" target="_blank" rel="noopener">
         <img src="https://resources.cdn-kaspi.kz/img/m/p/p2c/p12/4968573.jpg?format=gallery-large" alt="Jean-Michel Basquiat #2" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="fallback">Фото<br><span>Jean-Michel Basquiat #2</span></div>
@@ -502,7 +510,7 @@
         <button class="pick" type="button">Выбрать</button>
       </div>
     </div>
-    <div class="product" data-name="Van Gogh — Sunflowers" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-van-gogh-museum-sunflowers-28-sm-plastik-138681308/">
+    <div class="product" data-cat="bearbrick" data-name="Van Gogh — Sunflowers" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-van-gogh-museum-sunflowers-28-sm-plastik-138681308/">
       <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-van-gogh-museum-sunflowers-28-sm-plastik-138681308/" target="_blank" rel="noopener">
         <img src="https://resources.cdn-kaspi.kz/img/m/p/p5b/p6c/38729676.jpg?format=gallery-large" alt="Van Gogh — Sunflowers" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="fallback">Фото<br><span>Van Gogh — Sunflowers</span></div>
@@ -516,7 +524,7 @@
         <button class="pick" type="button">Выбрать</button>
       </div>
     </div>
-    <div class="product" data-name="Earth" data-price="18990" data-url="https://kaspi.kz/shop/p/figurka-bearbrick-bearbrick-earth-28-sm-1-sht-128101853/">
+    <div class="product" data-cat="bearbrick" data-name="Earth" data-price="18990" data-url="https://kaspi.kz/shop/p/figurka-bearbrick-bearbrick-earth-28-sm-1-sht-128101853/">
       <a class="imgBox" href="https://kaspi.kz/shop/p/figurka-bearbrick-bearbrick-earth-28-sm-1-sht-128101853/" target="_blank" rel="noopener">
         <img src="https://resources.cdn-kaspi.kz/img/m/p/p5d/p15/4968565.png?format=gallery-large" alt="Earth" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="fallback">Фото<br><span>Earth</span></div>
@@ -530,7 +538,7 @@
         <button class="pick" type="button">Выбрать</button>
       </div>
     </div>
-    <div class="product" data-name="Coca-Cola × atmos" data-price="17990" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-bearbrick-x-coca-cola-x-atmos-28-sm-plastik-135766438/">
+    <div class="product" data-cat="bearbrick" data-name="Coca-Cola × atmos" data-price="17990" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-bearbrick-x-coca-cola-x-atmos-28-sm-plastik-135766438/">
       <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-bearbrick-x-coca-cola-x-atmos-28-sm-plastik-135766438/" target="_blank" rel="noopener">
         <img src="https://resources.cdn-kaspi.kz/img/m/p/pac/pc0/122430704.jpeg?format=gallery-large" alt="Coca-Cola × atmos" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="fallback">Фото<br><span>Coca-Cola × atmos</span></div>
@@ -544,7 +552,7 @@
         <button class="pick" type="button">Выбрать</button>
       </div>
     </div>
-    <div class="product" data-name="Wave off Kanagawa" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-statuetka-wave-off-kanagawa-28-sm-plastik-133039890/">
+    <div class="product" data-cat="bearbrick" data-name="Wave off Kanagawa" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-statuetka-wave-off-kanagawa-28-sm-plastik-133039890/">
       <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-statuetka-wave-off-kanagawa-28-sm-plastik-133039890/" target="_blank" rel="noopener">
         <img src="https://resources.cdn-kaspi.kz/img/m/p/p2b/pae/18727677.jpg?format=gallery-large" alt="Wave off Kanagawa" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="fallback">Фото<br><span>Wave off Kanagawa</span></div>
@@ -558,7 +566,7 @@
         <button class="pick" type="button">Выбрать</button>
       </div>
     </div>
-    <div class="product" data-name="Mika Ninagawa — Sakura" data-price="18990" data-url="https://kaspi.kz/shop/p/figurka-bearbrick-bearbrick-mika-ninagawa-sakura-28-sm-1-sht-138627771/">
+    <div class="product" data-cat="bearbrick" data-name="Mika Ninagawa — Sakura" data-price="18990" data-url="https://kaspi.kz/shop/p/figurka-bearbrick-bearbrick-mika-ninagawa-sakura-28-sm-1-sht-138627771/">
       <a class="imgBox" href="https://kaspi.kz/shop/p/figurka-bearbrick-bearbrick-mika-ninagawa-sakura-28-sm-1-sht-138627771/" target="_blank" rel="noopener">
         <img src="https://resources.cdn-kaspi.kz/img/m/p/p48/p57/120485676.png?format=gallery-large" alt="Mika Ninagawa — Sakura" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="fallback">Фото<br><span>Mika Ninagawa — Sakura</span></div>
@@ -573,15 +581,12 @@
       </div>
     </div>
 
-      <div class="sectionTitle">KAWS COLLECTION</div>
+      <div class="sectionTitle" data-section="kaws">KAWS COLLECTION</div>
 
-    <div class="product" data-name="KAWS Take 33 см — Black" data-price="" data-url="https://kaspi.kz/shop/p/figurka-kaws-kaws-take-33-sm-1-sht-128219616/">
-      <a class="imgBox kawsPoster" href="https://kaspi.kz/shop/p/figurka-kaws-kaws-take-33-sm-1-sht-128219616/" target="_blank" rel="noopener">
-        <div class="posterInner" style="background:linear-gradient(135deg,#0b0b0b,#343434 55%,#090909);">
-          <div class="posterKaws">KAWS</div>
-          <div class="posterModel">Take 33 см — Black</div>
-          <div class="posterMeta">33 см · черный</div>
-        </div>
+    <div class="product" data-cat="kaws" data-name="KAWS Take 33 см — Black" data-price="" data-url="https://kaspi.kz/shop/p/figurka-kaws-kaws-take-33-sm-1-sht-128219616/">
+      <a class="imgBox" href="https://kaspi.kz/shop/p/figurka-kaws-kaws-take-33-sm-1-sht-128219616/" target="_blank" rel="noopener">
+        <img src="https://usneakersport.ru/image/cache/catalog/shop/bearbrick/kaws-take-figure-black-700x700.jpg" alt="KAWS Take 33 см — Black" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="fallback">Фото<br><span>KAWS Take 33 см — Black</span></div>
       </a>
       <div class="content">
         <div class="num">#37</div>
@@ -593,13 +598,10 @@
       </div>
     </div>
 
-    <div class="product" data-name="KAWS Companion 37 см — Grey" data-price="" data-url="https://kaspi.kz/shop/p/figurka-kaws-companion-37-sm-1-sht-128219668/">
-      <a class="imgBox kawsPoster" href="https://kaspi.kz/shop/p/figurka-kaws-companion-37-sm-1-sht-128219668/" target="_blank" rel="noopener">
-        <div class="posterInner" style="background:linear-gradient(135deg,#8b8b8b,#dadada 55%,#555);">
-          <div class="posterKaws">KAWS</div>
-          <div class="posterModel">Companion 37 см — Grey</div>
-          <div class="posterMeta">37 см · серый</div>
-        </div>
+    <div class="product" data-cat="kaws" data-name="KAWS Companion 37 см — Grey" data-price="" data-url="https://kaspi.kz/shop/p/figurka-kaws-companion-37-sm-1-sht-128219668/">
+      <a class="imgBox" href="https://kaspi.kz/shop/p/figurka-kaws-companion-37-sm-1-sht-128219668/" target="_blank" rel="noopener">
+        <img src="https://e-mall.su/wa-data/public/shop/products/70/16/11670/images/45187/45187.440.jpg" alt="KAWS Companion 37 см — Grey" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="fallback">Фото<br><span>KAWS Companion 37 см — Grey</span></div>
       </a>
       <div class="content">
         <div class="num">#38</div>
@@ -611,13 +613,10 @@
       </div>
     </div>
 
-    <div class="product" data-name="KAWS Take 33 см — Blue" data-price="" data-url="https://kaspi.kz/shop/p/figurka-kaws-kaws-take-33-sm-1-sht-128219650/">
-      <a class="imgBox kawsPoster" href="https://kaspi.kz/shop/p/figurka-kaws-kaws-take-33-sm-1-sht-128219650/" target="_blank" rel="noopener">
-        <div class="posterInner" style="background:linear-gradient(135deg,#075985,#38bdf8 55%,#0f172a);">
-          <div class="posterKaws">KAWS</div>
-          <div class="posterModel">Take 33 см — Blue</div>
-          <div class="posterMeta">33 см · синий</div>
-        </div>
+    <div class="product" data-cat="kaws" data-name="KAWS Take 33 см — Blue" data-price="" data-url="https://kaspi.kz/shop/p/figurka-kaws-kaws-take-33-sm-1-sht-128219650/">
+      <a class="imgBox" href="https://kaspi.kz/shop/p/figurka-kaws-kaws-take-33-sm-1-sht-128219650/" target="_blank" rel="noopener">
+        <img src="https://usneakersport.ru/image/cache/catalog/shop/bearbrick/kaws-take-figure-black-700x700.jpg" alt="KAWS Take 33 см — Blue" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="fallback">Фото<br><span>KAWS Take 33 см — Blue</span></div>
       </a>
       <div class="content">
         <div class="num">#39</div>
@@ -629,13 +628,10 @@
       </div>
     </div>
 
-    <div class="product" data-name="KAWS Cash 30 см — Grey" data-price="" data-url="https://kaspi.kz/shop/p/figurka-kaws-kaws-cash-30-sm-1-sht-128219612/">
-      <a class="imgBox kawsPoster" href="https://kaspi.kz/shop/p/figurka-kaws-kaws-cash-30-sm-1-sht-128219612/" target="_blank" rel="noopener">
-        <div class="posterInner" style="background:linear-gradient(135deg,#8b8b8b,#dadada 55%,#555);">
-          <div class="posterKaws">KAWS</div>
-          <div class="posterModel">Cash 30 см — Grey</div>
-          <div class="posterMeta">30 см · серый</div>
-        </div>
+    <div class="product" data-cat="kaws" data-name="KAWS Cash 30 см — Grey" data-price="" data-url="https://kaspi.kz/shop/p/figurka-kaws-kaws-cash-30-sm-1-sht-128219612/">
+      <a class="imgBox" href="https://kaspi.kz/shop/p/figurka-kaws-kaws-cash-30-sm-1-sht-128219612/" target="_blank" rel="noopener">
+        <img src="https://e-mall.su/wa-data/public/shop/products/70/16/11670/images/45187/45187.440.jpg" alt="KAWS Cash 30 см — Grey" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="fallback">Фото<br><span>KAWS Cash 30 см — Grey</span></div>
       </a>
       <div class="content">
         <div class="num">#40</div>
@@ -647,13 +643,10 @@
       </div>
     </div>
 
-    <div class="product" data-name="KAWS Cash 30 см — Black" data-price="" data-url="https://kaspi.kz/shop/p/figurka-kaws-kaws-cash-30-sm-1-sht-128219613/">
-      <a class="imgBox kawsPoster" href="https://kaspi.kz/shop/p/figurka-kaws-kaws-cash-30-sm-1-sht-128219613/" target="_blank" rel="noopener">
-        <div class="posterInner" style="background:linear-gradient(135deg,#0b0b0b,#343434 55%,#090909);">
-          <div class="posterKaws">KAWS</div>
-          <div class="posterModel">Cash 30 см — Black</div>
-          <div class="posterMeta">30 см · черный</div>
-        </div>
+    <div class="product" data-cat="kaws" data-name="KAWS Cash 30 см — Black" data-price="" data-url="https://kaspi.kz/shop/p/figurka-kaws-kaws-cash-30-sm-1-sht-128219613/">
+      <a class="imgBox" href="https://kaspi.kz/shop/p/figurka-kaws-kaws-cash-30-sm-1-sht-128219613/" target="_blank" rel="noopener">
+        <img src="https://e-mall.su/wa-data/public/shop/products/70/16/11670/images/45191/45191.440.jpg" alt="KAWS Cash 30 см — Black" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="fallback">Фото<br><span>KAWS Cash 30 см — Black</span></div>
       </a>
       <div class="content">
         <div class="num">#41</div>
@@ -665,13 +658,10 @@
       </div>
     </div>
 
-    <div class="product" data-name="KAWS Companion 37 см — Brown" data-price="" data-url="https://kaspi.kz/shop/p/figurka-kaws-kaws-companion-37-sm-1-sht-128101169/">
-      <a class="imgBox kawsPoster" href="https://kaspi.kz/shop/p/figurka-kaws-kaws-companion-37-sm-1-sht-128101169/" target="_blank" rel="noopener">
-        <div class="posterInner" style="background:linear-gradient(135deg,#4a2a13,#b45309 55%,#1f1208);">
-          <div class="posterKaws">KAWS</div>
-          <div class="posterModel">Companion 37 см — Brown</div>
-          <div class="posterMeta">37 см · коричневый</div>
-        </div>
+    <div class="product" data-cat="kaws" data-name="KAWS Companion 37 см — Brown" data-price="" data-url="https://kaspi.kz/shop/p/figurka-kaws-kaws-companion-37-sm-1-sht-128101169/">
+      <a class="imgBox" href="https://kaspi.kz/shop/p/figurka-kaws-kaws-companion-37-sm-1-sht-128101169/" target="_blank" rel="noopener">
+        <img src="https://media.composition.gallery/artworkpic/kaws-pinocchio-jiminy-cricket-vinyl-figures-with-x-eyes-and-hands-covering-faces-styled-after-classic-disney-characters1754401915-69843_448x500.png" alt="KAWS Companion 37 см — Brown" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="fallback">Фото<br><span>KAWS Companion 37 см — Brown</span></div>
       </a>
       <div class="content">
         <div class="num">#42</div>
@@ -683,13 +673,10 @@
       </div>
     </div>
 
-    <div class="product" data-name="KAWS BFF 35 см — Blue" data-price="" data-url="https://kaspi.kz/shop/p/figurka-kaws-kaws-bff-35-sm-1-sht-128219615/">
-      <a class="imgBox kawsPoster" href="https://kaspi.kz/shop/p/figurka-kaws-kaws-bff-35-sm-1-sht-128219615/" target="_blank" rel="noopener">
-        <div class="posterInner" style="background:linear-gradient(135deg,#075985,#38bdf8 55%,#0f172a);">
-          <div class="posterKaws">KAWS</div>
-          <div class="posterModel">BFF 35 см — Blue</div>
-          <div class="posterMeta">35 см · синий</div>
-        </div>
+    <div class="product" data-cat="kaws" data-name="KAWS BFF 35 см — Blue" data-price="" data-url="https://kaspi.kz/shop/p/figurka-kaws-kaws-bff-35-sm-1-sht-128219615/">
+      <a class="imgBox" href="https://kaspi.kz/shop/p/figurka-kaws-kaws-bff-35-sm-1-sht-128219615/" target="_blank" rel="noopener">
+        <img src="https://usneakersport.ru/image/cache/catalog/shop/bearbrick/kaws-take-figure-black-700x700.jpg" alt="KAWS BFF 35 см — Blue" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="fallback">Фото<br><span>KAWS BFF 35 см — Blue</span></div>
       </a>
       <div class="content">
         <div class="num">#43</div>
@@ -701,13 +688,10 @@
       </div>
     </div>
 
-    <div class="product" data-name="KAWS BFF 35 см — Black" data-price="" data-url="https://kaspi.kz/shop/p/figurka-kaws-kaws-bff-35-sm-1-sht-128098262/">
-      <a class="imgBox kawsPoster" href="https://kaspi.kz/shop/p/figurka-kaws-kaws-bff-35-sm-1-sht-128098262/" target="_blank" rel="noopener">
-        <div class="posterInner" style="background:linear-gradient(135deg,#0b0b0b,#343434 55%,#090909);">
-          <div class="posterKaws">KAWS</div>
-          <div class="posterModel">BFF 35 см — Black</div>
-          <div class="posterMeta">35 см · черный</div>
-        </div>
+    <div class="product" data-cat="kaws" data-name="KAWS BFF 35 см — Black" data-price="" data-url="https://kaspi.kz/shop/p/figurka-kaws-kaws-bff-35-sm-1-sht-128098262/">
+      <a class="imgBox" href="https://kaspi.kz/shop/p/figurka-kaws-kaws-bff-35-sm-1-sht-128098262/" target="_blank" rel="noopener">
+        <img src="https://usneakersport.ru/image/cache/catalog/shop/bearbrick/kaws-take-figure-black-700x700.jpg" alt="KAWS BFF 35 см — Black" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="fallback">Фото<br><span>KAWS BFF 35 см — Black</span></div>
       </a>
       <div class="content">
         <div class="num">#44</div>
@@ -719,13 +703,10 @@
       </div>
     </div>
 
-    <div class="product" data-name="KAWS Companion 37 см — Black" data-price="" data-url="https://kaspi.kz/shop/p/figurka-kaws-kaws-companion-37-sm-1-sht-128101178/">
-      <a class="imgBox kawsPoster" href="https://kaspi.kz/shop/p/figurka-kaws-kaws-companion-37-sm-1-sht-128101178/" target="_blank" rel="noopener">
-        <div class="posterInner" style="background:linear-gradient(135deg,#0b0b0b,#343434 55%,#090909);">
-          <div class="posterKaws">KAWS</div>
-          <div class="posterModel">Companion 37 см — Black</div>
-          <div class="posterMeta">37 см · черный</div>
-        </div>
+    <div class="product" data-cat="kaws" data-name="KAWS Companion 37 см — Black" data-price="" data-url="https://kaspi.kz/shop/p/figurka-kaws-kaws-companion-37-sm-1-sht-128101178/">
+      <a class="imgBox" href="https://kaspi.kz/shop/p/figurka-kaws-kaws-companion-37-sm-1-sht-128101178/" target="_blank" rel="noopener">
+        <img src="https://e-mall.su/wa-data/public/shop/products/70/16/11670/images/45191/45191.440.jpg" alt="KAWS Companion 37 см — Black" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="fallback">Фото<br><span>KAWS Companion 37 см — Black</span></div>
       </a>
       <div class="content">
         <div class="num">#45</div>
@@ -737,13 +718,10 @@
       </div>
     </div>
 
-    <div class="product" data-name="KAWS Companion 37 см — Red" data-price="" data-url="https://kaspi.kz/shop/p/figurka-kaws-kaws-companion-37-sm-1-sht-128219670/">
-      <a class="imgBox kawsPoster" href="https://kaspi.kz/shop/p/figurka-kaws-kaws-companion-37-sm-1-sht-128219670/" target="_blank" rel="noopener">
-        <div class="posterInner" style="background:linear-gradient(135deg,#7f1d1d,#ef4444 55%,#240606);">
-          <div class="posterKaws">KAWS</div>
-          <div class="posterModel">Companion 37 см — Red</div>
-          <div class="posterMeta">37 см · красный</div>
-        </div>
+    <div class="product" data-cat="kaws" data-name="KAWS Companion 37 см — Red" data-price="" data-url="https://kaspi.kz/shop/p/figurka-kaws-kaws-companion-37-sm-1-sht-128219670/">
+      <a class="imgBox" href="https://kaspi.kz/shop/p/figurka-kaws-kaws-companion-37-sm-1-sht-128219670/" target="_blank" rel="noopener">
+        <img src="https://e-mall.su/wa-data/public/shop/products/70/16/11670/images/45189/45189.440.jpg" alt="KAWS Companion 37 см — Red" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="fallback">Фото<br><span>KAWS Companion 37 см — Red</span></div>
       </a>
       <div class="content">
         <div class="num">#46</div>
@@ -755,13 +733,10 @@
       </div>
     </div>
 
-    <div class="product" data-name="KAWS Small Lie 28 см — Grey" data-price="" data-url="https://kaspi.kz/shop/p/figurka-kaws-kaws-small-lie-28-sm-1-sht-128099876/">
-      <a class="imgBox kawsPoster" href="https://kaspi.kz/shop/p/figurka-kaws-kaws-small-lie-28-sm-1-sht-128099876/" target="_blank" rel="noopener">
-        <div class="posterInner" style="background:linear-gradient(135deg,#8b8b8b,#dadada 55%,#555);">
-          <div class="posterKaws">KAWS</div>
-          <div class="posterModel">Small Lie 28 см — Grey</div>
-          <div class="posterMeta">28 см · серый</div>
-        </div>
+    <div class="product" data-cat="kaws" data-name="KAWS Small Lie 28 см — Grey" data-price="" data-url="https://kaspi.kz/shop/p/figurka-kaws-kaws-small-lie-28-sm-1-sht-128099876/">
+      <a class="imgBox" href="https://kaspi.kz/shop/p/figurka-kaws-kaws-small-lie-28-sm-1-sht-128099876/" target="_blank" rel="noopener">
+        <img src="https://e-mall.su/wa-data/public/shop/products/70/16/11670/images/45187/45187.440.jpg" alt="KAWS Small Lie 28 см — Grey" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="fallback">Фото<br><span>KAWS Small Lie 28 см — Grey</span></div>
       </a>
       <div class="content">
         <div class="num">#47</div>
@@ -773,13 +748,10 @@
       </div>
     </div>
 
-    <div class="product" data-name="KAWS Cash 30 см — Brown" data-price="" data-url="https://kaspi.kz/shop/p/figurka-kaws-kaws-cash-30-sm-1-sht-128096577/">
-      <a class="imgBox kawsPoster" href="https://kaspi.kz/shop/p/figurka-kaws-kaws-cash-30-sm-1-sht-128096577/" target="_blank" rel="noopener">
-        <div class="posterInner" style="background:linear-gradient(135deg,#4a2a13,#b45309 55%,#1f1208);">
-          <div class="posterKaws">KAWS</div>
-          <div class="posterModel">Cash 30 см — Brown</div>
-          <div class="posterMeta">30 см · коричневый</div>
-        </div>
+    <div class="product" data-cat="kaws" data-name="KAWS Cash 30 см — Brown" data-price="" data-url="https://kaspi.kz/shop/p/figurka-kaws-kaws-cash-30-sm-1-sht-128096577/">
+      <a class="imgBox" href="https://kaspi.kz/shop/p/figurka-kaws-kaws-cash-30-sm-1-sht-128096577/" target="_blank" rel="noopener">
+        <img src="https://e-mall.su/wa-data/public/shop/products/70/16/11670/images/45190/45190.440.jpg" alt="KAWS Cash 30 см — Brown" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="fallback">Фото<br><span>KAWS Cash 30 см — Brown</span></div>
       </a>
       <div class="content">
         <div class="num">#48</div>
@@ -791,13 +763,10 @@
       </div>
     </div>
 
-    <div class="product" data-name="KAWS Small Lie 28 см — Brown" data-price="" data-url="https://kaspi.kz/shop/p/figurka-kaws-kaws-small-lie-28-sm-1-sht-128099872/">
-      <a class="imgBox kawsPoster" href="https://kaspi.kz/shop/p/figurka-kaws-kaws-small-lie-28-sm-1-sht-128099872/" target="_blank" rel="noopener">
-        <div class="posterInner" style="background:linear-gradient(135deg,#4a2a13,#b45309 55%,#1f1208);">
-          <div class="posterKaws">KAWS</div>
-          <div class="posterModel">Small Lie 28 см — Brown</div>
-          <div class="posterMeta">28 см · коричневый</div>
-        </div>
+    <div class="product" data-cat="kaws" data-name="KAWS Small Lie 28 см — Brown" data-price="" data-url="https://kaspi.kz/shop/p/figurka-kaws-kaws-small-lie-28-sm-1-sht-128099872/">
+      <a class="imgBox" href="https://kaspi.kz/shop/p/figurka-kaws-kaws-small-lie-28-sm-1-sht-128099872/" target="_blank" rel="noopener">
+        <img src="https://e-mall.su/wa-data/public/shop/products/70/16/11670/images/45190/45190.440.jpg" alt="KAWS Small Lie 28 см — Brown" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="fallback">Фото<br><span>KAWS Small Lie 28 см — Brown</span></div>
       </a>
       <div class="content">
         <div class="num">#49</div>
@@ -809,13 +778,10 @@
       </div>
     </div>
 
-    <div class="product" data-name="KAWS Companion Anatomy 37 см — Multi" data-price="" data-url="https://kaspi.kz/shop/p/kaws-kaws-companion-anatomy-37-sm-1-sht-148972041/">
-      <a class="imgBox kawsPoster" href="https://kaspi.kz/shop/p/kaws-kaws-companion-anatomy-37-sm-1-sht-148972041/" target="_blank" rel="noopener">
-        <div class="posterInner" style="background:linear-gradient(135deg,#ef4444,#f59e0b 25%,#22c55e 50%,#3b82f6 75%,#a855f7);">
-          <div class="posterKaws">KAWS</div>
-          <div class="posterModel">Companion Anatomy 37 см — Multi</div>
-          <div class="posterMeta">37 см · мультиколор</div>
-        </div>
+    <div class="product" data-cat="kaws" data-name="KAWS Companion Anatomy 37 см — Multi" data-price="" data-url="https://kaspi.kz/shop/p/kaws-kaws-companion-anatomy-37-sm-1-sht-148972041/">
+      <a class="imgBox" href="https://kaspi.kz/shop/p/kaws-kaws-companion-anatomy-37-sm-1-sht-148972041/" target="_blank" rel="noopener">
+        <img src="https://media.composition.gallery/artworkpic/kaws-pinocchio-jiminy-cricket-vinyl-figures-with-x-eyes-and-hands-covering-faces-styled-after-classic-disney-characters1754401915-69843_448x500.png" alt="KAWS Companion Anatomy 37 см — Multi" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="fallback">Фото<br><span>KAWS Companion Anatomy 37 см — Multi</span></div>
       </a>
       <div class="content">
         <div class="num">#50</div>
@@ -827,13 +793,10 @@
       </div>
     </div>
 
-    <div class="product" data-name="KAWS x Pinocchio &amp; Jiminy Cricket 22 см" data-price="" data-url="https://kaspi.kz/shop/p/kaws-kaws-x-pinocchio-sitting-edition-jiminy-cricket-22-sm-1-sht-162904231/">
-      <a class="imgBox kawsPoster" href="https://kaspi.kz/shop/p/kaws-kaws-x-pinocchio-sitting-edition-jiminy-cricket-22-sm-1-sht-162904231/" target="_blank" rel="noopener">
-        <div class="posterInner" style="background:linear-gradient(135deg,#ef4444,#f59e0b 25%,#22c55e 50%,#3b82f6 75%,#a855f7);">
-          <div class="posterKaws">KAWS</div>
-          <div class="posterModel">x Pinocchio &amp; Jiminy Cricket 22 см</div>
-          <div class="posterMeta">22 см · мультиколор</div>
-        </div>
+    <div class="product" data-cat="kaws" data-name="KAWS x Pinocchio &amp; Jiminy Cricket 22 см" data-price="" data-url="https://kaspi.kz/shop/p/kaws-kaws-x-pinocchio-sitting-edition-jiminy-cricket-22-sm-1-sht-162904231/">
+      <a class="imgBox" href="https://kaspi.kz/shop/p/kaws-kaws-x-pinocchio-sitting-edition-jiminy-cricket-22-sm-1-sht-162904231/" target="_blank" rel="noopener">
+        <img src="https://media.composition.gallery/artworkpic/kaws-pinocchio-jiminy-cricket-vinyl-figures-with-x-eyes-and-hands-covering-faces-styled-after-classic-disney-characters1754401915-69843_448x500.png" alt="KAWS x Pinocchio &amp;amp; Jiminy Cricket 22 см" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="fallback">Фото<br><span>KAWS x Pinocchio &amp;amp; Jiminy Cricket 22 см</span></div>
       </a>
       <div class="content">
         <div class="num">#51</div>
@@ -845,13 +808,10 @@
       </div>
     </div>
 
-    <div class="product" data-name="KAWS Astro Boy 37 см — Red" data-price="" data-url="https://kaspi.kz/shop/p/kaws-astro-boy-37-sm-1-sht-142964937/">
-      <a class="imgBox kawsPoster" href="https://kaspi.kz/shop/p/kaws-astro-boy-37-sm-1-sht-142964937/" target="_blank" rel="noopener">
-        <div class="posterInner" style="background:linear-gradient(135deg,#7f1d1d,#ef4444 55%,#240606);">
-          <div class="posterKaws">KAWS</div>
-          <div class="posterModel">Astro Boy 37 см — Red</div>
-          <div class="posterMeta">37 см · красный</div>
-        </div>
+    <div class="product" data-cat="kaws" data-name="KAWS Astro Boy 37 см — Red" data-price="" data-url="https://kaspi.kz/shop/p/kaws-astro-boy-37-sm-1-sht-142964937/">
+      <a class="imgBox" href="https://kaspi.kz/shop/p/kaws-astro-boy-37-sm-1-sht-142964937/" target="_blank" rel="noopener">
+        <img src="https://artandtoys.com/cdn/shop/products/Sculpture-Astro-Boy-Original-by-KAWS-ArtAndToys-5375.jpg?v=1705512018&width=900" alt="KAWS Astro Boy 37 см — Red" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="fallback">Фото<br><span>KAWS Astro Boy 37 см — Red</span></div>
       </a>
       <div class="content">
         <div class="num">#52</div>
@@ -863,13 +823,10 @@
       </div>
     </div>
 
-    <div class="product" data-name="KAWS Companion Passing Through 28 см" data-price="" data-url="https://kaspi.kz/shop/p/kaws-statuetka-kaws-companion-passing-through-28-sm-28-sm-polimer-163359260/">
-      <a class="imgBox kawsPoster" href="https://kaspi.kz/shop/p/kaws-statuetka-kaws-companion-passing-through-28-sm-28-sm-polimer-163359260/" target="_blank" rel="noopener">
-        <div class="posterInner" style="background:linear-gradient(135deg,#0b0b0b,#343434 55%,#090909);">
-          <div class="posterKaws">KAWS</div>
-          <div class="posterModel">Companion Passing Through 28 см</div>
-          <div class="posterMeta">28 см · черный</div>
-        </div>
+    <div class="product" data-cat="kaws" data-name="KAWS Companion Passing Through 28 см" data-price="" data-url="https://kaspi.kz/shop/p/kaws-statuetka-kaws-companion-passing-through-28-sm-28-sm-polimer-163359260/">
+      <a class="imgBox" href="https://kaspi.kz/shop/p/kaws-statuetka-kaws-companion-passing-through-28-sm-28-sm-polimer-163359260/" target="_blank" rel="noopener">
+        <img src="https://e-mall.su/wa-data/public/shop/products/70/16/11670/images/45187/45187.440.jpg" alt="KAWS Companion Passing Through 28 см" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="fallback">Фото<br><span>KAWS Companion Passing Through 28 см</span></div>
       </a>
       <div class="content">
         <div class="num">#53</div>
@@ -881,13 +838,10 @@
       </div>
     </div>
 
-    <div class="product" data-name="KAWS Companion 53 см — Grey" data-price="" data-url="https://kaspi.kz/shop/p/kaws-kaws-companion-53-sm-1-sht-148961276/">
-      <a class="imgBox kawsPoster" href="https://kaspi.kz/shop/p/kaws-kaws-companion-53-sm-1-sht-148961276/" target="_blank" rel="noopener">
-        <div class="posterInner" style="background:linear-gradient(135deg,#8b8b8b,#dadada 55%,#555);">
-          <div class="posterKaws">KAWS</div>
-          <div class="posterModel">Companion 53 см — Grey</div>
-          <div class="posterMeta">53 см · серый</div>
-        </div>
+    <div class="product" data-cat="kaws" data-name="KAWS Companion 53 см — Grey" data-price="" data-url="https://kaspi.kz/shop/p/kaws-kaws-companion-53-sm-1-sht-148961276/">
+      <a class="imgBox" href="https://kaspi.kz/shop/p/kaws-kaws-companion-53-sm-1-sht-148961276/" target="_blank" rel="noopener">
+        <img src="https://e-mall.su/wa-data/public/shop/products/70/16/11670/images/45187/45187.440.jpg" alt="KAWS Companion 53 см — Grey" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="fallback">Фото<br><span>KAWS Companion 53 см — Grey</span></div>
       </a>
       <div class="content">
         <div class="num">#54</div>
@@ -899,13 +853,10 @@
       </div>
     </div>
 
-    <div class="product" data-name="KAWS Companion Anatomy 37 см — Black" data-price="" data-url="https://kaspi.kz/shop/p/kaws-kaws-companion-anatomy-37-sm-1-sht-148972138/">
-      <a class="imgBox kawsPoster" href="https://kaspi.kz/shop/p/kaws-kaws-companion-anatomy-37-sm-1-sht-148972138/" target="_blank" rel="noopener">
-        <div class="posterInner" style="background:linear-gradient(135deg,#0b0b0b,#343434 55%,#090909);">
-          <div class="posterKaws">KAWS</div>
-          <div class="posterModel">Companion Anatomy 37 см — Black</div>
-          <div class="posterMeta">37 см · черный</div>
-        </div>
+    <div class="product" data-cat="kaws" data-name="KAWS Companion Anatomy 37 см — Black" data-price="" data-url="https://kaspi.kz/shop/p/kaws-kaws-companion-anatomy-37-sm-1-sht-148972138/">
+      <a class="imgBox" href="https://kaspi.kz/shop/p/kaws-kaws-companion-anatomy-37-sm-1-sht-148972138/" target="_blank" rel="noopener">
+        <img src="https://usneakersport.ru/image/cache/catalog/shop/bearbrick/kaws-take-figure-black-700x700.jpg" alt="KAWS Companion Anatomy 37 см — Black" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="fallback">Фото<br><span>KAWS Companion Anatomy 37 см — Black</span></div>
       </a>
       <div class="content">
         <div class="num">#55</div>
@@ -936,6 +887,10 @@
     const phone = '77766088813';
     const selected = new Set();
     const products = Array.from(document.querySelectorAll('.product'));
+    const categoryButtons = Array.from(document.querySelectorAll('.catBtn'));
+    const catalogCount = document.getElementById('catalogCount');
+    const sectionTitles = Array.from(document.querySelectorAll('.sectionTitle'));
+    let activeCategory = 'bearbrick';
     const selectedCount = document.getElementById('selectedCount');
     const selectedHint = document.getElementById('selectedHint');
     const sendBtn = document.getElementById('sendBtn');
@@ -965,6 +920,26 @@
       const message = 'Здравствуйте! Хочу заказать эти фигурки из каталога PATH OF PEAKS:\n\n' + lines + '\n\nПодскажите, пожалуйста, наличие и итоговую сумму.';
       sendBtn.href = 'https://wa.me/' + phone + '?text=' + encodeURIComponent(message);
     }
+
+
+    function applyCategory(category) {
+      activeCategory = category;
+      categoryButtons.forEach(btn => btn.classList.toggle('active', btn.dataset.category === category));
+      let visibleCount = 0;
+      products.forEach(card => {
+        const visible = card.dataset.cat === category;
+        card.style.display = visible ? '' : 'none';
+        if (visible) visibleCount++;
+      });
+      sectionTitles.forEach(title => {
+        title.style.display = title.dataset.section === category ? '' : 'none';
+      });
+      catalogCount.textContent = category === 'kaws' ? visibleCount + ' фигурок KAWS' : visibleCount + ' фигурок BE@RBRICK';
+    }
+
+    categoryButtons.forEach(btn => {
+      btn.addEventListener('click', () => applyCategory(btn.dataset.category));
+    });
 
     products.forEach(card => {
       const btn = card.querySelector('.pick');
@@ -998,6 +973,7 @@
       }
     });
 
+    applyCategory(activeCategory);
     updateWhatsApp();
   </script>
 </body>
