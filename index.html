@@ -3,947 +3,901 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PATH OF PEAKS — BE@RBRICK & KAWS Catalog</title>
+  <title>PATH OF PEAKS — BE@RBRICK & KAWS</title>
   <style>
     * { box-sizing: border-box; }
-    body { margin:0; font-family: Arial, Helvetica, sans-serif; background:#050505; color:#fff; padding-bottom:120px; }
-    .page { max-width:1280px; margin:0 auto; padding:24px; }
-    .hero { padding:36px; border-radius:28px; border:1px solid #2b2b2b; background:radial-gradient(circle at 85% 5%, rgba(255,174,31,.28), transparent 27%), linear-gradient(135deg,#161616,#070707 70%,#241600); margin-bottom:28px; }
-    .brand { color:#ffad1f; font-weight:900; letter-spacing:8px; font-size:22px; margin-bottom:18px; }
-    h1 { font-size:clamp(54px,9vw,112px); line-height:.88; margin:0; letter-spacing:-4px; font-weight:1000; }
-    h1 span { color:#ffad1f; }
-    .lead { max-width:900px; color:#e8e8e8; font-size:21px; line-height:1.45; margin:24px 0 0; }
-    .badges { display:flex; flex-wrap:wrap; gap:12px; margin-top:26px; }
-    .badges div { border:1px solid #333; background:#121212; padding:10px 16px; border-radius:999px; font-weight:700; }
-    .categoryTabs { display:flex; gap:12px; margin:0 0 22px; position:sticky; top:0; z-index:8; background:rgba(5,5,5,.92); padding:12px 0; backdrop-filter:blur(10px); }
-    .catBtn { border:1px solid #333; background:#111; color:#ddd; border-radius:16px; padding:14px 22px; font-weight:1000; font-size:16px; cursor:pointer; }
-    .catBtn.active { background:#ffad1f; color:#000; border-color:#ffad1f; }
-    .top { display:flex; justify-content:space-between; align-items:center; gap:16px; margin:20px 0; color:#ddd; font-size:18px; }
-    .grid { display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:18px; }
-    .product { display:flex; flex-direction:column; background:#111; border:1px solid #292929; border-radius:22px; overflow:hidden; min-height:100%; }
-    .product:hover { border-color:#ffad1f; }
-    .imgBox { display:block; position:relative; width:100%; aspect-ratio:1/1; background:#1a1a1a; text-decoration:none; overflow:hidden; }
-    .imgBox img { width:100%; height:100%; object-fit:cover; display:block; }
-    .fallback { display:none; position:absolute; inset:0; align-items:center; justify-content:center; text-align:center; background:#171717; color:#777; font-size:22px; font-weight:900; padding:20px; }
-    .fallback span { display:block; margin-top:8px; color:#aaa; font-size:14px; }
-    .content { padding:16px; display:flex; flex-direction:column; gap:10px; flex:1; }
-    .num { color:#ffad1f; font-size:12px; font-weight:900; letter-spacing:1px; }
-    h2 { font-size:18px; line-height:1.15; margin:0; }
-    p { margin:0; color:#bdbdbd; font-size:14px; line-height:1.4; min-height:78px; }
-    .price { font-size:24px; font-weight:1000; margin-top:auto; }
-    .link { color:#ffad1f; font-size:14px; word-break:break-word; text-underline-offset:3px; }
-    .pick { width:100%; border:0; background:#ffad1f; color:#000; border-radius:14px; padding:13px 12px; font-weight:1000; font-size:15px; cursor:pointer; }
-    .pick.active { background:#22c55e; color:#001b08; }
-    .bar { position:fixed; left:0; right:0; bottom:0; background:rgba(5,5,5,.96); border-top:1px solid #242424; backdrop-filter:blur(12px); z-index:10; }
-    .barInner { max-width:1280px; margin:0 auto; padding:16px 24px; display:grid; grid-template-columns:1fr auto auto; gap:16px; align-items:center; }
-    .selected { color:#ffad1f; font-size:20px; font-weight:1000; }
-    .small { color:#9b9b9b; font-size:14px; margin-top:3px; }
-    .clear { border:1px solid #333; background:#111; color:#bbb; border-radius:12px; padding:14px 20px; font-weight:900; cursor:pointer; }
-    .whatsapp { background:#22c55e; color:#001b08; border-radius:14px; padding:15px 26px; text-decoration:none; font-weight:1000; }
-
-    .sectionTitle { grid-column:1/-1; margin:14px 0 4px; padding:18px 18px 6px; border-top:1px solid #242424; color:#ffad1f; font-size:26px; font-weight:1000; letter-spacing:3px; }
-    .kawsPoster { min-height:100%; background:#111; position:relative; display:flex; align-items:center; justify-content:center; padding:18px; }
-    .posterInner { width:100%; height:100%; min-height:210px; border-radius:18px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; border:1px solid rgba(255,255,255,.16); box-shadow:inset 0 0 45px rgba(0,0,0,.32); color:#fff; }
-    .posterKaws { font-size:clamp(34px,5vw,62px); font-weight:1000; letter-spacing:-3px; line-height:.9; text-shadow:0 4px 24px rgba(0,0,0,.35); }
-    .posterModel { margin-top:12px; font-size:15px; font-weight:900; max-width:92%; }
-    .posterMeta { margin-top:8px; font-size:12px; color:rgba(255,255,255,.82); font-weight:800; letter-spacing:1px; text-transform:uppercase; }
-    footer { text-align:center; color:#777; padding:34px 0 8px; }
-    @media(max-width:1000px) { .grid { grid-template-columns:repeat(3,1fr); } }
-    @media(max-width:720px) { body { padding-bottom:190px; } .categoryTabs { gap:8px; overflow-x:auto; } .catBtn { flex:1; font-size:14px; padding:12px 10px; } .page { padding:14px; } .hero { padding:24px 18px; border-radius:20px; } .brand { font-size:15px; letter-spacing:4px; } .lead { font-size:16px; } .grid { grid-template-columns:repeat(2,1fr); gap:12px; } h2 { font-size:15px; } p { font-size:12px; min-height:84px; } .price { font-size:19px; } .barInner { grid-template-columns:1fr; padding:12px 14px; } .clear,.whatsapp { width:100%; text-align:center; } }
+    body { margin: 0; font-family: Arial, Helvetica, sans-serif; background: #080808; color: #fff; padding-bottom: 112px; }
+    header { padding: 26px 16px 18px; text-align: center; border-bottom: 1px solid #1b1b1b; }
+    .shop { font-size: 12px; letter-spacing: 4px; color: #777; font-weight: 800; margin-bottom: 8px; }
+    h1 { margin: 0; font-size: 28px; line-height: 1; letter-spacing: -1px; }
+    h1 span { color: #f5a623; }
+    .sub { margin-top: 8px; color: #777; font-size: 13px; }
+    .tabs { position: sticky; top: 0; z-index: 5; display: grid; grid-template-columns: 1fr 1fr; background: rgba(8,8,8,.94); backdrop-filter: blur(8px); border-bottom: 1px solid #1b1b1b; }
+    .tab { border: 0; background: transparent; color: #666; padding: 15px 8px; font-weight: 900; font-size: 14px; letter-spacing: .6px; cursor: pointer; border-bottom: 3px solid transparent; }
+    .tab.active[data-cat="bb"] { color: #fff; border-color: #f5a623; }
+    .tab.active[data-cat="kaws"] { color: #fff; border-color: #e74c3c; }
+    .count { text-align: center; color: #666; font-size: 12px; padding: 12px 10px; }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: #171717; }
+    .card { background: #0b0b0b; min-width: 0; }
+    .card.hidden { display: none; }
+    .image-wrap { position: relative; aspect-ratio: 1 / 1; background: #151515; overflow: hidden; }
+    .image-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .25s ease; }
+    .card:hover img { transform: scale(1.04); }
+    .img-error::after { content: 'Фото не загрузилось'; position: absolute; inset: 0; display: grid; place-items: center; color: #555; font-size: 12px; text-align: center; padding: 10px; }
+    .img-error img { display: none; }
+    .badge { position: absolute; left: 6px; top: 6px; z-index: 2; font-size: 8px; line-height: 1; padding: 4px 6px; border-radius: 4px; font-weight: 900; color: #000; }
+    .badge-bb { background: #f5a623; }
+    .badge-kaws { background: #e74c3c; color: #fff; }
+    .size { position: absolute; right: 6px; bottom: 6px; z-index: 2; font-size: 10px; padding: 4px 6px; border-radius: 4px; background: rgba(0,0,0,.72); color: #ddd; }
+    .info { padding: 9px 9px 11px; }
+    h3 { margin: 0 0 6px; font-size: 12px; line-height: 1.25; color: #eee; min-height: 30px; }
+    p { margin: 0 0 8px; font-size: 10.5px; line-height: 1.35; color: #8f8f8f; min-height: 43px; }
+    .price { font-size: 14px; font-weight: 900; margin-bottom: 8px; }
+    .kaspi { display: block; color: #f5a623; font-size: 10.5px; text-decoration: none; margin-bottom: 8px; word-break: break-word; }
+    .pick { width: 100%; border: 1px solid #333; background: #171717; color: #fff; border-radius: 8px; padding: 9px 6px; font-size: 12px; font-weight: 900; cursor: pointer; }
+    .pick.active { background: #1f8f4d; border-color: #1f8f4d; color: #fff; }
+    .bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; background: rgba(10,10,10,.96); backdrop-filter: blur(10px); border-top: 1px solid #222; padding: 12px 12px 14px; }
+    .bar-inner { max-width: 980px; margin: 0 auto; display: grid; grid-template-columns: 1fr auto auto; gap: 8px; align-items: center; }
+    .selected-count { font-size: 13px; color: #ddd; font-weight: 800; }
+    .send, .clear { border: 0; border-radius: 10px; padding: 12px 14px; font-size: 13px; font-weight: 900; text-decoration: none; cursor: pointer; white-space: nowrap; }
+    .send { background: #25D366; color: #041b0c; }
+    .send.disabled { opacity: .45; pointer-events: none; }
+    .clear { background: #222; color: #ddd; }
+    @media (max-width: 720px) {
+      .grid { grid-template-columns: repeat(2, 1fr); }
+      h1 { font-size: 24px; }
+      .bar-inner { grid-template-columns: 1fr 1fr; }
+      .selected-count { grid-column: 1 / -1; text-align: center; }
+      .send, .clear { width: 100%; text-align: center; }
+    }
   </style>
 </head>
 <body>
-  <main class="page">
-    <section class="hero">
-      <div class="brand">PATH OF PEAKS</div>
-      <h1>BE<span>@</span>RBRICK<br>400%</h1>
-      <p class="lead">Коллекционные фигурки BE@RBRICK и KAWS. Сначала выберите категорию, затем нужные модели — сайт сам соберёт список и откроет WhatsApp с готовым сообщением.</p>
-      <div class="badges">
-        <div>📦 Доставка по Казахстану</div>
-        <div>💳 Оплата через Kaspi</div>
-        <div>✅ Фото · цена · ссылка</div>
+  <header>
+    <div class="shop">PATH OF PEAKS</div>
+    <h1>BE<span>@</span>RBRICK & KAWS</h1>
+    <div class="sub">Коллекционные фигурки · фото, цены и прямые ссылки на Kaspi</div>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab active" data-cat="bb" type="button">BE@RBRICK</button>
+    <button class="tab" data-cat="kaws" type="button">KAWS</button>
+  </nav>
+
+  <div class="count" id="count"></div>
+  <main class="grid" id="grid">
+
+    <article class="card" data-category="bb" data-name="Yoon Hyup" data-price="18 990 ₸" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-yoon-hyup-28-sm-plastik-145909822/">
+      <div class="image-wrap">
+        <span class="badge badge-bb">BE@RBRICK</span>
+        <span class="size">28 см</span>
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/p97/p50/65666228.png?format=gallery-large" alt="Yoon Hyup" loading="lazy" onerror="this.closest('.image-wrap').classList.add('img-error')">
       </div>
-    </section>
-
-    <div class="categoryTabs">
-      <button class="catBtn active" type="button" data-category="bearbrick">BE@RBRICK</button>
-      <button class="catBtn" type="button" data-category="kaws">KAWS</button>
-    </div>
-
-    <div class="top">
-      <strong id="catalogCount">36 фигурок BE@RBRICK</strong>
-      <span>Нажмите «Выбрать» под нужными моделями</span>
-    </div>
-
-    <section class="grid">
-    <div class="product" data-cat="bearbrick" data-name="Yoon Hyup" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-yoon-hyup-28-sm-plastik-145909822/">
-      <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-yoon-hyup-28-sm-plastik-145909822/" target="_blank" rel="noopener">
-        <img src="https://resources.cdn-kaspi.kz/img/m/p/p97/p50/65666228.png?format=gallery-large" alt="Yoon Hyup" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="fallback">Фото<br><span>Yoon Hyup</span></div>
-      </a>
-      <div class="content">
-        <div class="num">#01</div>
-        <h2>Yoon Hyup</h2>
-        <p>Яркая арт-фигурка с графичным узором. Хорошо смотрится на полке, рабочем столе или в витрине.</p>
+      <div class="info">
+        <h3>Yoon Hyup</h3>
+        <p>BE@RBRICK 400% 28 см в арт-стиле: яркий акцент для интерьера и коллекции.</p>
         <div class="price">18 990 ₸</div>
-        <a class="link" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-yoon-hyup-28-sm-plastik-145909822/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <a class="kaspi" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-yoon-hyup-28-sm-plastik-145909822/" target="_blank" rel="noopener">Прямая ссылка на Kaspi</a>
         <button class="pick" type="button">Выбрать</button>
       </div>
-    </div>
-    <div class="product" data-cat="bearbrick" data-name="Leica × Medicom Toy" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-leica-x-medicom-toy-be-rbrick-28-sm-plastik-146722756/">
-      <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-leica-x-medicom-toy-be-rbrick-28-sm-plastik-146722756/" target="_blank" rel="noopener">
-        <img src="https://resources.cdn-kaspi.kz/img/m/p/p29/pd3/68320464.jpg?format=gallery-large" alt="Leica × Medicom Toy" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="fallback">Фото<br><span>Leica × Medicom Toy</span></div>
-      </a>
-      <div class="content">
-        <div class="num">#02</div>
-        <h2>Leica × Medicom Toy</h2>
-        <p>Стильная модель в эстетике Leica. Минималистичный дизайн для тех, кто любит фото, дизайн и чистый визуал.</p>
+    </article>
+    <article class="card" data-category="bb" data-name="Leica × Medicom Toy" data-price="18 990 ₸" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-leica-x-medicom-toy-be-rbrick-28-sm-plastik-146722756/">
+      <div class="image-wrap">
+        <span class="badge badge-bb">BE@RBRICK</span>
+        <span class="size">28 см</span>
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/p29/pd3/68320464.jpg?format=gallery-large" alt="Leica × Medicom Toy" loading="lazy" onerror="this.closest('.image-wrap').classList.add('img-error')">
+      </div>
+      <div class="info">
+        <h3>Leica × Medicom Toy</h3>
+        <p>BE@RBRICK 400% 28 см в коллаборационном дизайне — заметная фигурка для подарка или витрины.</p>
         <div class="price">18 990 ₸</div>
-        <a class="link" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-leica-x-medicom-toy-be-rbrick-28-sm-plastik-146722756/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <a class="kaspi" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-leica-x-medicom-toy-be-rbrick-28-sm-plastik-146722756/" target="_blank" rel="noopener">Прямая ссылка на Kaspi</a>
         <button class="pick" type="button">Выбрать</button>
       </div>
-    </div>
-    <div class="product" data-cat="bearbrick" data-name="Innersect Multi-colour" data-price="18990" data-url="https://kaspi.kz/shop/p/figurka-bearbrick-be-rbrick-400-innersect-multi-colour-28-sm-1-sht-138630158/">
-      <a class="imgBox" href="https://kaspi.kz/shop/p/figurka-bearbrick-be-rbrick-400-innersect-multi-colour-28-sm-1-sht-138630158/" target="_blank" rel="noopener">
-        <img src="https://resources.cdn-kaspi.kz/img/m/p/pbe/p28/38560152.jpg?format=gallery-large" alt="Innersect Multi-colour" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="fallback">Фото<br><span>Innersect Multi-colour</span></div>
-      </a>
-      <div class="content">
-        <div class="num">#03</div>
-        <h2>Innersect Multi-colour</h2>
-        <p>Цветная коллекционная модель с уличным вайбом. Хороший вариант для современного интерьера.</p>
+    </article>
+    <article class="card" data-category="bb" data-name="Innersect Multi-colour" data-price="18 990 ₸" data-url="https://kaspi.kz/shop/p/figurka-bearbrick-be-rbrick-400-innersect-multi-colour-28-sm-1-sht-138630158/">
+      <div class="image-wrap">
+        <span class="badge badge-bb">BE@RBRICK</span>
+        <span class="size">28 см</span>
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/pbe/p28/38560152.jpg?format=gallery-large" alt="Innersect Multi-colour" loading="lazy" onerror="this.closest('.image-wrap').classList.add('img-error')">
+      </div>
+      <div class="info">
+        <h3>Innersect Multi-colour</h3>
+        <p>Коллекционная фигурка BE@RBRICK 400% 28 см для интерьера, подарка или личной коллекции.</p>
         <div class="price">18 990 ₸</div>
-        <a class="link" href="https://kaspi.kz/shop/p/figurka-bearbrick-be-rbrick-400-innersect-multi-colour-28-sm-1-sht-138630158/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <a class="kaspi" href="https://kaspi.kz/shop/p/figurka-bearbrick-be-rbrick-400-innersect-multi-colour-28-sm-1-sht-138630158/" target="_blank" rel="noopener">Прямая ссылка на Kaspi</a>
         <button class="pick" type="button">Выбрать</button>
       </div>
-    </div>
-    <div class="product" data-cat="bearbrick" data-name="G-Shock Shanghai Night" data-price="24990" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-be-rbrick-shanghai-night-g-shock-28-sm-plastik-145832846/">
-      <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-be-rbrick-shanghai-night-g-shock-28-sm-plastik-145832846/" target="_blank" rel="noopener">
-        <img src="https://resources.cdn-kaspi.kz/img/m/p/p06/p5b/65389959.png?format=gallery-large" alt="G-Shock Shanghai Night" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="fallback">Фото<br><span>G-Shock Shanghai Night</span></div>
-      </a>
-      <div class="content">
-        <div class="num">#04</div>
-        <h2>G-Shock Shanghai Night</h2>
-        <p>Эффектная модель в тёмном городском стиле. Выглядит более премиально и контрастно.</p>
+    </article>
+    <article class="card" data-category="bb" data-name="G-Shock Shanghai Night" data-price="24 990 ₸" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-be-rbrick-shanghai-night-g-shock-28-sm-plastik-145832846/">
+      <div class="image-wrap">
+        <span class="badge badge-bb">BE@RBRICK</span>
+        <span class="size">28 см</span>
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/p06/p5b/65389959.png?format=gallery-large" alt="G-Shock Shanghai Night" loading="lazy" onerror="this.closest('.image-wrap').classList.add('img-error')">
+      </div>
+      <div class="info">
+        <h3>G-Shock Shanghai Night</h3>
+        <p>BE@RBRICK 400% 28 см в коллаборационном дизайне — заметная фигурка для подарка или витрины.</p>
         <div class="price">24 990 ₸</div>
-        <a class="link" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-be-rbrick-shanghai-night-g-shock-28-sm-plastik-145832846/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <a class="kaspi" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-be-rbrick-shanghai-night-g-shock-28-sm-plastik-145832846/" target="_blank" rel="noopener">Прямая ссылка на Kaspi</a>
         <button class="pick" type="button">Выбрать</button>
       </div>
-    </div>
-    <div class="product" data-cat="bearbrick" data-name="Moon" data-price="18990" data-url="https://kaspi.kz/shop/p/modnaja-kukla-bearbrick-400-moon-111933311/">
-      <a class="imgBox" href="https://kaspi.kz/shop/p/modnaja-kukla-bearbrick-400-moon-111933311/" target="_blank" rel="noopener">
-        <img src="https://resources.cdn-kaspi.kz/img/m/p/ha5/hb8/82068146651166.jpg?format=gallery-large" alt="Moon" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="fallback">Фото<br><span>Moon</span></div>
-      </a>
-      <div class="content">
-        <div class="num">#05</div>
-        <h2>Moon</h2>
-        <p>Спокойный космический дизайн в светлой гамме. Подойдёт для минималистичного интерьера.</p>
+    </article>
+    <article class="card" data-category="bb" data-name="Moon" data-price="18 990 ₸" data-url="https://kaspi.kz/shop/p/modnaja-kukla-bearbrick-400-moon-111933311/">
+      <div class="image-wrap">
+        <span class="badge badge-bb">BE@RBRICK</span>
+        <span class="size">28 см</span>
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/ha5/hb8/82068146651166.jpg?format=gallery-large" alt="Moon" loading="lazy" onerror="this.closest('.image-wrap').classList.add('img-error')">
+      </div>
+      <div class="info">
+        <h3>Moon</h3>
+        <p>BE@RBRICK 400% 28 см с космическим дизайном для стильной полки или рабочего стола.</p>
         <div class="price">18 990 ₸</div>
-        <a class="link" href="https://kaspi.kz/shop/p/modnaja-kukla-bearbrick-400-moon-111933311/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <a class="kaspi" href="https://kaspi.kz/shop/p/modnaja-kukla-bearbrick-400-moon-111933311/" target="_blank" rel="noopener">Прямая ссылка на Kaspi</a>
         <button class="pick" type="button">Выбрать</button>
       </div>
-    </div>
-    <div class="product" data-cat="bearbrick" data-name="QQ Valentine (Pink Girly Heart)" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-qq-520-valentine-limited-edition-pink-girly-heart-28-sm-plastik-154336276/">
-      <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-qq-520-valentine-limited-edition-pink-girly-heart-28-sm-plastik-154336276/" target="_blank" rel="noopener">
-        <img src="https://resources.cdn-kaspi.kz/img/m/p/p53/pce/122430700.jpeg?format=gallery-large" alt="QQ Valentine (Pink Girly Heart)" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="fallback">Фото<br><span>QQ Valentine (Pink Girly Heart)</span></div>
-      </a>
-      <div class="content">
-        <div class="num">#06</div>
-        <h2>QQ Valentine (Pink Girly Heart)</h2>
-        <p>Нежная розовая модель с сердцами. Хороший подарочный вариант и яркий акцент в коллекции.</p>
+    </article>
+    <article class="card" data-category="bb" data-name="QQ Valentine Pink Girly Heart" data-price="18 990 ₸" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-qq-520-valentine-limited-edition-pink-girly-heart-28-sm-plastik-154336276/">
+      <div class="image-wrap">
+        <span class="badge badge-bb">BE@RBRICK</span>
+        <span class="size">28 см</span>
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/p53/pce/122430700.jpeg?format=gallery-large" alt="QQ Valentine Pink Girly Heart" loading="lazy" onerror="this.closest('.image-wrap').classList.add('img-error')">
+      </div>
+      <div class="info">
+        <h3>QQ Valentine Pink Girly Heart</h3>
+        <p>Коллекционная фигурка BE@RBRICK 400% 28 см для интерьера, подарка или личной коллекции.</p>
         <div class="price">18 990 ₸</div>
-        <a class="link" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-qq-520-valentine-limited-edition-pink-girly-heart-28-sm-plastik-154336276/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <a class="kaspi" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-qq-520-valentine-limited-edition-pink-girly-heart-28-sm-plastik-154336276/" target="_blank" rel="noopener">Прямая ссылка на Kaspi</a>
         <button class="pick" type="button">Выбрать</button>
       </div>
-    </div>
-    <div class="product" data-cat="bearbrick" data-name="Lamborghini" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-bearbrick-lamborghini-28-sm-plastik-142879705/">
-      <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-bearbrick-lamborghini-28-sm-plastik-142879705/" target="_blank" rel="noopener">
-        <img src="https://resources.cdn-kaspi.kz/img/m/p/pcf/p33/120594499.png?format=gallery-large" alt="Lamborghini" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="fallback">Фото<br><span>Lamborghini</span></div>
-      </a>
-      <div class="content">
-        <div class="num">#07</div>
-        <h2>Lamborghini</h2>
-        <p>Динамичный дизайн в автомобильной эстетике Lamborghini. Для тех, кто любит спорткары и стиль.</p>
+    </article>
+    <article class="card" data-category="bb" data-name="Lamborghini" data-price="18 990 ₸" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-bearbrick-lamborghini-28-sm-plastik-142879705/">
+      <div class="image-wrap">
+        <span class="badge badge-bb">BE@RBRICK</span>
+        <span class="size">28 см</span>
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/pcf/p33/120594499.png?format=gallery-large" alt="Lamborghini" loading="lazy" onerror="this.closest('.image-wrap').classList.add('img-error')">
+      </div>
+      <div class="info">
+        <h3>Lamborghini</h3>
+        <p>BE@RBRICK 400% 28 см в коллаборационном дизайне — заметная фигурка для подарка или витрины.</p>
         <div class="price">18 990 ₸</div>
-        <a class="link" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-bearbrick-lamborghini-28-sm-plastik-142879705/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <a class="kaspi" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-bearbrick-lamborghini-28-sm-plastik-142879705/" target="_blank" rel="noopener">Прямая ссылка на Kaspi</a>
         <button class="pick" type="button">Выбрать</button>
       </div>
-    </div>
-    <div class="product" data-cat="bearbrick" data-name="Michael Jordan 1992 Team USA" data-price="24490" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-bearbrick-michael-jordan-1992-team-usa-400-28-sm-plastik-165549278/">
-      <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-bearbrick-michael-jordan-1992-team-usa-400-28-sm-plastik-165549278/" target="_blank" rel="noopener">
-        <img src="https://resources.cdn-kaspi.kz/img/m/p/p60/p9e/136064677.jpg?format=gallery-large" alt="Michael Jordan 1992 Team USA" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="fallback">Фото<br><span>Michael Jordan 1992 Team USA</span></div>
-      </a>
-      <div class="content">
-        <div class="num">#08</div>
-        <h2>Michael Jordan 1992 Team USA</h2>
-        <p>Спортивная коллекционная модель в стиле легендарного баскетбола Team USA 1992.</p>
+    </article>
+    <article class="card" data-category="bb" data-name="Michael Jordan 1992 Team USA" data-price="24 490 ₸" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-bearbrick-michael-jordan-1992-team-usa-400-28-sm-plastik-165549278/">
+      <div class="image-wrap">
+        <span class="badge badge-bb">BE@RBRICK</span>
+        <span class="size">28 см</span>
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/p60/p9e/136064677.jpg?format=gallery-large" alt="Michael Jordan 1992 Team USA" loading="lazy" onerror="this.closest('.image-wrap').classList.add('img-error')">
+      </div>
+      <div class="info">
+        <h3>Michael Jordan 1992 Team USA</h3>
+        <p>BE@RBRICK 400% 28 см со спортивной легендой — сильный подарок и коллекционный акцент.</p>
         <div class="price">24 490 ₸</div>
-        <a class="link" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-bearbrick-michael-jordan-1992-team-usa-400-28-sm-plastik-165549278/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <a class="kaspi" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-bearbrick-michael-jordan-1992-team-usa-400-28-sm-plastik-165549278/" target="_blank" rel="noopener">Прямая ссылка на Kaspi</a>
         <button class="pick" type="button">Выбрать</button>
       </div>
-    </div>
-    <div class="product" data-cat="bearbrick" data-name="Tom and Jerry (Tom)" data-price="18990" data-url="https://kaspi.kz/shop/p/figurka-bearbrick-tom-and-jerry-28-sm-1-sht-138655778/">
-      <a class="imgBox" href="https://kaspi.kz/shop/p/figurka-bearbrick-tom-and-jerry-28-sm-1-sht-138655778/" target="_blank" rel="noopener">
-        <img src="https://resources.cdn-kaspi.kz/img/m/p/pd7/p56/120485672.png?format=gallery-large" alt="Tom and Jerry (Tom)" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="fallback">Фото<br><span>Tom and Jerry (Tom)</span></div>
-      </a>
-      <div class="content">
-        <div class="num">#09</div>
-        <h2>Tom and Jerry (Tom)</h2>
-        <p>Узнаваемая мультяшная фигурка Tom. Добавляет коллекции лёгкий и забавный акцент.</p>
+    </article>
+    <article class="card" data-category="bb" data-name="Tom and Jerry (Tom)" data-price="18 990 ₸" data-url="https://kaspi.kz/shop/p/figurka-bearbrick-tom-and-jerry-28-sm-1-sht-138655778/">
+      <div class="image-wrap">
+        <span class="badge badge-bb">BE@RBRICK</span>
+        <span class="size">28 см</span>
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/pd7/p56/120485672.png?format=gallery-large" alt="Tom and Jerry (Tom)" loading="lazy" onerror="this.closest('.image-wrap').classList.add('img-error')">
+      </div>
+      <div class="info">
+        <h3>Tom and Jerry (Tom)</h3>
+        <p>BE@RBRICK 400% 28 см в коллаборационном дизайне — заметная фигурка для подарка или витрины.</p>
         <div class="price">18 990 ₸</div>
-        <a class="link" href="https://kaspi.kz/shop/p/figurka-bearbrick-tom-and-jerry-28-sm-1-sht-138655778/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <a class="kaspi" href="https://kaspi.kz/shop/p/figurka-bearbrick-tom-and-jerry-28-sm-1-sht-138655778/" target="_blank" rel="noopener">Прямая ссылка на Kaspi</a>
         <button class="pick" type="button">Выбрать</button>
       </div>
-    </div>
-    <div class="product" data-cat="bearbrick" data-name="KAWS" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-bearbrick-kaws-28-sm-plastik-142878224/">
-      <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-bearbrick-kaws-28-sm-plastik-142878224/" target="_blank" rel="noopener">
-        <img src="https://resources.cdn-kaspi.kz/img/m/p/p64/p16/120594501.png?format=gallery-large" alt="KAWS" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="fallback">Фото<br><span>KAWS</span></div>
-      </a>
-      <div class="content">
-        <div class="num">#10</div>
-        <h2>KAWS</h2>
-        <p>Один из самых популярных дизайнов Bearbrick. Универсальный арт-вариант для подарка и коллекции.</p>
+    </article>
+    <article class="card" data-category="bb" data-name="KAWS" data-price="18 990 ₸" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-bearbrick-kaws-28-sm-plastik-142878224/">
+      <div class="image-wrap">
+        <span class="badge badge-bb">BE@RBRICK</span>
+        <span class="size">28 см</span>
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/p64/p16/120594501.png?format=gallery-large" alt="KAWS" loading="lazy" onerror="this.closest('.image-wrap').classList.add('img-error')">
+      </div>
+      <div class="info">
+        <h3>KAWS</h3>
+        <p>Коллекционная фигурка BE@RBRICK 400% 28 см для интерьера, подарка или личной коллекции.</p>
         <div class="price">18 990 ₸</div>
-        <a class="link" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-bearbrick-kaws-28-sm-plastik-142878224/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <a class="kaspi" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-bearbrick-kaws-28-sm-plastik-142878224/" target="_blank" rel="noopener">Прямая ссылка на Kaspi</a>
         <button class="pick" type="button">Выбрать</button>
       </div>
-    </div>
-    <div class="product" data-cat="bearbrick" data-name="Disney × Keiichi Tanaami: Mickey Mouse" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-disney-x-keiichi-tanaami-mickey-mouse-28-sm-plastik-154336394/">
-      <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-disney-x-keiichi-tanaami-mickey-mouse-28-sm-plastik-154336394/" target="_blank" rel="noopener">
-        <img src="https://resources.cdn-kaspi.kz/img/m/p/p14/pce/94344794.jpg?format=gallery-large" alt="Disney × Keiichi Tanaami: Mickey Mouse" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="fallback">Фото<br><span>Disney × Keiichi Tanaami: Mickey Mouse</span></div>
-      </a>
-      <div class="content">
-        <div class="num">#11</div>
-        <h2>Disney × Keiichi Tanaami: Mickey Mouse</h2>
-        <p>Яркая Disney-коллаборация с Mickey Mouse и необычной художественной стилистикой.</p>
+    </article>
+    <article class="card" data-category="bb" data-name="Disney × Keiichi Tanaami: Mickey Mouse" data-price="18 990 ₸" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-disney-x-keiichi-tanaami-mickey-mouse-28-sm-plastik-154336394/">
+      <div class="image-wrap">
+        <span class="badge badge-bb">BE@RBRICK</span>
+        <span class="size">28 см</span>
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/p14/pce/94344794.jpg?format=gallery-large" alt="Disney × Keiichi Tanaami: Mickey Mouse" loading="lazy" onerror="this.closest('.image-wrap').classList.add('img-error')">
+      </div>
+      <div class="info">
+        <h3>Disney × Keiichi Tanaami: Mickey Mouse</h3>
+        <p>BE@RBRICK 400% 28 см в коллаборационном дизайне — заметная фигурка для подарка или витрины.</p>
         <div class="price">18 990 ₸</div>
-        <a class="link" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-disney-x-keiichi-tanaami-mickey-mouse-28-sm-plastik-154336394/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <a class="kaspi" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-disney-x-keiichi-tanaami-mickey-mouse-28-sm-plastik-154336394/" target="_blank" rel="noopener">Прямая ссылка на Kaspi</a>
         <button class="pick" type="button">Выбрать</button>
       </div>
-    </div>
-    <div class="product" data-cat="bearbrick" data-name="Tom and Jerry (Jerry)" data-price="18990" data-url="https://kaspi.kz/shop/p/figurka-bearbrick-tom-and-jerry-28-sm-1-sht-138655760/">
-      <a class="imgBox" href="https://kaspi.kz/shop/p/figurka-bearbrick-tom-and-jerry-28-sm-1-sht-138655760/" target="_blank" rel="noopener">
-        <img src="https://resources.cdn-kaspi.kz/img/m/p/p80/p57/120485678.png?format=gallery-large" alt="Tom and Jerry (Jerry)" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="fallback">Фото<br><span>Tom and Jerry (Jerry)</span></div>
-      </a>
-      <div class="content">
-        <div class="num">#12</div>
-        <h2>Tom and Jerry (Jerry)</h2>
-        <p>Фигурка Jerry из Tom and Jerry. Отлично смотрится в паре с Tom или отдельно.</p>
+    </article>
+    <article class="card" data-category="bb" data-name="Tom and Jerry (Jerry)" data-price="18 990 ₸" data-url="https://kaspi.kz/shop/p/figurka-bearbrick-tom-and-jerry-28-sm-1-sht-138655760/">
+      <div class="image-wrap">
+        <span class="badge badge-bb">BE@RBRICK</span>
+        <span class="size">28 см</span>
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/p80/p57/120485678.png?format=gallery-large" alt="Tom and Jerry (Jerry)" loading="lazy" onerror="this.closest('.image-wrap').classList.add('img-error')">
+      </div>
+      <div class="info">
+        <h3>Tom and Jerry (Jerry)</h3>
+        <p>BE@RBRICK 400% 28 см в коллаборационном дизайне — заметная фигурка для подарка или витрины.</p>
         <div class="price">18 990 ₸</div>
-        <a class="link" href="https://kaspi.kz/shop/p/figurka-bearbrick-tom-and-jerry-28-sm-1-sht-138655760/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <a class="kaspi" href="https://kaspi.kz/shop/p/figurka-bearbrick-tom-and-jerry-28-sm-1-sht-138655760/" target="_blank" rel="noopener">Прямая ссылка на Kaspi</a>
         <button class="pick" type="button">Выбрать</button>
       </div>
-    </div>
-    <div class="product" data-cat="bearbrick" data-name="Mars" data-price="18990" data-url="https://kaspi.kz/shop/p/modnaja-kukla-bearbrick-400-mars-earth-be-111933363/">
-      <a class="imgBox" href="https://kaspi.kz/shop/p/modnaja-kukla-bearbrick-400-mars-earth-be-111933363/" target="_blank" rel="noopener">
-        <img src="https://resources.cdn-kaspi.kz/img/m/p/p2c/p57/120485675.png?format=gallery-large" alt="Mars" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="fallback">Фото<br><span>Mars</span></div>
-      </a>
-      <div class="content">
-        <div class="num">#13</div>
-        <h2>Mars</h2>
-        <p>Космическая модель в стиле планеты Mars. Хороший выбор для современной полки или кабинета.</p>
+    </article>
+    <article class="card" data-category="bb" data-name="Mars" data-price="18 990 ₸" data-url="https://kaspi.kz/shop/p/modnaja-kukla-bearbrick-400-mars-earth-be-111933363/">
+      <div class="image-wrap">
+        <span class="badge badge-bb">BE@RBRICK</span>
+        <span class="size">28 см</span>
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/p2c/p57/120485675.png?format=gallery-large" alt="Mars" loading="lazy" onerror="this.closest('.image-wrap').classList.add('img-error')">
+      </div>
+      <div class="info">
+        <h3>Mars</h3>
+        <p>BE@RBRICK 400% 28 см с космическим дизайном для стильной полки или рабочего стола.</p>
         <div class="price">18 990 ₸</div>
-        <a class="link" href="https://kaspi.kz/shop/p/modnaja-kukla-bearbrick-400-mars-earth-be-111933363/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <a class="kaspi" href="https://kaspi.kz/shop/p/modnaja-kukla-bearbrick-400-mars-earth-be-111933363/" target="_blank" rel="noopener">Прямая ссылка на Kaspi</a>
         <button class="pick" type="button">Выбрать</button>
       </div>
-    </div>
-    <div class="product" data-cat="bearbrick" data-name="Andy Warhol × Muhammad Ali" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-set-andy-warhol-muhammad-ali-28-sm-plastik-142925902/">
-      <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-set-andy-warhol-muhammad-ali-28-sm-plastik-142925902/" target="_blank" rel="noopener">
-        <img src="https://resources.cdn-kaspi.kz/img/m/p/pe9/pc4/54528517.jpg?format=gallery-large" alt="Andy Warhol × Muhammad Ali" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="fallback">Фото<br><span>Andy Warhol × Muhammad Ali</span></div>
-      </a>
-      <div class="content">
-        <div class="num">#14</div>
-        <h2>Andy Warhol × Muhammad Ali</h2>
-        <p>Арт-модель с вайбом Andy Warhol и Muhammad Ali. Сильный вариант для поклонников спорта и искусства.</p>
+    </article>
+    <article class="card" data-category="bb" data-name="Andy Warhol × Muhammad Ali" data-price="18 990 ₸" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-set-andy-warhol-muhammad-ali-28-sm-plastik-142925902/">
+      <div class="image-wrap">
+        <span class="badge badge-bb">BE@RBRICK</span>
+        <span class="size">28 см</span>
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/pe9/pc4/54528517.jpg?format=gallery-large" alt="Andy Warhol × Muhammad Ali" loading="lazy" onerror="this.closest('.image-wrap').classList.add('img-error')">
+      </div>
+      <div class="info">
+        <h3>Andy Warhol × Muhammad Ali</h3>
+        <p>BE@RBRICK 400% 28 см в арт-стиле: яркий акцент для интерьера и коллекции.</p>
         <div class="price">18 990 ₸</div>
-        <a class="link" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-set-andy-warhol-muhammad-ali-28-sm-plastik-142925902/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <a class="kaspi" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-set-andy-warhol-muhammad-ali-28-sm-plastik-142925902/" target="_blank" rel="noopener">Прямая ссылка на Kaspi</a>
         <button class="pick" type="button">Выбрать</button>
       </div>
-    </div>
-    <div class="product" data-cat="bearbrick" data-name="Coca-Cola Georgia Green" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-bearbrick-coca-cola-georgia-green-28sm-28-sm-1-sht-142755648/">
-      <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-bearbrick-coca-cola-georgia-green-28sm-28-sm-1-sht-142755648/" target="_blank" rel="noopener">
-        <img src="https://resources.cdn-kaspi.kz/img/m/p/pd9/p0b/53876648.jpg?format=gallery-large" alt="Coca-Cola Georgia Green" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="fallback">Фото<br><span>Coca-Cola Georgia Green</span></div>
-      </a>
-      <div class="content">
-        <div class="num">#15</div>
-        <h2>Coca-Cola Georgia Green</h2>
-        <p>Коллаборация Coca-Cola в зелёной гамме. Выглядит свежо и заметно среди других моделей.</p>
+    </article>
+    <article class="card" data-category="bb" data-name="Coca-Cola Georgia Green" data-price="18 990 ₸" data-url="https://kaspi.kz/shop/p/bearbrick-bearbrick-coca-cola-georgia-green-28sm-28-sm-1-sht-142755648/">
+      <div class="image-wrap">
+        <span class="badge badge-bb">BE@RBRICK</span>
+        <span class="size">28 см</span>
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/pd9/p0b/53876648.jpg?format=gallery-large" alt="Coca-Cola Georgia Green" loading="lazy" onerror="this.closest('.image-wrap').classList.add('img-error')">
+      </div>
+      <div class="info">
+        <h3>Coca-Cola Georgia Green</h3>
+        <p>BE@RBRICK 400% 28 см в коллаборационном дизайне — заметная фигурка для подарка или витрины.</p>
         <div class="price">18 990 ₸</div>
-        <a class="link" href="https://kaspi.kz/shop/p/bearbrick-bearbrick-coca-cola-georgia-green-28sm-28-sm-1-sht-142755648/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <a class="kaspi" href="https://kaspi.kz/shop/p/bearbrick-bearbrick-coca-cola-georgia-green-28sm-28-sm-1-sht-142755648/" target="_blank" rel="noopener">Прямая ссылка на Kaspi</a>
         <button class="pick" type="button">Выбрать</button>
       </div>
-    </div>
-    <div class="product" data-cat="bearbrick" data-name="Puerto Rico Art" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-puerto-rico-art-28-sm-plastik-165596269/">
-      <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-puerto-rico-art-28-sm-plastik-165596269/" target="_blank" rel="noopener">
-        <img src="https://resources.cdn-kaspi.kz/img/m/p/p94/p5d/136240055.png?format=gallery-large" alt="Puerto Rico Art" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="fallback">Фото<br><span>Puerto Rico Art</span></div>
-      </a>
-      <div class="content">
-        <div class="num">#16</div>
-        <h2>Puerto Rico Art</h2>
-        <p>Яркая арт-фигурка с выразительным принтом. Подходит как цветовой акцент в интерьере.</p>
+    </article>
+    <article class="card" data-category="bb" data-name="Puerto Rico Art" data-price="18 990 ₸" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-puerto-rico-art-28-sm-plastik-165596269/">
+      <div class="image-wrap">
+        <span class="badge badge-bb">BE@RBRICK</span>
+        <span class="size">28 см</span>
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/p94/p5d/136240055.png?format=gallery-large" alt="Puerto Rico Art" loading="lazy" onerror="this.closest('.image-wrap').classList.add('img-error')">
+      </div>
+      <div class="info">
+        <h3>Puerto Rico Art</h3>
+        <p>Коллекционная фигурка BE@RBRICK 400% 28 см для интерьера, подарка или личной коллекции.</p>
         <div class="price">18 990 ₸</div>
-        <a class="link" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-puerto-rico-art-28-sm-plastik-165596269/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <a class="kaspi" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-puerto-rico-art-28-sm-plastik-165596269/" target="_blank" rel="noopener">Прямая ссылка на Kaspi</a>
         <button class="pick" type="button">Выбрать</button>
       </div>
-    </div>
-    <div class="product" data-cat="bearbrick" data-name="Jean-Michel Basquiat #1" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-jean-michel-basquiat-28-sm-plastik-138626907/">
-      <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-jean-michel-basquiat-28-sm-plastik-138626907/" target="_blank" rel="noopener">
-        <img src="https://resources.cdn-kaspi.kz/img/m/p/pca/p00/38549406.jpg?format=gallery-large" alt="Jean-Michel Basquiat #1" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="fallback">Фото<br><span>Jean-Michel Basquiat #1</span></div>
-      </a>
-      <div class="content">
-        <div class="num">#17</div>
-        <h2>Jean-Michel Basquiat #1</h2>
-        <p>Модель в стиле Jean-Michel Basquiat. Подходит для любителей стрит-арта и музейной эстетики.</p>
+    </article>
+    <article class="card" data-category="bb" data-name="Jean-Michel Basquiat #1" data-price="18 990 ₸" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-jean-michel-basquiat-28-sm-plastik-138626907/">
+      <div class="image-wrap">
+        <span class="badge badge-bb">BE@RBRICK</span>
+        <span class="size">28 см</span>
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/pca/p00/38549406.jpg?format=gallery-large" alt="Jean-Michel Basquiat #1" loading="lazy" onerror="this.closest('.image-wrap').classList.add('img-error')">
+      </div>
+      <div class="info">
+        <h3>Jean-Michel Basquiat #1</h3>
+        <p>BE@RBRICK 400% 28 см в арт-стиле: яркий акцент для интерьера и коллекции.</p>
         <div class="price">18 990 ₸</div>
-        <a class="link" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-jean-michel-basquiat-28-sm-plastik-138626907/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <a class="kaspi" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-jean-michel-basquiat-28-sm-plastik-138626907/" target="_blank" rel="noopener">Прямая ссылка на Kaspi</a>
         <button class="pick" type="button">Выбрать</button>
       </div>
-    </div>
-    <div class="product" data-cat="bearbrick" data-name="The Monsters: Labubu &amp; Zimomo" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-the-monsters-labubu-zimomo-28-sm-plastik-154336322/">
-      <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-the-monsters-labubu-zimomo-28-sm-plastik-154336322/" target="_blank" rel="noopener">
-        <img src="https://resources.cdn-kaspi.kz/img/m/p/p5d/p4d/94344545.jpg?format=gallery-large" alt="The Monsters: Labubu &amp; Zimomo" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="fallback">Фото<br><span>The Monsters: Labubu &amp; Zimomo</span></div>
-      </a>
-      <div class="content">
-        <div class="num">#18</div>
-        <h2>The Monsters: Labubu &amp; Zimomo</h2>
-        <p>Модель с персонажами Labubu и Zimomo. Трендовый и милый вариант для коллекции.</p>
+    </article>
+    <article class="card" data-category="bb" data-name="The Monsters: Labubu &amp; Zimomo" data-price="18 990 ₸" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-the-monsters-labubu-zimomo-28-sm-plastik-154336322/">
+      <div class="image-wrap">
+        <span class="badge badge-bb">BE@RBRICK</span>
+        <span class="size">28 см</span>
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/p5d/p4d/94344545.jpg?format=gallery-large" alt="The Monsters: Labubu &amp; Zimomo" loading="lazy" onerror="this.closest('.image-wrap').classList.add('img-error')">
+      </div>
+      <div class="info">
+        <h3>The Monsters: Labubu &amp; Zimomo</h3>
+        <p>BE@RBRICK 400% 28 см в коллаборационном дизайне — заметная фигурка для подарка или витрины.</p>
         <div class="price">18 990 ₸</div>
-        <a class="link" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-the-monsters-labubu-zimomo-28-sm-plastik-154336322/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <a class="kaspi" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-the-monsters-labubu-zimomo-28-sm-plastik-154336322/" target="_blank" rel="noopener">Прямая ссылка на Kaspi</a>
         <button class="pick" type="button">Выбрать</button>
       </div>
-    </div>
-    <div class="product" data-cat="bearbrick" data-name="Black Hole NASA" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-statuetka-bearbrick-black-hole-nasa-28-sm-pvh-123468069/">
-      <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-statuetka-bearbrick-black-hole-nasa-28-sm-pvh-123468069/" target="_blank" rel="noopener">
-        <img src="https://resources.cdn-kaspi.kz/img/m/p/p72/p22/18618017.jpg?format=gallery-large" alt="Black Hole NASA" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="fallback">Фото<br><span>Black Hole NASA</span></div>
-      </a>
-      <div class="content">
-        <div class="num">#19</div>
-        <h2>Black Hole NASA</h2>
-        <p>Космическая фигурка NASA Black Hole. Строгий и необычный вариант для любителей космоса.</p>
+    </article>
+    <article class="card" data-category="bb" data-name="Black Hole NASA" data-price="18 990 ₸" data-url="https://kaspi.kz/shop/p/bearbrick-statuetka-bearbrick-black-hole-nasa-28-sm-pvh-123468069/">
+      <div class="image-wrap">
+        <span class="badge badge-bb">BE@RBRICK</span>
+        <span class="size">28 см</span>
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/p72/p22/18618017.jpg?format=gallery-large" alt="Black Hole NASA" loading="lazy" onerror="this.closest('.image-wrap').classList.add('img-error')">
+      </div>
+      <div class="info">
+        <h3>Black Hole NASA</h3>
+        <p>BE@RBRICK 400% 28 см с космическим дизайном для стильной полки или рабочего стола.</p>
         <div class="price">18 990 ₸</div>
-        <a class="link" href="https://kaspi.kz/shop/p/bearbrick-statuetka-bearbrick-black-hole-nasa-28-sm-pvh-123468069/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <a class="kaspi" href="https://kaspi.kz/shop/p/bearbrick-statuetka-bearbrick-black-hole-nasa-28-sm-pvh-123468069/" target="_blank" rel="noopener">Прямая ссылка на Kaspi</a>
         <button class="pick" type="button">Выбрать</button>
       </div>
-    </div>
-    <div class="product" data-cat="bearbrick" data-name="Sorayama × Ironman Reverse" data-price="22490" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-bearbrick-x-sorayama-ironman-reverse-28-sm-plastik-145824764/">
-      <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-bearbrick-x-sorayama-ironman-reverse-28-sm-plastik-145824764/" target="_blank" rel="noopener">
-        <img src="https://resources.cdn-kaspi.kz/img/m/p/pd2/pc4/65360645.png?format=gallery-large" alt="Sorayama × Ironman Reverse" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="fallback">Фото<br><span>Sorayama × Ironman Reverse</span></div>
-      </a>
-      <div class="content">
-        <div class="num">#20</div>
-        <h2>Sorayama × Ironman Reverse</h2>
-        <p>Эффектная модель Sorayama × Ironman. Металлический футуристичный вайб и премиальный вид.</p>
+    </article>
+    <article class="card" data-category="bb" data-name="Sorayama × Ironman Reverse" data-price="22 490 ₸" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-bearbrick-x-sorayama-ironman-reverse-28-sm-plastik-145824764/">
+      <div class="image-wrap">
+        <span class="badge badge-bb">BE@RBRICK</span>
+        <span class="size">28 см</span>
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/pd2/pc4/65360645.png?format=gallery-large" alt="Sorayama × Ironman Reverse" loading="lazy" onerror="this.closest('.image-wrap').classList.add('img-error')">
+      </div>
+      <div class="info">
+        <h3>Sorayama × Ironman Reverse</h3>
+        <p>BE@RBRICK 400% 28 см в коллаборационном дизайне — заметная фигурка для подарка или витрины.</p>
         <div class="price">22 490 ₸</div>
-        <a class="link" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-bearbrick-x-sorayama-ironman-reverse-28-sm-plastik-145824764/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <a class="kaspi" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-bearbrick-x-sorayama-ironman-reverse-28-sm-plastik-145824764/" target="_blank" rel="noopener">Прямая ссылка на Kaspi</a>
         <button class="pick" type="button">Выбрать</button>
       </div>
-    </div>
-    <div class="product" data-cat="bearbrick" data-name="Van Gogh (Звёздная ночь)" data-price="18990" data-url="https://kaspi.kz/shop/p/figurka-bearbrick-van-gogh-28-sm-105563848/">
-      <a class="imgBox" href="https://kaspi.kz/shop/p/figurka-bearbrick-van-gogh-28-sm-105563848/" target="_blank" rel="noopener">
-        <img src="https://resources.cdn-kaspi.kz/img/m/p/h87/h61/64533112782878.jpg?format=gallery-large" alt="Van Gogh (Звёздная ночь)" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="fallback">Фото<br><span>Van Gogh (Звёздная ночь)</span></div>
-      </a>
-      <div class="content">
-        <div class="num">#21</div>
-        <h2>Van Gogh (Звёздная ночь)</h2>
-        <p>Классический арт-дизайн по мотивам Van Gogh. Один из самых понятных и красивых вариантов для подарка.</p>
+    </article>
+    <article class="card" data-category="bb" data-name="Van Gogh — Звёздная ночь" data-price="18 990 ₸" data-url="https://kaspi.kz/shop/p/figurka-bearbrick-van-gogh-28-sm-105563848/">
+      <div class="image-wrap">
+        <span class="badge badge-bb">BE@RBRICK</span>
+        <span class="size">28 см</span>
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/h87/h61/64533112782878.jpg?format=gallery-large" alt="Van Gogh — Звёздная ночь" loading="lazy" onerror="this.closest('.image-wrap').classList.add('img-error')">
+      </div>
+      <div class="info">
+        <h3>Van Gogh — Звёздная ночь</h3>
+        <p>BE@RBRICK 400% 28 см в арт-стиле: яркий акцент для интерьера и коллекции.</p>
         <div class="price">18 990 ₸</div>
-        <a class="link" href="https://kaspi.kz/shop/p/figurka-bearbrick-van-gogh-28-sm-105563848/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <a class="kaspi" href="https://kaspi.kz/shop/p/figurka-bearbrick-van-gogh-28-sm-105563848/" target="_blank" rel="noopener">Прямая ссылка на Kaspi</a>
         <button class="pick" type="button">Выбрать</button>
       </div>
-    </div>
-    <div class="product" data-cat="bearbrick" data-name="Mona Lisa" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-bearbrick-leonardo-de-vinci-mona-lisa-28-sm-1-sht-149681203/">
-      <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-bearbrick-leonardo-de-vinci-mona-lisa-28-sm-1-sht-149681203/" target="_blank" rel="noopener">
-        <img src="https://resources.cdn-kaspi.kz/img/m/p/pef/p39/122205721.jpeg?format=gallery-large" alt="Mona Lisa" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="fallback">Фото<br><span>Mona Lisa</span></div>
-      </a>
-      <div class="content">
-        <div class="num">#22</div>
-        <h2>Mona Lisa</h2>
-        <p>Фигурка с мотивом Mona Lisa. Спокойный музейный стиль, который легко вписать в интерьер.</p>
+    </article>
+    <article class="card" data-category="bb" data-name="Mona Lisa" data-price="18 990 ₸" data-url="https://kaspi.kz/shop/p/bearbrick-bearbrick-leonardo-de-vinci-mona-lisa-28-sm-1-sht-149681203/">
+      <div class="image-wrap">
+        <span class="badge badge-bb">BE@RBRICK</span>
+        <span class="size">28 см</span>
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/pef/p39/122205721.jpeg?format=gallery-large" alt="Mona Lisa" loading="lazy" onerror="this.closest('.image-wrap').classList.add('img-error')">
+      </div>
+      <div class="info">
+        <h3>Mona Lisa</h3>
+        <p>BE@RBRICK 400% 28 см в арт-стиле: яркий акцент для интерьера и коллекции.</p>
         <div class="price">18 990 ₸</div>
-        <a class="link" href="https://kaspi.kz/shop/p/bearbrick-bearbrick-leonardo-de-vinci-mona-lisa-28-sm-1-sht-149681203/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <a class="kaspi" href="https://kaspi.kz/shop/p/bearbrick-bearbrick-leonardo-de-vinci-mona-lisa-28-sm-1-sht-149681203/" target="_blank" rel="noopener">Прямая ссылка на Kaspi</a>
         <button class="pick" type="button">Выбрать</button>
       </div>
-    </div>
-    <div class="product" data-cat="bearbrick" data-name="Keith Haring" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-be-rbrick-keith-haring-28-sm-1-sht-149680610/">
-      <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-be-rbrick-keith-haring-28-sm-1-sht-149680610/" target="_blank" rel="noopener">
-        <img src="https://resources.cdn-kaspi.kz/img/m/p/p08/p6e/78366499.png?format=gallery-large" alt="Keith Haring" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="fallback">Фото<br><span>Keith Haring</span></div>
-      </a>
-      <div class="content">
-        <div class="num">#23</div>
-        <h2>Keith Haring</h2>
-        <p>Яркая модель в стиле Keith Haring. Графичный дизайн, который сразу бросается в глаза.</p>
+    </article>
+    <article class="card" data-category="bb" data-name="Keith Haring" data-price="18 990 ₸" data-url="https://kaspi.kz/shop/p/bearbrick-be-rbrick-keith-haring-28-sm-1-sht-149680610/">
+      <div class="image-wrap">
+        <span class="badge badge-bb">BE@RBRICK</span>
+        <span class="size">28 см</span>
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/p08/p6e/78366499.png?format=gallery-large" alt="Keith Haring" loading="lazy" onerror="this.closest('.image-wrap').classList.add('img-error')">
+      </div>
+      <div class="info">
+        <h3>Keith Haring</h3>
+        <p>BE@RBRICK 400% 28 см в арт-стиле: яркий акцент для интерьера и коллекции.</p>
         <div class="price">18 990 ₸</div>
-        <a class="link" href="https://kaspi.kz/shop/p/bearbrick-be-rbrick-keith-haring-28-sm-1-sht-149680610/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <a class="kaspi" href="https://kaspi.kz/shop/p/bearbrick-be-rbrick-keith-haring-28-sm-1-sht-149680610/" target="_blank" rel="noopener">Прямая ссылка на Kaspi</a>
         <button class="pick" type="button">Выбрать</button>
       </div>
-    </div>
-    <div class="product" data-cat="bearbrick" data-name="Banksy — Flying Balloons Girl" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-bearbrick-banksy-flying-balloons-girl-28-sm-1-sht-149680562/">
-      <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-bearbrick-banksy-flying-balloons-girl-28-sm-1-sht-149680562/" target="_blank" rel="noopener">
-        <img src="https://resources.cdn-kaspi.kz/img/m/p/p92/p10/78366336.png?format=gallery-large" alt="Banksy — Flying Balloons Girl" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="fallback">Фото<br><span>Banksy — Flying Balloons Girl</span></div>
-      </a>
-      <div class="content">
-        <div class="num">#24</div>
-        <h2>Banksy — Flying Balloons Girl</h2>
-        <p>Модель в стиле Banksy с узнаваемым образом. Хороший выбор для любителей современного искусства.</p>
+    </article>
+    <article class="card" data-category="bb" data-name="Banksy — Flying Balloons Girl" data-price="18 990 ₸" data-url="https://kaspi.kz/shop/p/bearbrick-bearbrick-banksy-flying-balloons-girl-28-sm-1-sht-149680562/">
+      <div class="image-wrap">
+        <span class="badge badge-bb">BE@RBRICK</span>
+        <span class="size">28 см</span>
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/p92/p10/78366336.png?format=gallery-large" alt="Banksy — Flying Balloons Girl" loading="lazy" onerror="this.closest('.image-wrap').classList.add('img-error')">
+      </div>
+      <div class="info">
+        <h3>Banksy — Flying Balloons Girl</h3>
+        <p>BE@RBRICK 400% 28 см в арт-стиле: яркий акцент для интерьера и коллекции.</p>
         <div class="price">18 990 ₸</div>
-        <a class="link" href="https://kaspi.kz/shop/p/bearbrick-bearbrick-banksy-flying-balloons-girl-28-sm-1-sht-149680562/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <a class="kaspi" href="https://kaspi.kz/shop/p/bearbrick-bearbrick-banksy-flying-balloons-girl-28-sm-1-sht-149680562/" target="_blank" rel="noopener">Прямая ссылка на Kaspi</a>
         <button class="pick" type="button">Выбрать</button>
       </div>
-    </div>
-    <div class="product" data-cat="bearbrick" data-name="Daft Punk 2" data-price="24990" data-url="https://kaspi.kz/shop/p/figurka-bearbrick-bearbrick-daft-punk-2-28-sm-1-sht-128585328/">
-      <a class="imgBox" href="https://kaspi.kz/shop/p/figurka-bearbrick-bearbrick-daft-punk-2-28-sm-1-sht-128585328/" target="_blank" rel="noopener">
-        <img src="https://resources.cdn-kaspi.kz/img/m/p/pf3/p56/120485673.png?format=gallery-large" alt="Daft Punk 2" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="fallback">Фото<br><span>Daft Punk 2</span></div>
-      </a>
-      <div class="content">
-        <div class="num">#25</div>
-        <h2>Daft Punk 2</h2>
-        <p>Музыкальная коллекционная модель Daft Punk. Для тех, кто любит электронную музыку и культовый стиль.</p>
+    </article>
+    <article class="card" data-category="bb" data-name="Daft Punk 2" data-price="24 990 ₸" data-url="https://kaspi.kz/shop/p/figurka-bearbrick-bearbrick-daft-punk-2-28-sm-1-sht-128585328/">
+      <div class="image-wrap">
+        <span class="badge badge-bb">BE@RBRICK</span>
+        <span class="size">28 см</span>
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/pf3/p56/120485673.png?format=gallery-large" alt="Daft Punk 2" loading="lazy" onerror="this.closest('.image-wrap').classList.add('img-error')">
+      </div>
+      <div class="info">
+        <h3>Daft Punk 2</h3>
+        <p>BE@RBRICK 400% 28 см с музыкальным вайбом — эффектная фигурка для коллекции.</p>
         <div class="price">24 990 ₸</div>
-        <a class="link" href="https://kaspi.kz/shop/p/figurka-bearbrick-bearbrick-daft-punk-2-28-sm-1-sht-128585328/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <a class="kaspi" href="https://kaspi.kz/shop/p/figurka-bearbrick-bearbrick-daft-punk-2-28-sm-1-sht-128585328/" target="_blank" rel="noopener">Прямая ссылка на Kaspi</a>
         <button class="pick" type="button">Выбрать</button>
       </div>
-    </div>
-    <div class="product" data-cat="bearbrick" data-name="MY FIRST BE@RBRICK" data-price="18990" data-url="https://kaspi.kz/shop/p/figurka-bearbrick-bearbrick-my-first-be-rbrick-28-sm-1-sht-128585306/">
-      <a class="imgBox" href="https://kaspi.kz/shop/p/figurka-bearbrick-bearbrick-my-first-be-rbrick-28-sm-1-sht-128585306/" target="_blank" rel="noopener">
-        <img src="https://resources.cdn-kaspi.kz/img/m/p/pfe/pdc/3385983.jpg?format=gallery-large" alt="MY FIRST BE@RBRICK" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="fallback">Фото<br><span>MY FIRST BE@RBRICK</span></div>
-      </a>
-      <div class="content">
-        <div class="num">#26</div>
-        <h2>MY FIRST BE@RBRICK</h2>
-        <p>Мягкий и аккуратный дизайн My First BE@RBRICK. Универсальный вариант для подарка.</p>
+    </article>
+    <article class="card" data-category="bb" data-name="MY FIRST BE@RBRICK" data-price="18 990 ₸" data-url="https://kaspi.kz/shop/p/figurka-bearbrick-bearbrick-my-first-be-rbrick-28-sm-1-sht-128585306/">
+      <div class="image-wrap">
+        <span class="badge badge-bb">BE@RBRICK</span>
+        <span class="size">28 см</span>
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/pfe/pdc/3385983.jpg?format=gallery-large" alt="MY FIRST BE@RBRICK" loading="lazy" onerror="this.closest('.image-wrap').classList.add('img-error')">
+      </div>
+      <div class="info">
+        <h3>MY FIRST BE@RBRICK</h3>
+        <p>Коллекционная фигурка BE@RBRICK 400% 28 см для интерьера, подарка или личной коллекции.</p>
         <div class="price">18 990 ₸</div>
-        <a class="link" href="https://kaspi.kz/shop/p/figurka-bearbrick-bearbrick-my-first-be-rbrick-28-sm-1-sht-128585306/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <a class="kaspi" href="https://kaspi.kz/shop/p/figurka-bearbrick-bearbrick-my-first-be-rbrick-28-sm-1-sht-128585306/" target="_blank" rel="noopener">Прямая ссылка на Kaspi</a>
         <button class="pick" type="button">Выбрать</button>
       </div>
-    </div>
-    <div class="product" data-cat="bearbrick" data-name="My First Baby Space Ver" data-price="18990" data-url="https://kaspi.kz/shop/p/figurka-bearbrick-my-first-bearbrick-baby-space-ver-28-sm-1-sht-112904270/">
-      <a class="imgBox" href="https://kaspi.kz/shop/p/figurka-bearbrick-my-first-bearbrick-baby-space-ver-28-sm-1-sht-112904270/" target="_blank" rel="noopener">
-        <img src="https://resources.cdn-kaspi.kz/img/m/p/p1f/p17/120594057.png?format=gallery-large" alt="My First Baby Space Ver" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="fallback">Фото<br><span>My First Baby Space Ver</span></div>
-      </a>
-      <div class="content">
-        <div class="num">#27</div>
-        <h2>My First Baby Space Ver</h2>
-        <p>Милая baby-модель с космическим настроением. Светлый и приятный вариант для коллекции.</p>
+    </article>
+    <article class="card" data-category="bb" data-name="My First Baby Space Ver" data-price="18 990 ₸" data-url="https://kaspi.kz/shop/p/figurka-bearbrick-my-first-bearbrick-baby-space-ver-28-sm-1-sht-112904270/">
+      <div class="image-wrap">
+        <span class="badge badge-bb">BE@RBRICK</span>
+        <span class="size">28 см</span>
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/p1f/p17/120594057.png?format=gallery-large" alt="My First Baby Space Ver" loading="lazy" onerror="this.closest('.image-wrap').classList.add('img-error')">
+      </div>
+      <div class="info">
+        <h3>My First Baby Space Ver</h3>
+        <p>BE@RBRICK 400% 28 см с космическим дизайном для стильной полки или рабочего стола.</p>
         <div class="price">18 990 ₸</div>
-        <a class="link" href="https://kaspi.kz/shop/p/figurka-bearbrick-my-first-bearbrick-baby-space-ver-28-sm-1-sht-112904270/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <a class="kaspi" href="https://kaspi.kz/shop/p/figurka-bearbrick-my-first-bearbrick-baby-space-ver-28-sm-1-sht-112904270/" target="_blank" rel="noopener">Прямая ссылка на Kaspi</a>
         <button class="pick" type="button">Выбрать</button>
       </div>
-    </div>
-    <div class="product" data-cat="bearbrick" data-name="Van Gogh — Country Road by Night" data-price="18990" data-url="https://kaspi.kz/shop/p/figurka-bearbrick-van-gogh-country-road-in-provence-by-night-28-sm-1-sht-138655802/">
-      <a class="imgBox" href="https://kaspi.kz/shop/p/figurka-bearbrick-van-gogh-country-road-in-provence-by-night-28-sm-1-sht-138655802/" target="_blank" rel="noopener">
-        <img src="https://resources.cdn-kaspi.kz/img/m/p/p64/p57/120485677.png?format=gallery-large" alt="Van Gogh — Country Road by Night" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="fallback">Фото<br><span>Van Gogh — Country Road by Night</span></div>
-      </a>
-      <div class="content">
-        <div class="num">#28</div>
-        <h2>Van Gogh — Country Road by Night</h2>
-        <p>Арт-модель по мотивам Van Gogh. Тёплый художественный вариант для интерьера.</p>
+    </article>
+    <article class="card" data-category="bb" data-name="Van Gogh — Country Road by Night" data-price="18 990 ₸" data-url="https://kaspi.kz/shop/p/figurka-bearbrick-van-gogh-country-road-in-provence-by-night-28-sm-1-sht-138655802/">
+      <div class="image-wrap">
+        <span class="badge badge-bb">BE@RBRICK</span>
+        <span class="size">28 см</span>
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/p64/p57/120485677.png?format=gallery-large" alt="Van Gogh — Country Road by Night" loading="lazy" onerror="this.closest('.image-wrap').classList.add('img-error')">
+      </div>
+      <div class="info">
+        <h3>Van Gogh — Country Road by Night</h3>
+        <p>BE@RBRICK 400% 28 см в арт-стиле: яркий акцент для интерьера и коллекции.</p>
         <div class="price">18 990 ₸</div>
-        <a class="link" href="https://kaspi.kz/shop/p/figurka-bearbrick-van-gogh-country-road-in-provence-by-night-28-sm-1-sht-138655802/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <a class="kaspi" href="https://kaspi.kz/shop/p/figurka-bearbrick-van-gogh-country-road-in-provence-by-night-28-sm-1-sht-138655802/" target="_blank" rel="noopener">Прямая ссылка на Kaspi</a>
         <button class="pick" type="button">Выбрать</button>
       </div>
-    </div>
-    <div class="product" data-cat="bearbrick" data-name="Only At" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-statuetka-bearbrick-only-at-28-sm-plastik-133039894/">
-      <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-statuetka-bearbrick-only-at-28-sm-plastik-133039894/" target="_blank" rel="noopener">
-        <img src="https://resources.cdn-kaspi.kz/img/m/p/p31/p32/121060249.png?format=gallery-large" alt="Only At" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="fallback">Фото<br><span>Only At</span></div>
-      </a>
-      <div class="content">
-        <div class="num">#29</div>
-        <h2>Only At</h2>
-        <p>Лаконичная модель с современным принтом. Подойдёт для тех, кто хочет спокойный, но стильный Bearbrick.</p>
+    </article>
+    <article class="card" data-category="bb" data-name="Only At" data-price="18 990 ₸" data-url="https://kaspi.kz/shop/p/bearbrick-statuetka-bearbrick-only-at-28-sm-plastik-133039894/">
+      <div class="image-wrap">
+        <span class="badge badge-bb">BE@RBRICK</span>
+        <span class="size">28 см</span>
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/p31/p32/121060249.png?format=gallery-large" alt="Only At" loading="lazy" onerror="this.closest('.image-wrap').classList.add('img-error')">
+      </div>
+      <div class="info">
+        <h3>Only At</h3>
+        <p>Коллекционная фигурка BE@RBRICK 400% 28 см для интерьера, подарка или личной коллекции.</p>
         <div class="price">18 990 ₸</div>
-        <a class="link" href="https://kaspi.kz/shop/p/bearbrick-statuetka-bearbrick-only-at-28-sm-plastik-133039894/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <a class="kaspi" href="https://kaspi.kz/shop/p/bearbrick-statuetka-bearbrick-only-at-28-sm-plastik-133039894/" target="_blank" rel="noopener">Прямая ссылка на Kaspi</a>
         <button class="pick" type="button">Выбрать</button>
       </div>
-    </div>
-    <div class="product" data-cat="bearbrick" data-name="Johannes Vermeer" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-be-rbrick-johannes-vermeer-28-sm-plastik-135782859/">
-      <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-be-rbrick-johannes-vermeer-28-sm-plastik-135782859/" target="_blank" rel="noopener">
-        <img src="https://resources.cdn-kaspi.kz/img/m/p/p35/p20/28333428.jpg?format=gallery-large" alt="Johannes Vermeer" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="fallback">Фото<br><span>Johannes Vermeer</span></div>
-      </a>
-      <div class="content">
-        <div class="num">#30</div>
-        <h2>Johannes Vermeer</h2>
-        <p>Музейная модель по мотивам Vermeer. Спокойный классический арт-вариант.</p>
+    </article>
+    <article class="card" data-category="bb" data-name="Johannes Vermeer" data-price="18 990 ₸" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-be-rbrick-johannes-vermeer-28-sm-plastik-135782859/">
+      <div class="image-wrap">
+        <span class="badge badge-bb">BE@RBRICK</span>
+        <span class="size">28 см</span>
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/p35/p20/28333428.jpg?format=gallery-large" alt="Johannes Vermeer" loading="lazy" onerror="this.closest('.image-wrap').classList.add('img-error')">
+      </div>
+      <div class="info">
+        <h3>Johannes Vermeer</h3>
+        <p>BE@RBRICK 400% 28 см в арт-стиле: яркий акцент для интерьера и коллекции.</p>
         <div class="price">18 990 ₸</div>
-        <a class="link" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-be-rbrick-johannes-vermeer-28-sm-plastik-135782859/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <a class="kaspi" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-be-rbrick-johannes-vermeer-28-sm-plastik-135782859/" target="_blank" rel="noopener">Прямая ссылка на Kaspi</a>
         <button class="pick" type="button">Выбрать</button>
       </div>
-    </div>
-    <div class="product" data-cat="bearbrick" data-name="Jean-Michel Basquiat #2" data-price="18990" data-url="https://kaspi.kz/shop/p/figurka-bearbrick-jean-michel-basquiat-28-sm-1-sht-112933292/">
-      <a class="imgBox" href="https://kaspi.kz/shop/p/figurka-bearbrick-jean-michel-basquiat-28-sm-1-sht-112933292/" target="_blank" rel="noopener">
-        <img src="https://resources.cdn-kaspi.kz/img/m/p/p2c/p12/4968573.jpg?format=gallery-large" alt="Jean-Michel Basquiat #2" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="fallback">Фото<br><span>Jean-Michel Basquiat #2</span></div>
-      </a>
-      <div class="content">
-        <div class="num">#31</div>
-        <h2>Jean-Michel Basquiat #2</h2>
-        <p>Ещё один выразительный вариант Basquiat. Хорошо смотрится в арт-коллекции.</p>
+    </article>
+    <article class="card" data-category="bb" data-name="Jean-Michel Basquiat #2" data-price="18 990 ₸" data-url="https://kaspi.kz/shop/p/figurka-bearbrick-jean-michel-basquiat-28-sm-1-sht-112933292/">
+      <div class="image-wrap">
+        <span class="badge badge-bb">BE@RBRICK</span>
+        <span class="size">28 см</span>
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/p2c/p12/4968573.jpg?format=gallery-large" alt="Jean-Michel Basquiat #2" loading="lazy" onerror="this.closest('.image-wrap').classList.add('img-error')">
+      </div>
+      <div class="info">
+        <h3>Jean-Michel Basquiat #2</h3>
+        <p>BE@RBRICK 400% 28 см в арт-стиле: яркий акцент для интерьера и коллекции.</p>
         <div class="price">18 990 ₸</div>
-        <a class="link" href="https://kaspi.kz/shop/p/figurka-bearbrick-jean-michel-basquiat-28-sm-1-sht-112933292/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <a class="kaspi" href="https://kaspi.kz/shop/p/figurka-bearbrick-jean-michel-basquiat-28-sm-1-sht-112933292/" target="_blank" rel="noopener">Прямая ссылка на Kaspi</a>
         <button class="pick" type="button">Выбрать</button>
       </div>
-    </div>
-    <div class="product" data-cat="bearbrick" data-name="Van Gogh — Sunflowers" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-van-gogh-museum-sunflowers-28-sm-plastik-138681308/">
-      <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-van-gogh-museum-sunflowers-28-sm-plastik-138681308/" target="_blank" rel="noopener">
-        <img src="https://resources.cdn-kaspi.kz/img/m/p/p5b/p6c/38729676.jpg?format=gallery-large" alt="Van Gogh — Sunflowers" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="fallback">Фото<br><span>Van Gogh — Sunflowers</span></div>
-      </a>
-      <div class="content">
-        <div class="num">#32</div>
-        <h2>Van Gogh — Sunflowers</h2>
-        <p>Яркая модель с мотивом Sunflowers. Тёплый, узнаваемый и подарочный вариант.</p>
+    </article>
+    <article class="card" data-category="bb" data-name="Van Gogh — Sunflowers" data-price="18 990 ₸" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-van-gogh-museum-sunflowers-28-sm-plastik-138681308/">
+      <div class="image-wrap">
+        <span class="badge badge-bb">BE@RBRICK</span>
+        <span class="size">28 см</span>
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/p5b/p6c/38729676.jpg?format=gallery-large" alt="Van Gogh — Sunflowers" loading="lazy" onerror="this.closest('.image-wrap').classList.add('img-error')">
+      </div>
+      <div class="info">
+        <h3>Van Gogh — Sunflowers</h3>
+        <p>BE@RBRICK 400% 28 см в арт-стиле: яркий акцент для интерьера и коллекции.</p>
         <div class="price">18 990 ₸</div>
-        <a class="link" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-van-gogh-museum-sunflowers-28-sm-plastik-138681308/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <a class="kaspi" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-van-gogh-museum-sunflowers-28-sm-plastik-138681308/" target="_blank" rel="noopener">Прямая ссылка на Kaspi</a>
         <button class="pick" type="button">Выбрать</button>
       </div>
-    </div>
-    <div class="product" data-cat="bearbrick" data-name="Earth" data-price="18990" data-url="https://kaspi.kz/shop/p/figurka-bearbrick-bearbrick-earth-28-sm-1-sht-128101853/">
-      <a class="imgBox" href="https://kaspi.kz/shop/p/figurka-bearbrick-bearbrick-earth-28-sm-1-sht-128101853/" target="_blank" rel="noopener">
-        <img src="https://resources.cdn-kaspi.kz/img/m/p/p5d/p15/4968565.png?format=gallery-large" alt="Earth" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="fallback">Фото<br><span>Earth</span></div>
-      </a>
-      <div class="content">
-        <div class="num">#33</div>
-        <h2>Earth</h2>
-        <p>Космическая модель Earth. Спокойный вариант для любителей планет и небесной тематики.</p>
+    </article>
+    <article class="card" data-category="bb" data-name="Earth" data-price="18 990 ₸" data-url="https://kaspi.kz/shop/p/figurka-bearbrick-bearbrick-earth-28-sm-1-sht-128101853/">
+      <div class="image-wrap">
+        <span class="badge badge-bb">BE@RBRICK</span>
+        <span class="size">28 см</span>
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/p5d/p15/4968565.png?format=gallery-large" alt="Earth" loading="lazy" onerror="this.closest('.image-wrap').classList.add('img-error')">
+      </div>
+      <div class="info">
+        <h3>Earth</h3>
+        <p>BE@RBRICK 400% 28 см с космическим дизайном для стильной полки или рабочего стола.</p>
         <div class="price">18 990 ₸</div>
-        <a class="link" href="https://kaspi.kz/shop/p/figurka-bearbrick-bearbrick-earth-28-sm-1-sht-128101853/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <a class="kaspi" href="https://kaspi.kz/shop/p/figurka-bearbrick-bearbrick-earth-28-sm-1-sht-128101853/" target="_blank" rel="noopener">Прямая ссылка на Kaspi</a>
         <button class="pick" type="button">Выбрать</button>
       </div>
-    </div>
-    <div class="product" data-cat="bearbrick" data-name="Coca-Cola × atmos" data-price="17990" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-bearbrick-x-coca-cola-x-atmos-28-sm-plastik-135766438/">
-      <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-bearbrick-x-coca-cola-x-atmos-28-sm-plastik-135766438/" target="_blank" rel="noopener">
-        <img src="https://resources.cdn-kaspi.kz/img/m/p/pac/pc0/122430704.jpeg?format=gallery-large" alt="Coca-Cola × atmos" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="fallback">Фото<br><span>Coca-Cola × atmos</span></div>
-      </a>
-      <div class="content">
-        <div class="num">#34</div>
-        <h2>Coca-Cola × atmos</h2>
-        <p>Стильная коллаборация Coca-Cola × atmos. Яркий городской вариант по хорошей цене.</p>
+    </article>
+    <article class="card" data-category="bb" data-name="Coca-Cola × atmos" data-price="17 990 ₸" data-url="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-bearbrick-x-coca-cola-x-atmos-28-sm-plastik-135766438/">
+      <div class="image-wrap">
+        <span class="badge badge-bb">BE@RBRICK</span>
+        <span class="size">28 см</span>
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/pac/pc0/122430704.jpeg?format=gallery-large" alt="Coca-Cola × atmos" loading="lazy" onerror="this.closest('.image-wrap').classList.add('img-error')">
+      </div>
+      <div class="info">
+        <h3>Coca-Cola × atmos</h3>
+        <p>BE@RBRICK 400% 28 см в коллаборационном дизайне — заметная фигурка для подарка или витрины.</p>
         <div class="price">17 990 ₸</div>
-        <a class="link" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-bearbrick-x-coca-cola-x-atmos-28-sm-plastik-135766438/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <a class="kaspi" href="https://kaspi.kz/shop/p/bearbrick-kollektsionnye-modeli-bearbrick-x-coca-cola-x-atmos-28-sm-plastik-135766438/" target="_blank" rel="noopener">Прямая ссылка на Kaspi</a>
         <button class="pick" type="button">Выбрать</button>
       </div>
-    </div>
-    <div class="product" data-cat="bearbrick" data-name="Wave off Kanagawa" data-price="18990" data-url="https://kaspi.kz/shop/p/bearbrick-statuetka-wave-off-kanagawa-28-sm-plastik-133039890/">
-      <a class="imgBox" href="https://kaspi.kz/shop/p/bearbrick-statuetka-wave-off-kanagawa-28-sm-plastik-133039890/" target="_blank" rel="noopener">
-        <img src="https://resources.cdn-kaspi.kz/img/m/p/p2b/pae/18727677.jpg?format=gallery-large" alt="Wave off Kanagawa" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="fallback">Фото<br><span>Wave off Kanagawa</span></div>
-      </a>
-      <div class="content">
-        <div class="num">#35</div>
-        <h2>Wave off Kanagawa</h2>
-        <p>Арт-фигурка по мотивам знаменитой японской волны. Сильный визуальный акцент.</p>
+    </article>
+    <article class="card" data-category="bb" data-name="Wave off Kanagawa" data-price="18 990 ₸" data-url="https://kaspi.kz/shop/p/bearbrick-statuetka-wave-off-kanagawa-28-sm-plastik-133039890/">
+      <div class="image-wrap">
+        <span class="badge badge-bb">BE@RBRICK</span>
+        <span class="size">28 см</span>
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/p2b/pae/18727677.jpg?format=gallery-large" alt="Wave off Kanagawa" loading="lazy" onerror="this.closest('.image-wrap').classList.add('img-error')">
+      </div>
+      <div class="info">
+        <h3>Wave off Kanagawa</h3>
+        <p>BE@RBRICK 400% 28 см в арт-стиле: яркий акцент для интерьера и коллекции.</p>
         <div class="price">18 990 ₸</div>
-        <a class="link" href="https://kaspi.kz/shop/p/bearbrick-statuetka-wave-off-kanagawa-28-sm-plastik-133039890/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <a class="kaspi" href="https://kaspi.kz/shop/p/bearbrick-statuetka-wave-off-kanagawa-28-sm-plastik-133039890/" target="_blank" rel="noopener">Прямая ссылка на Kaspi</a>
         <button class="pick" type="button">Выбрать</button>
       </div>
-    </div>
-    <div class="product" data-cat="bearbrick" data-name="Mika Ninagawa — Sakura" data-price="18990" data-url="https://kaspi.kz/shop/p/figurka-bearbrick-bearbrick-mika-ninagawa-sakura-28-sm-1-sht-138627771/">
-      <a class="imgBox" href="https://kaspi.kz/shop/p/figurka-bearbrick-bearbrick-mika-ninagawa-sakura-28-sm-1-sht-138627771/" target="_blank" rel="noopener">
-        <img src="https://resources.cdn-kaspi.kz/img/m/p/p48/p57/120485676.png?format=gallery-large" alt="Mika Ninagawa — Sakura" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="fallback">Фото<br><span>Mika Ninagawa — Sakura</span></div>
-      </a>
-      <div class="content">
-        <div class="num">#36</div>
-        <h2>Mika Ninagawa — Sakura</h2>
-        <p>Нежная модель Sakura в цветочной эстетике. Красиво смотрится как подарок и интерьерный акцент.</p>
+    </article>
+    <article class="card" data-category="bb" data-name="Mika Ninagawa — Sakura" data-price="18 990 ₸" data-url="https://kaspi.kz/shop/p/figurka-bearbrick-bearbrick-mika-ninagawa-sakura-28-sm-1-sht-138627771/">
+      <div class="image-wrap">
+        <span class="badge badge-bb">BE@RBRICK</span>
+        <span class="size">28 см</span>
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/p48/p57/120485676.png?format=gallery-large" alt="Mika Ninagawa — Sakura" loading="lazy" onerror="this.closest('.image-wrap').classList.add('img-error')">
+      </div>
+      <div class="info">
+        <h3>Mika Ninagawa — Sakura</h3>
+        <p>BE@RBRICK 400% 28 см в арт-стиле: яркий акцент для интерьера и коллекции.</p>
         <div class="price">18 990 ₸</div>
-        <a class="link" href="https://kaspi.kz/shop/p/figurka-bearbrick-bearbrick-mika-ninagawa-sakura-28-sm-1-sht-138627771/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+        <a class="kaspi" href="https://kaspi.kz/shop/p/figurka-bearbrick-bearbrick-mika-ninagawa-sakura-28-sm-1-sht-138627771/" target="_blank" rel="noopener">Прямая ссылка на Kaspi</a>
         <button class="pick" type="button">Выбрать</button>
       </div>
-    </div>
-
-      <div class="sectionTitle" data-section="kaws">KAWS COLLECTION</div>
-
-    <div class="product" data-cat="kaws" data-name="KAWS Take 33 см — Black" data-price="" data-url="https://kaspi.kz/shop/p/figurka-kaws-kaws-take-33-sm-1-sht-128219616/">
-      <a class="imgBox" href="https://kaspi.kz/shop/p/figurka-kaws-kaws-take-33-sm-1-sht-128219616/" target="_blank" rel="noopener">
-        <img src="https://usneakersport.ru/image/cache/catalog/shop/bearbrick/kaws-take-figure-black-700x700.jpg" alt="KAWS Take 33 см — Black" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="fallback">Фото<br><span>KAWS Take 33 см — Black</span></div>
-      </a>
-      <div class="content">
-        <div class="num">#37</div>
-        <h2>KAWS Take 33 см — Black</h2>
-        <p>Компактная KAWS-фигурка Take в черном цвете. Хорошо смотрится в минималистичном интерьере, на полке или рабочем столе.</p>
-        <div class="price">Цена на Kaspi</div>
-        <a class="link" href="https://kaspi.kz/shop/p/figurka-kaws-kaws-take-33-sm-1-sht-128219616/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+    </article>
+    <article class="card" data-category="kaws" data-name="Take (розовый)" data-price="18 990 ₸" data-url="https://kaspi.kz/shop/p/figurka-kaws-kaws-take-33-sm-1-sht-128219616/">
+      <div class="image-wrap">
+        <span class="badge badge-kaws">KAWS</span>
+        <span class="size">33 см</span>
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/p33/p54/120485669.png?format=gallery-large" alt="Take (розовый)" loading="lazy" onerror="this.closest('.image-wrap').classList.add('img-error')">
+      </div>
+      <div class="info">
+        <h3>Take (розовый)</h3>
+        <p>KAWS Take 33 см: стильная фигурка для полки, витрины или подарка.</p>
+        <div class="price">18 990 ₸</div>
+        <a class="kaspi" href="https://kaspi.kz/shop/p/figurka-kaws-kaws-take-33-sm-1-sht-128219616/" target="_blank" rel="noopener">Прямая ссылка на Kaspi</a>
         <button class="pick" type="button">Выбрать</button>
       </div>
-    </div>
-
-    <div class="product" data-cat="kaws" data-name="KAWS Companion 37 см — Grey" data-price="" data-url="https://kaspi.kz/shop/p/figurka-kaws-companion-37-sm-1-sht-128219668/">
-      <a class="imgBox" href="https://kaspi.kz/shop/p/figurka-kaws-companion-37-sm-1-sht-128219668/" target="_blank" rel="noopener">
-        <img src="https://e-mall.su/wa-data/public/shop/products/70/16/11670/images/45187/45187.440.jpg" alt="KAWS Companion 37 см — Grey" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="fallback">Фото<br><span>KAWS Companion 37 см — Grey</span></div>
-      </a>
-      <div class="content">
-        <div class="num">#38</div>
-        <h2>KAWS Companion 37 см — Grey</h2>
-        <p>Классический Companion в спокойном сером цвете. Универсальный вариант для коллекции и современного интерьера.</p>
-        <div class="price">Цена на Kaspi</div>
-        <a class="link" href="https://kaspi.kz/shop/p/figurka-kaws-companion-37-sm-1-sht-128219668/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+    </article>
+    <article class="card" data-category="kaws" data-name="Companion (серый)" data-price="19 990 ₸" data-url="https://kaspi.kz/shop/p/figurka-kaws-companion-37-sm-1-sht-128219668/">
+      <div class="image-wrap">
+        <span class="badge badge-kaws">KAWS</span>
+        <span class="size">37 см</span>
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/pef/p4d/4968648.png?format=gallery-large" alt="Companion (серый)" loading="lazy" onerror="this.closest('.image-wrap').classList.add('img-error')">
+      </div>
+      <div class="info">
+        <h3>Companion (серый)</h3>
+        <p>KAWS Companion 37 см: выразительная коллекционная фигурка с фирменным силуэтом и X-глазами.</p>
+        <div class="price">19 990 ₸</div>
+        <a class="kaspi" href="https://kaspi.kz/shop/p/figurka-kaws-companion-37-sm-1-sht-128219668/" target="_blank" rel="noopener">Прямая ссылка на Kaspi</a>
         <button class="pick" type="button">Выбрать</button>
       </div>
-    </div>
-
-    <div class="product" data-cat="kaws" data-name="KAWS Take 33 см — Blue" data-price="" data-url="https://kaspi.kz/shop/p/figurka-kaws-kaws-take-33-sm-1-sht-128219650/">
-      <a class="imgBox" href="https://kaspi.kz/shop/p/figurka-kaws-kaws-take-33-sm-1-sht-128219650/" target="_blank" rel="noopener">
-        <img src="https://usneakersport.ru/image/cache/catalog/shop/bearbrick/kaws-take-figure-black-700x700.jpg" alt="KAWS Take 33 см — Blue" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="fallback">Фото<br><span>KAWS Take 33 см — Blue</span></div>
-      </a>
-      <div class="content">
-        <div class="num">#39</div>
-        <h2>KAWS Take 33 см — Blue</h2>
-        <p>Синяя версия KAWS Take — яркий акцент для комнаты, витрины или подарочной подборки.</p>
-        <div class="price">Цена на Kaspi</div>
-        <a class="link" href="https://kaspi.kz/shop/p/figurka-kaws-kaws-take-33-sm-1-sht-128219650/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+    </article>
+    <article class="card" data-category="kaws" data-name="Take (бежевый)" data-price="18 990 ₸" data-url="https://kaspi.kz/shop/p/figurka-kaws-kaws-take-33-sm-1-sht-128219650/">
+      <div class="image-wrap">
+        <span class="badge badge-kaws">KAWS</span>
+        <span class="size">33 см</span>
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/p04/p0b/4968596.jpg?format=gallery-large" alt="Take (бежевый)" loading="lazy" onerror="this.closest('.image-wrap').classList.add('img-error')">
+      </div>
+      <div class="info">
+        <h3>Take (бежевый)</h3>
+        <p>KAWS Take 33 см: стильная фигурка для полки, витрины или подарка.</p>
+        <div class="price">18 990 ₸</div>
+        <a class="kaspi" href="https://kaspi.kz/shop/p/figurka-kaws-kaws-take-33-sm-1-sht-128219650/" target="_blank" rel="noopener">Прямая ссылка на Kaspi</a>
         <button class="pick" type="button">Выбрать</button>
       </div>
-    </div>
-
-    <div class="product" data-cat="kaws" data-name="KAWS Cash 30 см — Grey" data-price="" data-url="https://kaspi.kz/shop/p/figurka-kaws-kaws-cash-30-sm-1-sht-128219612/">
-      <a class="imgBox" href="https://kaspi.kz/shop/p/figurka-kaws-kaws-cash-30-sm-1-sht-128219612/" target="_blank" rel="noopener">
-        <img src="https://e-mall.su/wa-data/public/shop/products/70/16/11670/images/45187/45187.440.jpg" alt="KAWS Cash 30 см — Grey" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="fallback">Фото<br><span>KAWS Cash 30 см — Grey</span></div>
-      </a>
-      <div class="content">
-        <div class="num">#40</div>
-        <h2>KAWS Cash 30 см — Grey</h2>
-        <p>KAWS Cash в сером цвете: спокойный арт-объект с узнаваемой эстетикой KAWS.</p>
-        <div class="price">Цена на Kaspi</div>
-        <a class="link" href="https://kaspi.kz/shop/p/figurka-kaws-kaws-cash-30-sm-1-sht-128219612/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+    </article>
+    <article class="card" data-category="kaws" data-name="Cash (чёрный)" data-price="16 990 ₸" data-url="https://kaspi.kz/shop/p/figurka-kaws-kaws-cash-30-sm-1-sht-128219612/">
+      <div class="image-wrap">
+        <span class="badge badge-kaws">KAWS</span>
+        <span class="size">30 см</span>
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/p2f/pb7/4968743.jpg?format=gallery-large" alt="Cash (чёрный)" loading="lazy" onerror="this.closest('.image-wrap').classList.add('img-error')">
+      </div>
+      <div class="info">
+        <h3>Cash (чёрный)</h3>
+        <p>KAWS Cash 30 см: минималистичная фигурка в современном арт-стиле.</p>
+        <div class="price">16 990 ₸</div>
+        <a class="kaspi" href="https://kaspi.kz/shop/p/figurka-kaws-kaws-cash-30-sm-1-sht-128219612/" target="_blank" rel="noopener">Прямая ссылка на Kaspi</a>
         <button class="pick" type="button">Выбрать</button>
       </div>
-    </div>
-
-    <div class="product" data-cat="kaws" data-name="KAWS Cash 30 см — Black" data-price="" data-url="https://kaspi.kz/shop/p/figurka-kaws-kaws-cash-30-sm-1-sht-128219613/">
-      <a class="imgBox" href="https://kaspi.kz/shop/p/figurka-kaws-kaws-cash-30-sm-1-sht-128219613/" target="_blank" rel="noopener">
-        <img src="https://e-mall.su/wa-data/public/shop/products/70/16/11670/images/45191/45191.440.jpg" alt="KAWS Cash 30 см — Black" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="fallback">Фото<br><span>KAWS Cash 30 см — Black</span></div>
-      </a>
-      <div class="content">
-        <div class="num">#41</div>
-        <h2>KAWS Cash 30 см — Black</h2>
-        <p>Черная версия KAWS Cash — строгая, стильная и легко вписывается в любой интерьер.</p>
-        <div class="price">Цена на Kaspi</div>
-        <a class="link" href="https://kaspi.kz/shop/p/figurka-kaws-kaws-cash-30-sm-1-sht-128219613/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+    </article>
+    <article class="card" data-category="kaws" data-name="Cash (серый)" data-price="16 990 ₸" data-url="https://kaspi.kz/shop/p/figurka-kaws-kaws-cash-30-sm-1-sht-128219613/">
+      <div class="image-wrap">
+        <span class="badge badge-kaws">KAWS</span>
+        <span class="size">30 см</span>
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/p71/pb3/4968730.jpg?format=gallery-large" alt="Cash (серый)" loading="lazy" onerror="this.closest('.image-wrap').classList.add('img-error')">
+      </div>
+      <div class="info">
+        <h3>Cash (серый)</h3>
+        <p>KAWS Cash 30 см: минималистичная фигурка в современном арт-стиле.</p>
+        <div class="price">16 990 ₸</div>
+        <a class="kaspi" href="https://kaspi.kz/shop/p/figurka-kaws-kaws-cash-30-sm-1-sht-128219613/" target="_blank" rel="noopener">Прямая ссылка на Kaspi</a>
         <button class="pick" type="button">Выбрать</button>
       </div>
-    </div>
-
-    <div class="product" data-cat="kaws" data-name="KAWS Companion 37 см — Brown" data-price="" data-url="https://kaspi.kz/shop/p/figurka-kaws-kaws-companion-37-sm-1-sht-128101169/">
-      <a class="imgBox" href="https://kaspi.kz/shop/p/figurka-kaws-kaws-companion-37-sm-1-sht-128101169/" target="_blank" rel="noopener">
-        <img src="https://media.composition.gallery/artworkpic/kaws-pinocchio-jiminy-cricket-vinyl-figures-with-x-eyes-and-hands-covering-faces-styled-after-classic-disney-characters1754401915-69843_448x500.png" alt="KAWS Companion 37 см — Brown" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="fallback">Фото<br><span>KAWS Companion 37 см — Brown</span></div>
-      </a>
-      <div class="content">
-        <div class="num">#42</div>
-        <h2>KAWS Companion 37 см — Brown</h2>
-        <p>Коричневый Companion — теплый и спокойный вариант для коллекции, полки или кабинета.</p>
-        <div class="price">Цена на Kaspi</div>
-        <a class="link" href="https://kaspi.kz/shop/p/figurka-kaws-kaws-companion-37-sm-1-sht-128101169/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+    </article>
+    <article class="card" data-category="kaws" data-name="Companion (чёрный)" data-price="19 990 ₸" data-url="https://kaspi.kz/shop/p/figurka-kaws-kaws-companion-37-sm-1-sht-128101169/">
+      <div class="image-wrap">
+        <span class="badge badge-kaws">KAWS</span>
+        <span class="size">37 см</span>
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/p9f/p56/120485670.png?format=gallery-large" alt="Companion (чёрный)" loading="lazy" onerror="this.closest('.image-wrap').classList.add('img-error')">
+      </div>
+      <div class="info">
+        <h3>Companion (чёрный)</h3>
+        <p>KAWS Companion 37 см: выразительная коллекционная фигурка с фирменным силуэтом и X-глазами.</p>
+        <div class="price">19 990 ₸</div>
+        <a class="kaspi" href="https://kaspi.kz/shop/p/figurka-kaws-kaws-companion-37-sm-1-sht-128101169/" target="_blank" rel="noopener">Прямая ссылка на Kaspi</a>
         <button class="pick" type="button">Выбрать</button>
       </div>
-    </div>
-
-    <div class="product" data-cat="kaws" data-name="KAWS BFF 35 см — Blue" data-price="" data-url="https://kaspi.kz/shop/p/figurka-kaws-kaws-bff-35-sm-1-sht-128219615/">
-      <a class="imgBox" href="https://kaspi.kz/shop/p/figurka-kaws-kaws-bff-35-sm-1-sht-128219615/" target="_blank" rel="noopener">
-        <img src="https://usneakersport.ru/image/cache/catalog/shop/bearbrick/kaws-take-figure-black-700x700.jpg" alt="KAWS BFF 35 см — Blue" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="fallback">Фото<br><span>KAWS BFF 35 см — Blue</span></div>
-      </a>
-      <div class="content">
-        <div class="num">#43</div>
-        <h2>KAWS BFF 35 см — Blue</h2>
-        <p>KAWS BFF в синем цвете — заметная фигура с характером и эффектным street-art настроением.</p>
-        <div class="price">Цена на Kaspi</div>
-        <a class="link" href="https://kaspi.kz/shop/p/figurka-kaws-kaws-bff-35-sm-1-sht-128219615/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+    </article>
+    <article class="card" data-category="kaws" data-name="BFF (розовый)" data-price="18 990 ₸" data-url="https://kaspi.kz/shop/p/figurka-kaws-kaws-bff-35-sm-1-sht-128219615/">
+      <div class="image-wrap">
+        <span class="badge badge-kaws">KAWS</span>
+        <span class="size">35 см</span>
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/pd7/pd9/122182032.jpeg?format=gallery-large" alt="BFF (розовый)" loading="lazy" onerror="this.closest('.image-wrap').classList.add('img-error')">
+      </div>
+      <div class="info">
+        <h3>BFF (розовый)</h3>
+        <p>KAWS BFF 35 см: яркая декоративная фигурка с мягким визуальным характером.</p>
+        <div class="price">18 990 ₸</div>
+        <a class="kaspi" href="https://kaspi.kz/shop/p/figurka-kaws-kaws-bff-35-sm-1-sht-128219615/" target="_blank" rel="noopener">Прямая ссылка на Kaspi</a>
         <button class="pick" type="button">Выбрать</button>
       </div>
-    </div>
-
-    <div class="product" data-cat="kaws" data-name="KAWS BFF 35 см — Black" data-price="" data-url="https://kaspi.kz/shop/p/figurka-kaws-kaws-bff-35-sm-1-sht-128098262/">
-      <a class="imgBox" href="https://kaspi.kz/shop/p/figurka-kaws-kaws-bff-35-sm-1-sht-128098262/" target="_blank" rel="noopener">
-        <img src="https://usneakersport.ru/image/cache/catalog/shop/bearbrick/kaws-take-figure-black-700x700.jpg" alt="KAWS BFF 35 см — Black" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="fallback">Фото<br><span>KAWS BFF 35 см — Black</span></div>
-      </a>
-      <div class="content">
-        <div class="num">#44</div>
-        <h2>KAWS BFF 35 см — Black</h2>
-        <p>Черный KAWS BFF — контрастная интерьерная фигурка с узнаваемыми глазами-крестиками.</p>
-        <div class="price">Цена на Kaspi</div>
-        <a class="link" href="https://kaspi.kz/shop/p/figurka-kaws-kaws-bff-35-sm-1-sht-128098262/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+    </article>
+    <article class="card" data-category="kaws" data-name="BFF (белый)" data-price="18 990 ₸" data-url="https://kaspi.kz/shop/p/figurka-kaws-kaws-bff-35-sm-1-sht-128098262/">
+      <div class="image-wrap">
+        <span class="badge badge-kaws">KAWS</span>
+        <span class="size">35 см</span>
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/pe5/p3d/120630626.png?format=gallery-large" alt="BFF (белый)" loading="lazy" onerror="this.closest('.image-wrap').classList.add('img-error')">
+      </div>
+      <div class="info">
+        <h3>BFF (белый)</h3>
+        <p>KAWS BFF 35 см: яркая декоративная фигурка с мягким визуальным характером.</p>
+        <div class="price">18 990 ₸</div>
+        <a class="kaspi" href="https://kaspi.kz/shop/p/figurka-kaws-kaws-bff-35-sm-1-sht-128098262/" target="_blank" rel="noopener">Прямая ссылка на Kaspi</a>
         <button class="pick" type="button">Выбрать</button>
       </div>
-    </div>
-
-    <div class="product" data-cat="kaws" data-name="KAWS Companion 37 см — Black" data-price="" data-url="https://kaspi.kz/shop/p/figurka-kaws-kaws-companion-37-sm-1-sht-128101178/">
-      <a class="imgBox" href="https://kaspi.kz/shop/p/figurka-kaws-kaws-companion-37-sm-1-sht-128101178/" target="_blank" rel="noopener">
-        <img src="https://e-mall.su/wa-data/public/shop/products/70/16/11670/images/45191/45191.440.jpg" alt="KAWS Companion 37 см — Black" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="fallback">Фото<br><span>KAWS Companion 37 см — Black</span></div>
-      </a>
-      <div class="content">
-        <div class="num">#45</div>
-        <h2>KAWS Companion 37 см — Black</h2>
-        <p>Черный Companion — один из самых универсальных вариантов KAWS для стильной коллекции.</p>
-        <div class="price">Цена на Kaspi</div>
-        <a class="link" href="https://kaspi.kz/shop/p/figurka-kaws-kaws-companion-37-sm-1-sht-128101178/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+    </article>
+    <article class="card" data-category="kaws" data-name="Companion (коричневый)" data-price="19 990 ₸" data-url="https://kaspi.kz/shop/p/figurka-kaws-kaws-companion-37-sm-1-sht-128101178/">
+      <div class="image-wrap">
+        <span class="badge badge-kaws">KAWS</span>
+        <span class="size">37 см</span>
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/pdc/pa8/120485703.png?format=gallery-large" alt="Companion (коричневый)" loading="lazy" onerror="this.closest('.image-wrap').classList.add('img-error')">
+      </div>
+      <div class="info">
+        <h3>Companion (коричневый)</h3>
+        <p>KAWS Companion 37 см: выразительная коллекционная фигурка с фирменным силуэтом и X-глазами.</p>
+        <div class="price">19 990 ₸</div>
+        <a class="kaspi" href="https://kaspi.kz/shop/p/figurka-kaws-kaws-companion-37-sm-1-sht-128101178/" target="_blank" rel="noopener">Прямая ссылка на Kaspi</a>
         <button class="pick" type="button">Выбрать</button>
       </div>
-    </div>
-
-    <div class="product" data-cat="kaws" data-name="KAWS Companion 37 см — Red" data-price="" data-url="https://kaspi.kz/shop/p/figurka-kaws-kaws-companion-37-sm-1-sht-128219670/">
-      <a class="imgBox" href="https://kaspi.kz/shop/p/figurka-kaws-kaws-companion-37-sm-1-sht-128219670/" target="_blank" rel="noopener">
-        <img src="https://e-mall.su/wa-data/public/shop/products/70/16/11670/images/45189/45189.440.jpg" alt="KAWS Companion 37 см — Red" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="fallback">Фото<br><span>KAWS Companion 37 см — Red</span></div>
-      </a>
-      <div class="content">
-        <div class="num">#46</div>
-        <h2>KAWS Companion 37 см — Red</h2>
-        <p>Красный Companion — яркий поп-арт акцент, который сразу привлекает внимание.</p>
-        <div class="price">Цена на Kaspi</div>
-        <a class="link" href="https://kaspi.kz/shop/p/figurka-kaws-kaws-companion-37-sm-1-sht-128219670/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+    </article>
+    <article class="card" data-category="kaws" data-name="Companion (синий)" data-price="19 990 ₸" data-url="https://kaspi.kz/shop/p/figurka-kaws-kaws-companion-37-sm-1-sht-128219670/">
+      <div class="image-wrap">
+        <span class="badge badge-kaws">KAWS</span>
+        <span class="size">37 см</span>
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/p10/p57/120485674.png?format=gallery-large" alt="Companion (синий)" loading="lazy" onerror="this.closest('.image-wrap').classList.add('img-error')">
+      </div>
+      <div class="info">
+        <h3>Companion (синий)</h3>
+        <p>KAWS Companion 37 см: выразительная коллекционная фигурка с фирменным силуэтом и X-глазами.</p>
+        <div class="price">19 990 ₸</div>
+        <a class="kaspi" href="https://kaspi.kz/shop/p/figurka-kaws-kaws-companion-37-sm-1-sht-128219670/" target="_blank" rel="noopener">Прямая ссылка на Kaspi</a>
         <button class="pick" type="button">Выбрать</button>
       </div>
-    </div>
-
-    <div class="product" data-cat="kaws" data-name="KAWS Small Lie 28 см — Grey" data-price="" data-url="https://kaspi.kz/shop/p/figurka-kaws-kaws-small-lie-28-sm-1-sht-128099876/">
-      <a class="imgBox" href="https://kaspi.kz/shop/p/figurka-kaws-kaws-small-lie-28-sm-1-sht-128099876/" target="_blank" rel="noopener">
-        <img src="https://e-mall.su/wa-data/public/shop/products/70/16/11670/images/45187/45187.440.jpg" alt="KAWS Small Lie 28 см — Grey" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="fallback">Фото<br><span>KAWS Small Lie 28 см — Grey</span></div>
-      </a>
-      <div class="content">
-        <div class="num">#47</div>
-        <h2>KAWS Small Lie 28 см — Grey</h2>
-        <p>Small Lie в сером цвете — эмоциональная фигурка KAWS для аккуратной интерьерной композиции.</p>
-        <div class="price">Цена на Kaspi</div>
-        <a class="link" href="https://kaspi.kz/shop/p/figurka-kaws-kaws-small-lie-28-sm-1-sht-128099876/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+    </article>
+    <article class="card" data-category="kaws" data-name="Small Lie (серый)" data-price="16 990 ₸" data-url="https://kaspi.kz/shop/p/figurka-kaws-kaws-small-lie-28-sm-1-sht-128099876/">
+      <div class="image-wrap">
+        <span class="badge badge-kaws">KAWS</span>
+        <span class="size">28 см</span>
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/p9c/p57/120485679.png?format=gallery-large" alt="Small Lie (серый)" loading="lazy" onerror="this.closest('.image-wrap').classList.add('img-error')">
+      </div>
+      <div class="info">
+        <h3>Small Lie (серый)</h3>
+        <p>Коллекционная фигурка KAWS 28 см для интерьера, подарка или личной коллекции.</p>
+        <div class="price">16 990 ₸</div>
+        <a class="kaspi" href="https://kaspi.kz/shop/p/figurka-kaws-kaws-small-lie-28-sm-1-sht-128099876/" target="_blank" rel="noopener">Прямая ссылка на Kaspi</a>
         <button class="pick" type="button">Выбрать</button>
       </div>
-    </div>
-
-    <div class="product" data-cat="kaws" data-name="KAWS Cash 30 см — Brown" data-price="" data-url="https://kaspi.kz/shop/p/figurka-kaws-kaws-cash-30-sm-1-sht-128096577/">
-      <a class="imgBox" href="https://kaspi.kz/shop/p/figurka-kaws-kaws-cash-30-sm-1-sht-128096577/" target="_blank" rel="noopener">
-        <img src="https://e-mall.su/wa-data/public/shop/products/70/16/11670/images/45190/45190.440.jpg" alt="KAWS Cash 30 см — Brown" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="fallback">Фото<br><span>KAWS Cash 30 см — Brown</span></div>
-      </a>
-      <div class="content">
-        <div class="num">#48</div>
-        <h2>KAWS Cash 30 см — Brown</h2>
-        <p>Коричневый KAWS Cash — спокойная коллекционная модель в теплой цветовой гамме.</p>
-        <div class="price">Цена на Kaspi</div>
-        <a class="link" href="https://kaspi.kz/shop/p/figurka-kaws-kaws-cash-30-sm-1-sht-128096577/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+    </article>
+    <article class="card" data-category="kaws" data-name="Cash (бежевый)" data-price="16 990 ₸" data-url="https://kaspi.kz/shop/p/figurka-kaws-kaws-cash-30-sm-1-sht-128096577/">
+      <div class="image-wrap">
+        <span class="badge badge-kaws">KAWS</span>
+        <span class="size">30 см</span>
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/p1a/pb4/4968736.jpg?format=gallery-large" alt="Cash (бежевый)" loading="lazy" onerror="this.closest('.image-wrap').classList.add('img-error')">
+      </div>
+      <div class="info">
+        <h3>Cash (бежевый)</h3>
+        <p>KAWS Cash 30 см: минималистичная фигурка в современном арт-стиле.</p>
+        <div class="price">16 990 ₸</div>
+        <a class="kaspi" href="https://kaspi.kz/shop/p/figurka-kaws-kaws-cash-30-sm-1-sht-128096577/" target="_blank" rel="noopener">Прямая ссылка на Kaspi</a>
         <button class="pick" type="button">Выбрать</button>
       </div>
-    </div>
-
-    <div class="product" data-cat="kaws" data-name="KAWS Small Lie 28 см — Brown" data-price="" data-url="https://kaspi.kz/shop/p/figurka-kaws-kaws-small-lie-28-sm-1-sht-128099872/">
-      <a class="imgBox" href="https://kaspi.kz/shop/p/figurka-kaws-kaws-small-lie-28-sm-1-sht-128099872/" target="_blank" rel="noopener">
-        <img src="https://e-mall.su/wa-data/public/shop/products/70/16/11670/images/45190/45190.440.jpg" alt="KAWS Small Lie 28 см — Brown" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="fallback">Фото<br><span>KAWS Small Lie 28 см — Brown</span></div>
-      </a>
-      <div class="content">
-        <div class="num">#49</div>
-        <h2>KAWS Small Lie 28 см — Brown</h2>
-        <p>Small Lie в коричневом цвете — фигурка со смыслом и мягким визуальным характером.</p>
-        <div class="price">Цена на Kaspi</div>
-        <a class="link" href="https://kaspi.kz/shop/p/figurka-kaws-kaws-small-lie-28-sm-1-sht-128099872/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+    </article>
+    <article class="card" data-category="kaws" data-name="Small Lie (розовый)" data-price="16 990 ₸" data-url="https://kaspi.kz/shop/p/figurka-kaws-kaws-small-lie-28-sm-1-sht-128099872/">
+      <div class="image-wrap">
+        <span class="badge badge-kaws">KAWS</span>
+        <span class="size">28 см</span>
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/p2b/pae/122182955.jpeg?format=gallery-large" alt="Small Lie (розовый)" loading="lazy" onerror="this.closest('.image-wrap').classList.add('img-error')">
+      </div>
+      <div class="info">
+        <h3>Small Lie (розовый)</h3>
+        <p>Коллекционная фигурка KAWS 28 см для интерьера, подарка или личной коллекции.</p>
+        <div class="price">16 990 ₸</div>
+        <a class="kaspi" href="https://kaspi.kz/shop/p/figurka-kaws-kaws-small-lie-28-sm-1-sht-128099872/" target="_blank" rel="noopener">Прямая ссылка на Kaspi</a>
         <button class="pick" type="button">Выбрать</button>
       </div>
-    </div>
-
-    <div class="product" data-cat="kaws" data-name="KAWS Companion Anatomy 37 см — Multi" data-price="" data-url="https://kaspi.kz/shop/p/kaws-kaws-companion-anatomy-37-sm-1-sht-148972041/">
-      <a class="imgBox" href="https://kaspi.kz/shop/p/kaws-kaws-companion-anatomy-37-sm-1-sht-148972041/" target="_blank" rel="noopener">
-        <img src="https://media.composition.gallery/artworkpic/kaws-pinocchio-jiminy-cricket-vinyl-figures-with-x-eyes-and-hands-covering-faces-styled-after-classic-disney-characters1754401915-69843_448x500.png" alt="KAWS Companion Anatomy 37 см — Multi" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="fallback">Фото<br><span>KAWS Companion Anatomy 37 см — Multi</span></div>
-      </a>
-      <div class="content">
-        <div class="num">#50</div>
-        <h2>KAWS Companion Anatomy 37 см — Multi</h2>
-        <p>Anatomy-версия Companion с эффектной анатомической стилистикой и яркими деталями.</p>
-        <div class="price">Цена на Kaspi</div>
-        <a class="link" href="https://kaspi.kz/shop/p/kaws-kaws-companion-anatomy-37-sm-1-sht-148972041/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+    </article>
+    <article class="card" data-category="kaws" data-name="Companion Anatomy #1" data-price="18 990 ₸" data-url="https://kaspi.kz/shop/p/kaws-kaws-companion-anatomy-37-sm-1-sht-148972041/">
+      <div class="image-wrap">
+        <span class="badge badge-kaws">KAWS</span>
+        <span class="size">37 см</span>
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/p36/pa0/75814825.png?format=gallery-large" alt="Companion Anatomy #1" loading="lazy" onerror="this.closest('.image-wrap').classList.add('img-error')">
+      </div>
+      <div class="info">
+        <h3>Companion Anatomy #1</h3>
+        <p>KAWS Companion 37 см: выразительная коллекционная фигурка с фирменным силуэтом и X-глазами.</p>
+        <div class="price">18 990 ₸</div>
+        <a class="kaspi" href="https://kaspi.kz/shop/p/kaws-kaws-companion-anatomy-37-sm-1-sht-148972041/" target="_blank" rel="noopener">Прямая ссылка на Kaspi</a>
         <button class="pick" type="button">Выбрать</button>
       </div>
-    </div>
-
-    <div class="product" data-cat="kaws" data-name="KAWS x Pinocchio &amp; Jiminy Cricket 22 см" data-price="" data-url="https://kaspi.kz/shop/p/kaws-kaws-x-pinocchio-sitting-edition-jiminy-cricket-22-sm-1-sht-162904231/">
-      <a class="imgBox" href="https://kaspi.kz/shop/p/kaws-kaws-x-pinocchio-sitting-edition-jiminy-cricket-22-sm-1-sht-162904231/" target="_blank" rel="noopener">
-        <img src="https://media.composition.gallery/artworkpic/kaws-pinocchio-jiminy-cricket-vinyl-figures-with-x-eyes-and-hands-covering-faces-styled-after-classic-disney-characters1754401915-69843_448x500.png" alt="KAWS x Pinocchio &amp;amp; Jiminy Cricket 22 см" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="fallback">Фото<br><span>KAWS x Pinocchio &amp;amp; Jiminy Cricket 22 см</span></div>
-      </a>
-      <div class="content">
-        <div class="num">#51</div>
-        <h2>KAWS x Pinocchio &amp; Jiminy Cricket 22 см</h2>
-        <p>Коллаборационная композиция KAWS x Pinocchio — необычный арт-объект для подарка или коллекции.</p>
-        <div class="price">Цена на Kaspi</div>
-        <a class="link" href="https://kaspi.kz/shop/p/kaws-kaws-x-pinocchio-sitting-edition-jiminy-cricket-22-sm-1-sht-162904231/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+    </article>
+    <article class="card" data-category="kaws" data-name="× Pinocchio &amp; Jiminy Cricket" data-price="Уточнить цену" data-url="https://kaspi.kz/shop/p/kaws-kaws-x-pinocchio-sitting-edition-jiminy-cricket-22-sm-1-sht-162904231/">
+      <div class="image-wrap">
+        <span class="badge badge-kaws">KAWS</span>
+        <span class="size">22 см</span>
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/p4c/p0b/126979416.png?format=gallery-large" alt="× Pinocchio &amp; Jiminy Cricket" loading="lazy" onerror="this.closest('.image-wrap').classList.add('img-error')">
+      </div>
+      <div class="info">
+        <h3>× Pinocchio &amp; Jiminy Cricket</h3>
+        <p>KAWS × Pinocchio 22 см: необычная коллаборационная фигурка для коллекции.</p>
+        <div class="price">Уточнить цену</div>
+        <a class="kaspi" href="https://kaspi.kz/shop/p/kaws-kaws-x-pinocchio-sitting-edition-jiminy-cricket-22-sm-1-sht-162904231/" target="_blank" rel="noopener">Прямая ссылка на Kaspi</a>
         <button class="pick" type="button">Выбрать</button>
       </div>
-    </div>
-
-    <div class="product" data-cat="kaws" data-name="KAWS Astro Boy 37 см — Red" data-price="" data-url="https://kaspi.kz/shop/p/kaws-astro-boy-37-sm-1-sht-142964937/">
-      <a class="imgBox" href="https://kaspi.kz/shop/p/kaws-astro-boy-37-sm-1-sht-142964937/" target="_blank" rel="noopener">
-        <img src="https://artandtoys.com/cdn/shop/products/Sculpture-Astro-Boy-Original-by-KAWS-ArtAndToys-5375.jpg?v=1705512018&width=900" alt="KAWS Astro Boy 37 см — Red" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="fallback">Фото<br><span>KAWS Astro Boy 37 см — Red</span></div>
-      </a>
-      <div class="content">
-        <div class="num">#52</div>
-        <h2>KAWS Astro Boy 37 см — Red</h2>
-        <p>KAWS Astro Boy — яркая поп-культурная модель для тех, кто любит узнаваемые коллаборации.</p>
-        <div class="price">Цена на Kaspi</div>
-        <a class="link" href="https://kaspi.kz/shop/p/kaws-astro-boy-37-sm-1-sht-142964937/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+    </article>
+    <article class="card" data-category="kaws" data-name="Astro Boy" data-price="15 490 ₸" data-url="https://kaspi.kz/shop/p/kaws-astro-boy-37-sm-1-sht-142964937/">
+      <div class="image-wrap">
+        <span class="badge badge-kaws">KAWS</span>
+        <span class="size">37 см</span>
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/p5c/pf8/54655374.jpg?format=gallery-large" alt="Astro Boy" loading="lazy" onerror="this.closest('.image-wrap').classList.add('img-error')">
+      </div>
+      <div class="info">
+        <h3>Astro Boy</h3>
+        <p>KAWS Astro Boy 37 см: эффектная поп-культурная фигурка для заметного акцента.</p>
+        <div class="price">15 490 ₸</div>
+        <a class="kaspi" href="https://kaspi.kz/shop/p/kaws-astro-boy-37-sm-1-sht-142964937/" target="_blank" rel="noopener">Прямая ссылка на Kaspi</a>
         <button class="pick" type="button">Выбрать</button>
       </div>
-    </div>
-
-    <div class="product" data-cat="kaws" data-name="KAWS Companion Passing Through 28 см" data-price="" data-url="https://kaspi.kz/shop/p/kaws-statuetka-kaws-companion-passing-through-28-sm-28-sm-polimer-163359260/">
-      <a class="imgBox" href="https://kaspi.kz/shop/p/kaws-statuetka-kaws-companion-passing-through-28-sm-28-sm-polimer-163359260/" target="_blank" rel="noopener">
-        <img src="https://e-mall.su/wa-data/public/shop/products/70/16/11670/images/45187/45187.440.jpg" alt="KAWS Companion Passing Through 28 см" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="fallback">Фото<br><span>KAWS Companion Passing Through 28 см</span></div>
-      </a>
-      <div class="content">
-        <div class="num">#53</div>
-        <h2>KAWS Companion Passing Through 28 см</h2>
-        <p>Passing Through — эмоциональная поза Companion с закрытым лицом, сильный интерьерный акцент.</p>
-        <div class="price">Цена на Kaspi</div>
-        <a class="link" href="https://kaspi.kz/shop/p/kaws-statuetka-kaws-companion-passing-through-28-sm-28-sm-polimer-163359260/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+    </article>
+    <article class="card" data-category="kaws" data-name="Companion Passing Through" data-price="Уточнить цену" data-url="https://kaspi.kz/shop/p/kaws-statuetka-kaws-companion-passing-through-28-sm-28-sm-polimer-163359260/">
+      <div class="image-wrap">
+        <span class="badge badge-kaws">KAWS</span>
+        <span class="size">28 см</span>
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/p44/p82/128535813.jpg?format=gallery-large" alt="Companion Passing Through" loading="lazy" onerror="this.closest('.image-wrap').classList.add('img-error')">
+      </div>
+      <div class="info">
+        <h3>Companion Passing Through</h3>
+        <p>KAWS Companion 28 см: выразительная коллекционная фигурка с фирменным силуэтом и X-глазами.</p>
+        <div class="price">Уточнить цену</div>
+        <a class="kaspi" href="https://kaspi.kz/shop/p/kaws-statuetka-kaws-companion-passing-through-28-sm-28-sm-polimer-163359260/" target="_blank" rel="noopener">Прямая ссылка на Kaspi</a>
         <button class="pick" type="button">Выбрать</button>
       </div>
-    </div>
-
-    <div class="product" data-cat="kaws" data-name="KAWS Companion 53 см — Grey" data-price="" data-url="https://kaspi.kz/shop/p/kaws-kaws-companion-53-sm-1-sht-148961276/">
-      <a class="imgBox" href="https://kaspi.kz/shop/p/kaws-kaws-companion-53-sm-1-sht-148961276/" target="_blank" rel="noopener">
-        <img src="https://e-mall.su/wa-data/public/shop/products/70/16/11670/images/45187/45187.440.jpg" alt="KAWS Companion 53 см — Grey" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="fallback">Фото<br><span>KAWS Companion 53 см — Grey</span></div>
-      </a>
-      <div class="content">
-        <div class="num">#54</div>
-        <h2>KAWS Companion 53 см — Grey</h2>
-        <p>Крупный Companion 53 см — заметный арт-объект для витрины, офиса или просторной комнаты.</p>
-        <div class="price">Цена на Kaspi</div>
-        <a class="link" href="https://kaspi.kz/shop/p/kaws-kaws-companion-53-sm-1-sht-148961276/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+    </article>
+    <article class="card" data-category="kaws" data-name="Companion 53 см" data-price="44 490 ₸" data-url="https://kaspi.kz/shop/p/kaws-kaws-companion-53-sm-1-sht-148961276/">
+      <div class="image-wrap">
+        <span class="badge badge-kaws">KAWS</span>
+        <span class="size">53 см</span>
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/pf5/p7f/75788938.jpg?format=gallery-large" alt="Companion 53 см" loading="lazy" onerror="this.closest('.image-wrap').classList.add('img-error')">
+      </div>
+      <div class="info">
+        <h3>Companion 53 см</h3>
+        <p>KAWS Companion 53 см: выразительная коллекционная фигурка с фирменным силуэтом и X-глазами.</p>
+        <div class="price">44 490 ₸</div>
+        <a class="kaspi" href="https://kaspi.kz/shop/p/kaws-kaws-companion-53-sm-1-sht-148961276/" target="_blank" rel="noopener">Прямая ссылка на Kaspi</a>
         <button class="pick" type="button">Выбрать</button>
       </div>
-    </div>
-
-    <div class="product" data-cat="kaws" data-name="KAWS Companion Anatomy 37 см — Black" data-price="" data-url="https://kaspi.kz/shop/p/kaws-kaws-companion-anatomy-37-sm-1-sht-148972138/">
-      <a class="imgBox" href="https://kaspi.kz/shop/p/kaws-kaws-companion-anatomy-37-sm-1-sht-148972138/" target="_blank" rel="noopener">
-        <img src="https://usneakersport.ru/image/cache/catalog/shop/bearbrick/kaws-take-figure-black-700x700.jpg" alt="KAWS Companion Anatomy 37 см — Black" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="fallback">Фото<br><span>KAWS Companion Anatomy 37 см — Black</span></div>
-      </a>
-      <div class="content">
-        <div class="num">#55</div>
-        <h2>KAWS Companion Anatomy 37 см — Black</h2>
-        <p>Черная Anatomy-версия Companion — эффектная модель для коллекционеров KAWS.</p>
-        <div class="price">Цена на Kaspi</div>
-        <a class="link" href="https://kaspi.kz/shop/p/kaws-kaws-companion-anatomy-37-sm-1-sht-148972138/" target="_blank" rel="noopener">Открыть товар на Kaspi</a>
+    </article>
+    <article class="card" data-category="kaws" data-name="Companion Anatomy #2" data-price="18 990 ₸" data-url="https://kaspi.kz/shop/p/kaws-kaws-companion-anatomy-37-sm-1-sht-148972138/">
+      <div class="image-wrap">
+        <span class="badge badge-kaws">KAWS</span>
+        <span class="size">37 см</span>
+        <img src="https://resources.cdn-kaspi.kz/img/m/p/pd4/p8a/75815120.png?format=gallery-large" alt="Companion Anatomy #2" loading="lazy" onerror="this.closest('.image-wrap').classList.add('img-error')">
+      </div>
+      <div class="info">
+        <h3>Companion Anatomy #2</h3>
+        <p>KAWS Companion 37 см: выразительная коллекционная фигурка с фирменным силуэтом и X-глазами.</p>
+        <div class="price">18 990 ₸</div>
+        <a class="kaspi" href="https://kaspi.kz/shop/p/kaws-kaws-companion-anatomy-37-sm-1-sht-148972138/" target="_blank" rel="noopener">Прямая ссылка на Kaspi</a>
         <button class="pick" type="button">Выбрать</button>
       </div>
-    </div>
-    </section>
-
-    <footer>BE@RBRICK 400% + KAWS · каталог PATH OF PEAKS</footer>
+    </article>
   </main>
 
   <div class="bar">
-    <div class="barInner">
-      <div>
-        <div class="selected" id="selectedCount">Выбрано: 0</div>
-        <div class="small" id="selectedHint">Выберите модели, потом отправьте список в WhatsApp</div>
-      </div>
-      <button class="clear" type="button" id="clearBtn">Очистить</button>
-      <a class="whatsapp" href="#" id="sendBtn">Отправить список в WhatsApp</a>
+    <div class="bar-inner">
+      <div class="selected-count" id="selectedCount">Выбрано: 0</div>
+      <button class="clear" id="clearBtn" type="button">Очистить</button>
+      <a class="send disabled" id="sendBtn" href="#" target="_blank" rel="noopener">Отправить список в WhatsApp</a>
     </div>
   </div>
 
   <script>
     const phone = '77766088813';
-    const selected = new Set();
-    const products = Array.from(document.querySelectorAll('.product'));
-    const categoryButtons = Array.from(document.querySelectorAll('.catBtn'));
-    const catalogCount = document.getElementById('catalogCount');
-    const sectionTitles = Array.from(document.querySelectorAll('.sectionTitle'));
-    let activeCategory = 'bearbrick';
+    const tabs = document.querySelectorAll('.tab');
+    const cards = document.querySelectorAll('.card');
+    const pickButtons = document.querySelectorAll('.pick');
+    const count = document.getElementById('count');
     const selectedCount = document.getElementById('selectedCount');
-    const selectedHint = document.getElementById('selectedHint');
     const sendBtn = document.getElementById('sendBtn');
     const clearBtn = document.getElementById('clearBtn');
+    let activeCategory = 'bb';
+    const selected = new Set();
 
-    function formatPrice(value) {
-      const n = Number(value);
-      if (!value || Number.isNaN(n) || n <= 0) return 'Цена на Kaspi';
-      return n.toLocaleString('ru-RU') + ' ₸';
+    function showCategory(cat) {
+      activeCategory = cat;
+      tabs.forEach(btn => btn.classList.toggle('active', btn.dataset.cat === cat));
+      let visible = 0;
+      cards.forEach(card => {
+        const isVisible = card.dataset.category === cat;
+        card.classList.toggle('hidden', !isVisible);
+        if (isVisible) visible++;
+      });
+      count.textContent = cat === 'bb' ? visible + ' фигурок BE@RBRICK' : visible + ' фигурок KAWS';
     }
 
     function updateWhatsApp() {
-      const list = Array.from(selected);
-      selectedCount.textContent = 'Выбрано: ' + list.length;
-
-      if (list.length === 0) {
-        selectedHint.textContent = 'Выберите модели, потом отправьте список в WhatsApp';
+      selectedCount.textContent = 'Выбрано: ' + selected.size;
+      if (selected.size === 0) {
+        sendBtn.classList.add('disabled');
         sendBtn.href = '#';
         return;
       }
+      sendBtn.classList.remove('disabled');
+      const lines = Array.from(selected).map((card, index) => {
+        return (index + 1) + '. ' + card.dataset.name + ' — ' + card.dataset.price + '
+' + card.dataset.url;
+      }).join('
 
-      selectedHint.textContent = 'Список готов — можно отправить одним сообщением';
-      const lines = list.map((card, index) => {
-        return (index + 1) + '. ' + card.dataset.name + ' — ' + formatPrice(card.dataset.price) + '\n' + card.dataset.url;
-      }).join('\n\n');
+');
+      const message = 'Здравствуйте! Хочу заказать эти фигурки из каталога PATH OF PEAKS:
 
-      const message = 'Здравствуйте! Хочу заказать эти фигурки из каталога PATH OF PEAKS:\n\n' + lines + '\n\nПодскажите, пожалуйста, наличие и итоговую сумму.';
+' + lines + '
+
+Подскажите, пожалуйста, наличие и итоговую сумму.';
       sendBtn.href = 'https://wa.me/' + phone + '?text=' + encodeURIComponent(message);
     }
 
+    tabs.forEach(btn => btn.addEventListener('click', () => showCategory(btn.dataset.cat)));
 
-    function applyCategory(category) {
-      activeCategory = category;
-      categoryButtons.forEach(btn => btn.classList.toggle('active', btn.dataset.category === category));
-      let visibleCount = 0;
-      products.forEach(card => {
-        const visible = card.dataset.cat === category;
-        card.style.display = visible ? '' : 'none';
-        if (visible) visibleCount++;
-      });
-      sectionTitles.forEach(title => {
-        title.style.display = title.dataset.section === category ? '' : 'none';
-      });
-      catalogCount.textContent = category === 'kaws' ? visibleCount + ' фигурок KAWS' : visibleCount + ' фигурок BE@RBRICK';
-    }
-
-    categoryButtons.forEach(btn => {
-      btn.addEventListener('click', () => applyCategory(btn.dataset.category));
-    });
-
-    products.forEach(card => {
-      const btn = card.querySelector('.pick');
+    pickButtons.forEach(btn => {
       btn.addEventListener('click', () => {
+        const card = btn.closest('.card');
         if (selected.has(card)) {
           selected.delete(card);
           btn.classList.remove('active');
@@ -959,7 +913,7 @@
 
     clearBtn.addEventListener('click', () => {
       selected.clear();
-      document.querySelectorAll('.pick').forEach(btn => {
+      pickButtons.forEach(btn => {
         btn.classList.remove('active');
         btn.textContent = 'Выбрать';
       });
@@ -973,7 +927,7 @@
       }
     });
 
-    applyCategory(activeCategory);
+    showCategory('bb');
     updateWhatsApp();
   </script>
 </body>
